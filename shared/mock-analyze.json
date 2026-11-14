@@ -174,6 +174,116 @@
         ]
       }
     ],
+    "strategies": [
+      {
+        "id": "current",
+        "kind": "current",
+        "title": "Keep the current rotation",
+        "summary": "Repeat what was grown in the last three years: wheat, then corn with soybean, then fallow.",
+        "rotationPlan": [
+          { "year": 2027, "blocks": [{ "cropId": "winter_wheat", "sharePct": 100 }] },
+          { "year": 2028, "blocks": [{ "cropId": "corn", "sharePct": 50 }, { "cropId": "soybean", "sharePct": 50 }] },
+          { "year": 2029, "blocks": [{ "cropId": "fallow", "sharePct": 100 }] }
+        ],
+        "score": 58,
+        "why": "It already alternates a cereal with a legume, but the fallow year leaves the 3.2% slope bare and one crop covers the whole field in the first year.",
+        "evidence": [
+          { "label": "Slope", "value": 3.2, "unit": "%" },
+          { "label": "Erosion score", "value": 45, "unit": null }
+        ],
+        "benefits": ["No change in machinery or habits.", "The fallow year lets the soil store water."],
+        "risks": ["Bare fallow on a slope loses topsoil in heavy rain.", "A single crop on the whole field concentrates weather and disease risk."],
+        "dataGaps": ["Crop shares inside each past year were not entered, so equal shares are assumed."],
+        "bareSoilMonths": 6,
+        "confidence": "medium"
+      },
+      {
+        "id": "balanced",
+        "kind": "recommended",
+        "title": "Balanced rotation",
+        "summary": "Three crops every year, with a legume and a cover crop always present.",
+        "rotationPlan": [
+          {
+            "year": 2027,
+            "blocks": [
+              { "cropId": "soybean", "sharePct": 40 },
+              { "cropId": "winter_wheat", "sharePct": 35 },
+              { "cropId": "clover", "sharePct": 25 }
+            ]
+          },
+          {
+            "year": 2028,
+            "blocks": [
+              { "cropId": "winter_wheat", "sharePct": 40 },
+              { "cropId": "corn", "sharePct": 35 },
+              { "cropId": "pea", "sharePct": 25 }
+            ]
+          },
+          {
+            "year": 2029,
+            "blocks": [
+              { "cropId": "corn", "sharePct": 40 },
+              { "cropId": "soybean", "sharePct": 35 },
+              { "cropId": "clover", "sharePct": 25 }
+            ]
+          }
+        ],
+        "score": 80,
+        "why": "The 7-month growing season and 681 mm of annual rain suit all three crops, and a legume follows the cereal every year.",
+        "evidence": [
+          { "label": "Growing season", "value": 7, "unit": "months" },
+          { "label": "Annual rain", "value": 681, "unit": "mm" }
+        ],
+        "benefits": ["Legumes add nitrogen for the following cereal.", "Changing crop families every year interrupts pest and disease cycles.", "Clover keeps part of the field covered."],
+        "risks": ["Check that there is a local market for soybean and pea.", "Three crops a year need more planning of sowing and harvest dates."],
+        "dataGaps": ["Climate is a 2001-2020 average on a coarse grid of about 50 km."],
+        "bareSoilMonths": 3,
+        "confidence": "medium"
+      },
+      {
+        "id": "soil_first",
+        "kind": "alternative",
+        "title": "Soil-first rotation",
+        "summary": "More cover crop and legumes to protect the slope and build organic matter.",
+        "rotationPlan": [
+          {
+            "year": 2027,
+            "blocks": [
+              { "cropId": "clover", "sharePct": 35 },
+              { "cropId": "soybean", "sharePct": 35 },
+              { "cropId": "winter_wheat", "sharePct": 30 }
+            ]
+          },
+          {
+            "year": 2028,
+            "blocks": [
+              { "cropId": "winter_wheat", "sharePct": 35 },
+              { "cropId": "pea", "sharePct": 35 },
+              { "cropId": "clover", "sharePct": 30 }
+            ]
+          },
+          {
+            "year": 2029,
+            "blocks": [
+              { "cropId": "clover", "sharePct": 35 },
+              { "cropId": "soybean", "sharePct": 35 },
+              { "cropId": "corn", "sharePct": 30 }
+            ]
+          }
+        ],
+        "score": 74,
+        "why": "Slope 3.2% and silt 45% give a moderate erosion risk (score 45); keeping about a third of the field under clover reduces the time soil is bare.",
+        "evidence": [
+          { "label": "Silt", "value": 45, "unit": "%" },
+          { "label": "Erosion score", "value": 45, "unit": null }
+        ],
+        "benefits": ["Least bare soil of the three strategies.", "Builds organic matter and improves water infiltration."],
+        "risks": ["A smaller share of cash crops; clover needs a use as forage or green manure.", "Cover crops use some soil water before the dry July-August."],
+        "dataGaps": ["Soil values are model estimates at about 250 m, not a lab analysis of this field."],
+        "bareSoilMonths": 2,
+        "confidence": "medium"
+      }
+    ],
     "tillage": [
       {
         "id": "reduced_tillage",

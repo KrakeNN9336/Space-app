@@ -8,7 +8,7 @@
  *  - Human-readable docs: docs/api-contract.md. Example payload: shared/mock-analyze.json.
  */
 
-export const CONTRACT_VERSION = "2.0.0";
+export const CONTRACT_VERSION = "2.1.0";
 
 // ---------------------------------------------------------------------------
 // Primitives
@@ -250,10 +250,48 @@ export interface TillageAdvice {
   why: string;
 }
 
+/**
+ * current     = the farmer keeps repeating the rotation from the entered history
+ * recommended = the best-scoring plan (same as Recommendation.rotationPlan)
+ * alternative = a different trade-off, e.g. soil-first or water-saving
+ */
+export type StrategyKind = "current" | "recommended" | "alternative";
+
+/** One rotation strategy in the comparison required by the challenge (at least three). */
+export interface RotationStrategy {
+  /** Stable id, e.g. "current", "balanced", "soil_first", "water_saving". */
+  id: string;
+  kind: StrategyKind;
+  title: string;
+  /** One plain sentence: what this strategy is. */
+  summary: string;
+  /**
+   * Three years following the last history year. Blocks may use "fallow".
+   * May be empty ONLY for kind "current" when the history is unknown (explain in dataGaps).
+   */
+  rotationPlan: RotationYear[];
+  /** 0..100 relative suitability for this field, comparable between strategies. Not a yield. */
+  score: number;
+  /** Why it was suggested for this very field, with numbers. */
+  why: string;
+  evidence: Evidence[];
+  /** What it may improve (soil, water, pest cycle, income...). */
+  benefits: string[];
+  /** What needs local review by the farmer or an agronomist. */
+  risks: string[];
+  /** Where information is missing or coarse. */
+  dataGaps: string[];
+  /** Average months per year with no crop or cover on the field. Null if it cannot be estimated. */
+  bareSoilMonths: number | null;
+  confidence: Confidence;
+}
+
 export interface Recommendation {
   crops: CropShare[];
   /** The three years following the last history year. */
   rotationPlan: RotationYear[];
+  /** At least three strategies: exactly one "current", exactly one "recommended". Added in 2.1.0. */
+  strategies: RotationStrategy[];
   tillage: TillageAdvice[];
   warnings: string[];
   confidence: Confidence;

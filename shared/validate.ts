@@ -266,6 +266,40 @@ export function validateAnalyzeResponse(res: unknown): string[] {
       });
     }
 
+    // strategies: at least three, exactly one "current" and one "recommended"
+    if (!Array.isArray(rec.strategies)) c.fail("recommendation.strategies", "must be an array");
+    else {
+      const kinds = rec.strategies.map((s) => (isObj(s) ? s.kind : undefined));
+      if (rec.strategies.length < 3) c.fail("recommendation.strategies", "must have at least 3 strategies");
+      for (const kind of ["current", "recommended"]) {
+        if (kinds.filter((k) => k === kind).length !== 1) {
+          c.fail("recommendation.strategies", `must have exactly one strategy of kind "${kind}"`);
+        }
+      }
+      rec.strategies.forEach((s, i) => {
+        const p = `recommendation.strategies[${i}]`;
+        if (!isObj(s)) return c.fail(p, "must be an object");
+        for (const f of ["id", "title", "summary", "why"]) c.str(s, f, p, { nonEmpty: true });
+        c.oneOf(s, "kind", p, ["current", "recommended", "alternative"]);
+        c.num(s, "score", p, 0, 100);
+        c.oneOf(s, "confidence", p, CONFIDENCE);
+        for (const f of ["benefits", "risks", "dataGaps"]) c.strArray(s, f, p);
+        if (!Array.isArray(s.evidence)) c.fail(`${p}.evidence`, "must be an array");
+        if (s.bareSoilMonths !== null) c.num(s, "bareSoilMonths", p, 0, 12);
+        if (!Array.isArray(s.rotationPlan)) return c.fail(`${p}.rotationPlan`, "must be an array");
+        const emptyAllowed = s.kind === "current" && s.rotationPlan.length === 0;
+        if (!emptyAllowed && s.rotationPlan.length !== 3) {
+          c.fail(`${p}.rotationPlan`, 'must cover exactly 3 years (may be empty only for kind "current")');
+        }
+        s.rotationPlan.forEach((y, j) => {
+          const yp = `${p}.rotationPlan[${j}]`;
+          if (!isObj(y)) return c.fail(yp, "must be an object");
+          if (!isNum(y.year) || !Number.isInteger(y.year)) c.fail(`${yp}.year`, "must be an integer");
+          checkShares(y.blocks, `${yp}.blocks`, "cropId");
+        });
+      });
+    }
+
     if (!Array.isArray(rec.tillage)) c.fail("recommendation.tillage", "must be an array");
     else
       rec.tillage.forEach((t, i) => {
