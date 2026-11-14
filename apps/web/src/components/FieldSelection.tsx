@@ -84,6 +84,7 @@ export function FieldSelection({ lang }: Props) {
           <FieldMap
             field={picked?.field ?? null}
             analysis={result}
+            lang={lang}
             onMapClick={handleMapClick}
             panelSlot={
               <div className="field-map-slot" role="status">

@@ -15,12 +15,48 @@ export interface FieldMapProps {
   layer?: string;
   /** Extra content (status, actions) shown at the top of the side panel. */
   panelSlot?: ReactNode;
+  /** Language of the settlement and country names on the map. */
+  lang?: "uk" | "en";
 }
-const satelliteStyle = {
-  version: 8 as const,
-  sources: { satellite: { type: "raster" as const, tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"], tileSize: 256, attribution: "Imagery © Esri and contributors" } },
-  layers: [{ id: "satellite", type: "raster" as const, source: "satellite" }]
-};
+// Borders and settlement names come from OpenFreeMap vector tiles (OpenStreetMap data, OpenMapTiles
+// schema), the same source the "streets" style uses. They are drawn over the satellite imagery.
+const landBorder = (min: number, max: number) => ["all",
+  ["==", ["typeof", ["get", "admin_level"]], "number"],
+  [">=", ["get", "admin_level"], min], ["<=", ["get", "admin_level"], max],
+  ["!=", ["get", "maritime"], 1], ["!=", ["get", "disputed"], 1], ["!", ["has", "claimed_by"]]];
+const placeLabel = (id: string, filter: unknown, font: string, size: unknown, name: unknown, zoom: { minzoom?: number; maxzoom?: number }, upper = false) => ({
+  id, type: "symbol", source: "openmaptiles", "source-layer": "place", filter, ...zoom,
+  layout: { "text-field": name, "text-font": [font], "text-size": size, "text-max-width": 8, ...(upper ? { "text-transform": "uppercase", "text-letter-spacing": 0.15 } : {}) },
+  paint: { "text-color": "#ffffff", "text-halo-color": "rgba(8,22,16,0.9)", "text-halo-width": 1.4 },
+});
+function satelliteStyle(lang: "uk" | "en") {
+  const name = ["coalesce", ["get", lang === "uk" ? "name:uk" : "name:en"], ["get", "name"]];
+  const cls = (value: string) => ["==", ["get", "class"], value];
+  return {
+    version: 8 as const,
+    glyphs: "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+    sources: {
+      satellite: { type: "raster" as const, tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"], tileSize: 256, attribution: "Imagery © Esri and contributors" },
+      openmaptiles: { type: "vector" as const, url: "https://tiles.openfreemap.org/planet" },
+    },
+    layers: [
+      { id: "satellite", type: "raster", source: "satellite" },
+      // District (raion) borders, then region (oblast) borders, then country borders on top.
+      { id: "border-district", type: "line", source: "openmaptiles", "source-layer": "boundary", minzoom: 7, filter: landBorder(5, 6),
+        paint: { "line-color": "#ffffff", "line-opacity": 0.55, "line-width": 1, "line-dasharray": [2, 2] } },
+      { id: "border-region", type: "line", source: "openmaptiles", "source-layer": "boundary", minzoom: 3, filter: landBorder(3, 4),
+        paint: { "line-color": "#ffe9a8", "line-opacity": 0.8, "line-width": ["interpolate", ["linear"], ["zoom"], 4, 0.8, 10, 2], "line-dasharray": [3, 2] } },
+      { id: "border-country", type: "line", source: "openmaptiles", "source-layer": "boundary", filter: landBorder(2, 2),
+        layout: { "line-cap": "round", "line-join": "round" },
+        paint: { "line-color": "#ffffff", "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.8, 5, 1.6, 12, 3] } },
+      placeLabel("label-village", cls("village"), "Noto Sans Regular", 11, name, { minzoom: 10 }),
+      placeLabel("label-town", cls("town"), "Noto Sans Regular", ["interpolate", ["linear"], ["zoom"], 7, 11, 12, 14], name, { minzoom: 7 }),
+      placeLabel("label-city", cls("city"), "Noto Sans Bold", ["interpolate", ["linear"], ["zoom"], 4, 11, 8, 14, 12, 18], name, { minzoom: 4 }),
+      placeLabel("label-region", cls("state"), "Noto Sans Italic", ["interpolate", ["linear"], ["zoom"], 5, 10, 8, 13], name, { minzoom: 5, maxzoom: 9 }, true),
+      placeLabel("label-country", cls("country"), "Noto Sans Bold", ["interpolate", ["linear"], ["zoom"], 1, 10, 5, 16], name, { maxzoom: 7 }),
+    ],
+  };
+}
 const streetStyle = "https://tiles.openfreemap.org/styles/liberty";
 const severity = { low: "#49c58b", moderate: "#f3bf4b", high: "#ed746c" };
 const titles: Record<string, string> = { drought: "Посуха", waterlogging: "Перезволоження", frost: "Заморозки", heat: "Спека", erosion: "Ерозія", fertility: "Родючість" };
@@ -42,7 +78,7 @@ function getBounds(geometry: FieldGeometry): maplibregl.LngLatBounds | null {
   visit(geometry.coordinates);
   return count ? bounds : null;
 }
-export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, panelSlot }: FieldMapProps) {
+export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, panelSlot, lang = "uk" }: FieldMapProps) {
   const clickRef = useRef(onMapClick);
   clickRef.current = onMapClick;
   const container = useRef<HTMLDivElement>(null);
@@ -57,7 +93,7 @@ export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, 
   const soil = analysis?.soil;
   useEffect(() => {
     if (!container.current) return;
-    const map = new maplibregl.Map({ container: container.current, style: base === "satellite" ? satelliteStyle : streetStyle, center: [24.03, 40], zoom: 1.4, attributionControl: false });
+    const map = new maplibregl.Map({ container: container.current, style: base === "satellite" ? (satelliteStyle(lang) as any) : streetStyle, center: [24.03, 40], zoom: 1.4, attributionControl: false });
     // Globe view; MapLibre switches to flat Mercator by itself when zoomed in.
     map.on("style.load", () => map.setProjection({ type: "globe" }));
     mapRef.current = map;
@@ -70,7 +106,7 @@ export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, 
     });
     map.on("error", () => setError("Не вдалося завантажити частину карти. Перевірте інтернет."));
     return () => { mapRef.current = null; map.remove(); };
-  }, [base]);
+  }, [base, lang]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -93,7 +129,7 @@ export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, 
     if (map.isStyleLoaded()) draw();
     map.on("style.load", draw);
     return () => { map.off("style.load", draw); };
-  }, [currentField, mainStress?.level, showSoil, base]);
+  }, [currentField, mainStress?.level, showSoil, base, lang]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !currentField) return;
@@ -101,7 +137,7 @@ export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, 
     map.on("click", "field-fill", select);
     map.on("click", "field-outline", select);
     return () => { map.off("click", "field-fill", select); map.off("click", "field-outline", select); };
-  }, [currentField, onFieldSelected, base]);
+  }, [currentField, onFieldSelected, base, lang]);
   return <section className="field-map-shell" aria-label="Карта полів">
     <div className="field-map-canvas" ref={container} />
     <div className="field-map-controls">
