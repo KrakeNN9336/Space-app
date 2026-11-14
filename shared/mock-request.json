@@ -1,0 +1,19 @@
+{
+  "location": { "lat": 49.84, "lon": 24.03 },
+  "field": {
+    "source": "ftw",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[[24.03, 49.84], [24.04, 49.84], [24.04, 49.85], [24.03, 49.85], [24.03, 49.84]]]
+    },
+    "areaHa": 42.5
+  },
+  "radiusKm": 5,
+  "history": [
+    { "year": 2024, "crops": ["winter_wheat"] },
+    { "year": 2025, "crops": ["corn", "soybean"] },
+    { "year": 2026, "crops": ["fallow"] }
+  ],
+  "priorities": { "water": 3, "income": 3, "soil": 3, "erosion": 3 },
+  "lang": "en"
+}

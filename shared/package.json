@@ -1,0 +1,13 @@
+{
+  "name": "@field-shift/shared",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./types": "./types.ts",
+    "./validate": "./validate.ts",
+    "./mock-analyze.json": "./mock-analyze.json",
+    "./mock-request.json": "./mock-request.json"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "app.title": "Field Shift",
+  "app.tagline": "Адаптуємо господарства за даними NASA",
+  "lang.switch": "English",
+  "scaffold.note": "Каркас проєкту. Майстер, карта та екран результату створюються в гілках ui і map.",
+  "scaffold.api": "Стан API",
+  "scaffold.apiOk": "працює, контракт {version}",
+  "scaffold.apiDown": "недоступний. Чи запущено \"npm run dev\"?",
+  "scaffold.apiChecking": "перевіряємо…",
+  "scaffold.sample": "Приклад рекомендації (тестові дані)",
+  "disclaimer": "Цей інструмент допомагає у рішеннях і не замінює місцевого агронома."
+}

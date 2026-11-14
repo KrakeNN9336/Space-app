@@ -1,0 +1,209 @@
+{
+  "field": {
+    "source": "ftw",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[[24.03, 49.84], [24.04, 49.84], [24.04, 49.85], [24.03, 49.85], [24.03, 49.84]]]
+    },
+    "areaHa": 42.5,
+    "note": "Estimated from satellite imagery, not a legal boundary"
+  },
+  "climate": {
+    "koppen": {
+      "code": "Dfb",
+      "name": "Humid continental, warm summer",
+      "explain": "Cold winters, warm summers, rain all year."
+    },
+    "annualTempC": 7.6,
+    "annualPrecipMm": 681,
+    "growingSeasonMonths": 7,
+    "frostFreeMonths": 7,
+    "monthly": {
+      "tempC": [-4, -3, 1, 8, 14, 17, 19, 18, 13, 8, 2, -2],
+      "tempMinC": [-8, -7, -3, 3, 8, 12, 14, 13, 9, 4, -1, -5],
+      "tempMaxC": [0, 2, 7, 14, 20, 23, 25, 24, 19, 13, 5, 1],
+      "precipMm": [35, 33, 38, 50, 70, 90, 95, 80, 60, 45, 45, 40],
+      "petMm": [5, 8, 25, 55, 95, 120, 130, 110, 70, 35, 12, 6]
+    },
+    "spread": { "tempC": 0.4, "precipMm": 35 },
+    "samples": 9,
+    "source": "NASA POWER 2001-2020"
+  },
+  "soil": {
+    "wrbGroup": {
+      "code": "CH",
+      "name": "Chernozems",
+      "probability": 0.62,
+      "explain": "Dark, humus-rich, usually very fertile soil."
+    },
+    "properties": {
+      "organicCarbonGkg": { "median": 28, "low": 22, "high": 34 },
+      "phH2O": { "median": 6.8, "low": 6.5, "high": 7.1 },
+      "sandPct": { "median": 25, "low": 20, "high": 31 },
+      "siltPct": { "median": 45, "low": 40, "high": 50 },
+      "clayPct": { "median": 30, "low": 26, "high": 34 }
+    },
+    "source": "ISRIC SoilGrids 2.0"
+  },
+  "terrain": { "elevationM": 310, "slopePct": 3.2 },
+  "stress": [
+    {
+      "id": "drought",
+      "level": "moderate",
+      "score": 54,
+      "whyShort": "Summers are dry enough to stress shallow-rooted crops.",
+      "whyFull": "In July-August about 175 mm of rain falls but the field loses about 240 mm to evaporation, so soil moisture runs short late in the season. Data: NASA POWER 2001-2020. Confidence: medium.",
+      "evidence": [
+        { "label": "Jul-Aug rain", "value": 175, "unit": "mm" },
+        { "label": "Jul-Aug evapotranspiration", "value": 240, "unit": "mm" }
+      ],
+      "confidence": "medium",
+      "sources": ["NASA POWER", "ISRIC SoilGrids"]
+    },
+    {
+      "id": "waterlogging",
+      "level": "low",
+      "score": 22,
+      "whyShort": "The soil drains well enough and the field is not flat.",
+      "whyFull": "The wettest month brings about 95 mm of rain, clay content is 30% and the slope is 3.2%, so water rarely stands on the field. Data: NASA POWER 2001-2020, ISRIC SoilGrids. Confidence: medium.",
+      "evidence": [
+        { "label": "Wettest month rain", "value": 95, "unit": "mm" },
+        { "label": "Clay", "value": 30, "unit": "%" },
+        { "label": "Slope", "value": 3.2, "unit": "%" }
+      ],
+      "confidence": "medium",
+      "sources": ["NASA POWER", "ISRIC SoilGrids"]
+    },
+    {
+      "id": "frost",
+      "level": "moderate",
+      "score": 48,
+      "whyShort": "Late spring frosts can damage early sowings.",
+      "whyFull": "Five months have an average minimum temperature at or below 0 °C and April minimum is only 3 °C, so the frost-free period is about 7 months. Data: NASA POWER 2001-2020. Confidence: high.",
+      "evidence": [
+        { "label": "Months with minimum at or below 0 °C", "value": 5, "unit": "months" },
+        { "label": "April minimum", "value": 3, "unit": "°C" }
+      ],
+      "confidence": "high",
+      "sources": ["NASA POWER"]
+    },
+    {
+      "id": "heat",
+      "level": "low",
+      "score": 15,
+      "whyShort": "Summers are warm but rarely too hot for crops.",
+      "whyFull": "The hottest month has an average maximum of 25 °C, below the heat thresholds of the main crops. Data: NASA POWER 2001-2020. Confidence: high.",
+      "evidence": [{ "label": "July maximum", "value": 25, "unit": "°C" }],
+      "confidence": "high",
+      "sources": ["NASA POWER"]
+    },
+    {
+      "id": "erosion",
+      "level": "moderate",
+      "score": 45,
+      "whyShort": "A gentle slope and silty soil let rain wash the top layer away.",
+      "whyFull": "Slope is 3.2% and silt is 45%, and summer months bring up to 95 mm of rain, which raises water erosion risk on bare soil. Data: elevation API, ISRIC SoilGrids, NASA POWER. Confidence: medium.",
+      "evidence": [
+        { "label": "Slope", "value": 3.2, "unit": "%" },
+        { "label": "Silt", "value": 45, "unit": "%" }
+      ],
+      "confidence": "medium",
+      "sources": ["Elevation API", "ISRIC SoilGrids", "NASA POWER"]
+    },
+    {
+      "id": "fertility",
+      "level": "low",
+      "score": 18,
+      "whyShort": "The soil is rich in humus and close to neutral.",
+      "whyFull": "Organic carbon is 28 g/kg (range 22-34) and pH is 6.8 (range 6.5-7.1), both inside the comfortable range for most field crops. Data: ISRIC SoilGrids. Confidence: medium.",
+      "evidence": [
+        { "label": "Organic carbon", "value": 28, "unit": "g/kg" },
+        { "label": "pH (water)", "value": 6.8, "unit": null }
+      ],
+      "confidence": "medium",
+      "sources": ["ISRIC SoilGrids"]
+    }
+  ],
+  "recommendation": {
+    "crops": [
+      {
+        "id": "soybean",
+        "name": "Soybean",
+        "sharePct": 40,
+        "score": 82,
+        "why": "Fixes nitrogen and breaks the cereal cycle; the 7-month growing season is long enough."
+      },
+      {
+        "id": "winter_wheat",
+        "name": "Winter wheat",
+        "sharePct": 35,
+        "score": 78,
+        "why": "Suits pH 6.8 and 681 mm of annual rain; uses winter moisture before the dry July-August."
+      },
+      {
+        "id": "clover",
+        "name": "Clover cover crop",
+        "sharePct": 25,
+        "score": 70,
+        "why": "Covers the soil on the 3.2% slope and adds organic matter."
+      }
+    ],
+    "rotationPlan": [
+      {
+        "year": 2027,
+        "blocks": [
+          { "cropId": "soybean", "sharePct": 40 },
+          { "cropId": "winter_wheat", "sharePct": 35 },
+          { "cropId": "clover", "sharePct": 25 }
+        ]
+      },
+      {
+        "year": 2028,
+        "blocks": [
+          { "cropId": "winter_wheat", "sharePct": 40 },
+          { "cropId": "corn", "sharePct": 35 },
+          { "cropId": "pea", "sharePct": 25 }
+        ]
+      },
+      {
+        "year": 2029,
+        "blocks": [
+          { "cropId": "corn", "sharePct": 40 },
+          { "cropId": "soybean", "sharePct": 35 },
+          { "cropId": "clover", "sharePct": 25 }
+        ]
+      }
+    ],
+    "tillage": [
+      {
+        "id": "reduced_tillage",
+        "title": "Reduce ploughing",
+        "simple": "Disturb the soil less so rain does not wash it away.",
+        "expert": "Shift to strip-till or no-till; slope 3.2% and silt 45% raise erosion risk.",
+        "why": "Slope 3.2% and silt 45% make bare soil easy to wash away."
+      },
+      {
+        "id": "keep_residue",
+        "title": "Leave crop residue on the field",
+        "simple": "Leave straw and stalks on the surface to keep the soil moist.",
+        "expert": "Keep at least 30% residue cover after harvest to cut evaporation during July-August.",
+        "why": "In July-August rain is about 175 mm against about 240 mm of evaporation."
+      },
+      {
+        "id": "cover_crops",
+        "title": "Sow cover crops",
+        "simple": "Do not leave the field bare between main crops.",
+        "expert": "Sow clover or a cover-crop mix after early-harvested cereals to protect the 3.2% slope.",
+        "why": "Erosion risk is moderate (score 45) and bare soil is the main driver."
+      }
+    ],
+    "warnings": ["Check local disease pressure with an agronomist."],
+    "confidence": "medium",
+    "assumptions": [
+      "Climate is the 2001-2020 average, not a forecast.",
+      "Soil values are model estimates at about 250 m resolution, not a lab analysis of this field."
+    ]
+  },
+  "dataStatus": { "climate": "live", "soil": "live", "terrain": "live" },
+  "disclaimer": "This tool supports decisions and does not replace a local agronomist."
+}

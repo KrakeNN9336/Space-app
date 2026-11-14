@@ -1,0 +1,12 @@
+{
+  "app.title": "Field Shift",
+  "app.tagline": "Adapting farms with NASA data",
+  "lang.switch": "Українська",
+  "scaffold.note": "Project scaffold. The wizard, the map and the result screen are built in the ui and map branches.",
+  "scaffold.api": "API status",
+  "scaffold.apiOk": "online, contract {version}",
+  "scaffold.apiDown": "not reachable. Is \"npm run dev\" running?",
+  "scaffold.apiChecking": "checking…",
+  "scaffold.sample": "Sample recommendation (mock data)",
+  "disclaimer": "This tool supports decisions and does not replace a local agronomist."
+}

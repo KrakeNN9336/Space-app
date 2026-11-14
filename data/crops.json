@@ -1,0 +1,15 @@
+{
+  "_note": "SEED ONLY: ids, names, groups and icons so the crop picker and the mock work. Serhii (branch data) replaces this file with the full agronomic table. Keep these ids stable: they are used in shared/mock-analyze.json.",
+  "crops": [
+    { "id": "winter_wheat", "name": { "en": "Winter wheat", "uk": "Пшениця озима" }, "group": "cereal", "icon": "🌾" },
+    { "id": "spring_wheat", "name": { "en": "Spring wheat", "uk": "Пшениця яра" }, "group": "cereal", "icon": "🌾" },
+    { "id": "barley", "name": { "en": "Barley", "uk": "Ячмінь" }, "group": "cereal", "icon": "🌾" },
+    { "id": "corn", "name": { "en": "Corn (maize)", "uk": "Кукурудза" }, "group": "cereal", "icon": "🌽" },
+    { "id": "soybean", "name": { "en": "Soybean", "uk": "Соя" }, "group": "legume", "icon": "🫘" },
+    { "id": "pea", "name": { "en": "Pea", "uk": "Горох" }, "group": "legume", "icon": "🫛" },
+    { "id": "sunflower", "name": { "en": "Sunflower", "uk": "Соняшник" }, "group": "oilseed", "icon": "🌻" },
+    { "id": "rapeseed", "name": { "en": "Rapeseed", "uk": "Ріпак" }, "group": "oilseed", "icon": "🌼" },
+    { "id": "potato", "name": { "en": "Potato", "uk": "Картопля" }, "group": "root", "icon": "🥔" },
+    { "id": "clover", "name": { "en": "Clover cover crop", "uk": "Конюшина (покривна)" }, "group": "cover", "icon": "🍀" }
+  ]
+}

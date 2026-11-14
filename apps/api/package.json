@@ -1,0 +1,11 @@
+{
+  "name": "@field-shift/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@field-shift/logic": "*",
+    "@field-shift/shared": "*",
+    "hono": "^4.13.18"
+  }
+}

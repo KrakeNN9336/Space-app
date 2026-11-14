@@ -1,0 +1,35 @@
+{
+  "name": "field-shift",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Field Shift: adapting farms with NASA data (NASA Space Apps Challenge 2026)",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "shared"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "predev": "node scripts/ensure-dist.mjs",
+    "dev": "concurrently -k -n api,web -c blue,green \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "wrangler dev --port 8787",
+    "dev:web": "npm run dev -w @field-shift/web",
+    "build": "npm run build -w @field-shift/web",
+    "typecheck": "tsc -p shared && tsc -p packages/logic && tsc -p apps/api && tsc -p apps/web",
+    "test": "vitest run",
+    "test:contract": "tsx scripts/contract-check.ts",
+    "check": "npm run typecheck && npm run test && npm run build",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261114.1",
+    "concurrently": "^10.0.7",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.162.0"
+  }
+}
