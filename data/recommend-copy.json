@@ -1,0 +1,72 @@
+{
+	"en": {
+		"assumption": "No missing crop measurements, yields or financial values were estimated.",
+		"unscored": "A strategy score of 0 indicates that its suitability was not assessed.",
+		"status": {
+			"insufficient_data": "Crop recommendations require more verified data.",
+			"invalid_input": "The planning inputs could not be used to build a crop rotation.",
+			"blocked": "The candidate rotation failed the crop rotation checks.",
+			"needs_review": "The candidate rotation requires agronomic review.",
+			"provisional": "The candidate rotation still requires field-level agronomic validation."
+		},
+		"missingClimate": "Monthly climate data needed to assess growing seasons are unavailable.",
+		"blockers": {
+			"SEASON_DATA_UNAVAILABLE": "A growing season could not be assessed for some crops from the available climate and crop data.",
+			"SOIL_PH_UNAVAILABLE": "Soil pH is unavailable for this field.",
+			"CROP_NOT_VERIFIED": "Agronomic requirements for crops in the EcoCrop catalog still need verification.",
+			"VALIDATED_RISK_UNAVAILABLE": "A validated crop risk assessment is unavailable for this field.",
+			"SCORE_INPUT_INCOMPLETE": "Some crops lack the complete inputs needed to score suitability."
+		},
+		"current": {
+			"title": "Current practice",
+			"summary": "This projection repeats the entered crop history and assumes equal shares for years with known crops.",
+			"unavailable": "There is not enough crop history to project the current practice.",
+			"unknownCrops": "Shares are unavailable for years with unknown crops.",
+			"tooManyCrops": "Years with more than 20 crops cannot give every crop a positive share in steps of 5%.",
+			"equalShares": "Historical areas and locations are unknown. Shares are divided equally and rounded to steps of 5%, totaling 100% per year."
+		},
+		"recommended": {
+			"title": "Recommended rotation",
+			"summary": "A three-year crop recommendation is unavailable."
+		},
+		"alternative": {
+			"title": "Alternative strategy",
+			"summary": "There is not enough verified information to propose an alternative."
+		}
+	},
+	"uk": {
+		"assumption": "Відсутні показники культур, врожайність і фінансові значення не оцінювалися.",
+		"unscored": "Оцінка стратегії 0 означає, що її придатність не оцінювали.",
+		"status": {
+			"insufficient_data": "Для рекомендацій культур потрібно більше перевірених даних.",
+			"invalid_input": "За вхідними даними не вдалося скласти план сівозміни.",
+			"blocked": "Попередній план не пройшов перевірку правил сівозміни.",
+			"needs_review": "Попередній план сівозміни потребує перевірки агрономом.",
+			"provisional": "Попередній план сівозміни ще потребує агрономічної перевірки для цього поля."
+		},
+		"missingClimate": "Немає місячних кліматичних даних для оцінки сезонів вирощування.",
+		"blockers": {
+			"SEASON_DATA_UNAVAILABLE": "За наявними даними про клімат і культури не вдалося оцінити сезон вирощування для деяких культур.",
+			"SOIL_PH_UNAVAILABLE": "Для цього поля немає даних про pH ґрунту.",
+			"CROP_NOT_VERIFIED": "Агрономічні вимоги культур у каталозі EcoCrop ще потребують перевірки.",
+			"VALIDATED_RISK_UNAVAILABLE": "Для цього поля немає валідованої оцінки ризиків для культур.",
+			"SCORE_INPUT_INCOMPLETE": "Для оцінки придатності деяких культур бракує вхідних даних."
+		},
+		"current": {
+			"title": "Поточна практика",
+			"summary": "Проєкція повторює введену історію посівів і припускає рівні частки в роках, де відомі всі культури.",
+			"unavailable": "Історії посівів недостатньо для проєкції поточної практики.",
+			"unknownCrops": "Для років із невідомими культурами частки не розраховано.",
+			"tooManyCrops": "У роках із понад 20 культурами неможливо дати кожній додатну частку, кратну 5%.",
+			"equalShares": "Історичні площі й розташування посівів невідомі. Частки розподілено порівну й округлено з кроком 5%, щоб за рік вийшло 100%."
+		},
+		"recommended": {
+			"title": "Рекомендована сівозміна",
+			"summary": "Трирічна рекомендація щодо посівів недоступна."
+		},
+		"alternative": {
+			"title": "Альтернативна стратегія",
+			"summary": "Перевірених даних для пропозиції альтернативи недостатньо."
+		}
+	}
+}

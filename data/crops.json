@@ -1,5 +1,5 @@
 {
-  "_note": "Climate, rainfall, pH and season ranges are from the FAO EcoCrop database (species level, not variety level). precipRange is annual rainfall, mm; tempRange is temperature during growth, C; seasonDays is the crop cycle length. Sensitivities, predecessors and econScore are not filled yet.",
+  "_note": "25 crop records. Climate, rainfall, pH and season ranges are from the FAO EcoCrop database (species level, not variety level). precipRange is annual rainfall, mm; tempRange is temperature during growth, C; seasonDays and seasonDaysRange are the crop cycle length in days. verificationStatus verify means imported from EcoCrop but not yet validated by hand. Sensitivities, predecessors and econScore are not filled yet. Null means unknown. sugar_beet currently uses the generic EcoCrop species record (Beta vulgaris); the choice of record is pending review.",
   "crops": [
     {
       "id": "winter_wheat",
@@ -39,8 +39,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Triticum aestivum (EcoPort code 2114)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Triticum aestivum; EcoPort=2114",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 250
+      }
     },
     {
       "id": "spring_wheat",
@@ -80,8 +84,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Triticum aestivum (EcoPort code 2114)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Triticum aestivum; EcoPort=2114",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 250
+      }
     },
     {
       "id": "barley",
@@ -121,8 +129,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Hordeum vulgare (EcoPort code 1232)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Hordeum vulgare; EcoPort=1232",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 240
+      }
     },
     {
       "id": "corn",
@@ -162,8 +174,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Zea mays (EcoPort code 2175)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Zea mays; EcoPort=2175",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 65,
+        "max": 365
+      }
     },
     {
       "id": "soybean",
@@ -203,8 +219,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Glycine max (EcoPort code 1150)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Glycine max; EcoPort=1150",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 75,
+        "max": 180
+      }
     },
     {
       "id": "pea",
@@ -244,8 +264,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Pisum sativum (EcoPort code 1721)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Pisum sativum; EcoPort=1721",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 60,
+        "max": 140
+      }
     },
     {
       "id": "sunflower",
@@ -285,8 +309,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Helianthus annuus (EcoPort code 1191)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Helianthus annuus; EcoPort=1191",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 70,
+        "max": 200
+      }
     },
     {
       "id": "rapeseed",
@@ -326,8 +354,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Brassica napus (EcoPort code 549)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Brassica napus; EcoPort=549",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 85,
+        "max": 340
+      }
     },
     {
       "id": "potato",
@@ -367,8 +399,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Solanum tuberosum (EcoPort code 1971)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Solanum tuberosum; EcoPort=1971",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 160
+      }
     },
     {
       "id": "clover",
@@ -408,8 +444,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Trifolium pratense (EcoPort code 2104)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Trifolium pratense; EcoPort=2104",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 120,
+        "max": 300
+      }
     },
     {
       "id": "rice",
@@ -449,8 +489,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Oryza sativa (EcoPort code 1574)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Oryza sativa; EcoPort=1574",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 80,
+        "max": 180
+      }
     },
     {
       "id": "sorghum",
@@ -490,8 +534,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Sorghum bicolor (EcoPort code 48747)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Sorghum bicolor; EcoPort=48747",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 300
+      }
     },
     {
       "id": "millet",
@@ -531,8 +579,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Panicum miliaceum (EcoPort code 8280)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Panicum miliaceum; EcoPort=8280",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 55,
+        "max": 280
+      }
     },
     {
       "id": "chickpea",
@@ -572,8 +624,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Cicer arietinum (EcoPort code 2479)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Cicer arietinum; EcoPort=2479",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 180
+      }
     },
     {
       "id": "lentil",
@@ -613,8 +669,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Lens culinaris (EcoPort code 7209)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Lens culinaris; EcoPort=7209",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 70,
+        "max": 240
+      }
     },
     {
       "id": "oats",
@@ -654,8 +714,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Avena sativa (EcoPort code 481)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Avena sativa; EcoPort=481",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 110,
+        "max": 270
+      }
     },
     {
       "id": "rye",
@@ -695,8 +759,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Secale cereale (EcoPort code 1929)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Secale cereale; EcoPort=1929",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 110,
+        "max": 270
+      }
     },
     {
       "id": "buckwheat",
@@ -736,8 +804,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Fagopyrum esculentum (EcoPort code 2285)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Fagopyrum esculentum; EcoPort=2285",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 55,
+        "max": 85
+      }
     },
     {
       "id": "sugar_beet",
@@ -778,7 +850,11 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop: Beta vulgaris (EcoPort code 514)",
-      "verificationStatus": "ecocrop"
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 160,
+        "max": 240
+      }
     },
     {
       "id": "cotton",
@@ -818,8 +894,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Gossypium hirsutum (EcoPort code 1160)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Gossypium hirsutum; EcoPort=1160",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 150,
+        "max": 200
+      }
     },
     {
       "id": "groundnut",
@@ -859,8 +939,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Arachis hypogaea (EcoPort code 2199)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Arachis hypogaea; EcoPort=2199",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 150
+      }
     },
     {
       "id": "cassava",
@@ -900,8 +984,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Manihot esculenta (EcoPort code 1420)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Manihot esculenta; EcoPort=1420",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 180,
+        "max": 365
+      }
     },
     {
       "id": "sweet_potato",
@@ -941,8 +1029,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Ipomoea batatas (EcoPort code 1265)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Ipomoea batatas; EcoPort=1265",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 80,
+        "max": 170
+      }
     },
     {
       "id": "common_bean",
@@ -982,8 +1074,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Phaseolus vulgaris (EcoPort code 1668)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Phaseolus vulgaris; EcoPort=1668",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 50,
+        "max": 270
+      }
     },
     {
       "id": "cover_rye",
@@ -1023,8 +1119,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Secale cereale (EcoPort code 1929)",
-      "verificationStatus": "ecocrop"
+      "source": "FAO EcoCrop via OpenCLIM; species=Secale cereale; EcoPort=1929",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 110,
+        "max": 270
+      }
     }
   ]
 }

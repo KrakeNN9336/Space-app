@@ -1,0 +1,70 @@
+{
+	"en": {
+		"unknownShort": "This risk could not be assessed from the available data.",
+		"unknownFull": "Insufficient information. Score 0 is a technical placeholder, not evidence of zero risk.",
+		"drought": {
+			"label": "Aridity index",
+			"short": "The climate shows {level} long-term dryness.",
+			"full": "Annual precipitation is {p} mm, estimated annual PET is {pet} mm, and the aridity index is {ai}. This describes climatic dryness, not a drought forecast."
+		},
+		"waterlogging": {
+			"label": "Months with precipitation above PET",
+			"short": "The climate shows {level} potential for excess water.",
+			"full": "Precipitation exceeds estimated PET during {count} of 12 months. Groundwater, drainage and soil saturation were not measured."
+		},
+		"frost": {
+			"label": "Months with freezing monthly minimum",
+			"short": "The climate shows {level} exposure to freezing conditions.",
+			"full": "{count} of 12 months have a mean daily minimum temperature at or below 0 C. Individual frost events and crop growing stages are unknown."
+		},
+		"heat": {
+			"label": "Warmest monthly mean maximum",
+			"short": "Heat risk needs crop-specific thresholds before assessment.",
+			"full": "The highest monthly mean daily maximum is {value} C. This alone cannot establish crop-specific heat stress."
+		},
+		"erosion": {
+			"label": "Terrain slope",
+			"short": "Erosion risk cannot be quantified from slope alone.",
+			"full": "The terrain slope is {value}%. Rainfall erosivity, soil erodibility, land cover and slope length are required for a defensible erosion estimate."
+		},
+		"fertility": {
+			"label": "Soil pH",
+			"short": "Soil pH indicates {level} potential chemical limitations.",
+			"full": "The modelled soil pH is {value}. This is a pH limitation screening, not a complete fertility assessment. Nutrient availability and salinity require additional information."
+		}
+	},
+	"uk": {
+		"unknownShort": "За наявними даними цей ризик оцінити неможливо.",
+		"unknownFull": "Недостатньо інформації. Оцінка 0 є технічною заглушкою, а не доказом відсутності ризику.",
+		"drought": {
+			"label": "Індекс аридності",
+			"short": "Клімат має {level} рівень довготривалої посушливості.",
+			"full": "Річні опади становлять {p} мм, оцінена PET — {pet} мм, індекс аридності — {ai}. Це характеристика сухості клімату, а не прогноз посухи."
+		},
+		"waterlogging": {
+			"label": "Місяці з опадами понад PET",
+			"short": "Клімат має {level} потенціал надлишку води.",
+			"full": "Протягом {count} із 12 місяців опади перевищують оцінену PET. Рівень ґрунтових вод, дренаж і фактичне насичення ґрунту не вимірювалися."
+		},
+		"frost": {
+			"label": "Місяці з температурою замерзання",
+			"short": "Клімат має {level} вплив низьких температур.",
+			"full": "У {count} із 12 місяців середній добовий мінімум температури не перевищує 0 °C. Окремі заморозки та фази розвитку культур невідомі."
+		},
+		"heat": {
+			"label": "Найтепліший середній максимум",
+			"short": "Для оцінки спеки потрібні температурні межі конкретної культури.",
+			"full": "Найвищий середньомісячний добовий максимум становить {value} °C. Лише за цим показником неможливо встановити тепловий стрес конкретної культури."
+		},
+		"erosion": {
+			"label": "Ухил місцевості",
+			"short": "За одним лише ухилом неможливо кількісно оцінити ерозію.",
+			"full": "Ухил місцевості становить {value}%. Для обґрунтованої оцінки ерозії потрібні ерозійність дощу, властивості ґрунту, рослинний покрив і довжина схилу."
+		},
+		"fertility": {
+			"label": "Кислотність ґрунту",
+			"short": "Кислотність ґрунту вказує на {level} потенційні хімічні обмеження.",
+			"full": "Модельний показник pH ґрунту становить {value}. Це попередня оцінка кислотності, а не повний аналіз родючості. Поживні речовини та засоленість потрібно перевіряти окремо."
+		}
+	}
+}
