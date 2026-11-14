@@ -8,7 +8,7 @@
  *  - Human-readable docs: docs/api-contract.md. Example payload: shared/mock-analyze.json.
  */
 
-export const CONTRACT_VERSION = "2.1.0";
+export const CONTRACT_VERSION = "2.2.0";
 
 // ---------------------------------------------------------------------------
 // Primitives
@@ -239,6 +239,18 @@ export interface RotationYear {
   blocks: RotationBlock[];
 }
 
+/** A crop the farmer should not sow next year, with the reason. Added in 2.2.0. */
+export interface CropAvoid {
+  /** Crop id from GET /api/crops. */
+  id: string;
+  /** Crop name in the requested language. */
+  name: string;
+  /** "rotation": it repeats last year's crop or family. "site": climate or soil does not fit. */
+  reason: "rotation" | "site";
+  /** One sentence with the numbers behind it. */
+  why: string;
+}
+
 export interface TillageAdvice {
   id: string;
   title: string;
@@ -292,6 +304,8 @@ export interface Recommendation {
   rotationPlan: RotationYear[];
   /** At least three strategies: exactly one "current", exactly one "recommended". Added in 2.1.0. */
   strategies: RotationStrategy[];
+  /** Crops not to sow next year. Added in 2.2.0; may be empty. */
+  avoid?: CropAvoid[];
   tillage: TillageAdvice[];
   warnings: string[];
   confidence: Confidence;
