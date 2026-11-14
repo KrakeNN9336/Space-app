@@ -15,8 +15,8 @@ Built for the NASA Space Apps Challenge 2026, challenge "Field Shift: Adapting F
 You need [Node.js](https://nodejs.org) 22 or newer (20.19+ also works) and Git.
 
 ```bash
-git clone https://github.com/<owner>/field-shift.git
-cd field-shift
+git clone https://github.com/KrakeNN9336/Space-app.git
+cd Space-app
 npm install
 npm run dev
 ```

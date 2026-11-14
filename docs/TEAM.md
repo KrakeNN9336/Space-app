@@ -23,8 +23,8 @@
 ## Початок роботи
 
 ```bash
-git clone https://github.com/<owner>/field-shift.git
-cd field-shift
+git clone https://github.com/KrakeNN9336/Space-app.git
+cd Space-app
 git checkout <твоя гілка>
 npm install
 npm run dev
