@@ -1,4 +1,5 @@
 import type {
+	HistoryYear,
 	LogicInput,
 	LogicOutput,
 	Recommendation,
@@ -7,58 +8,104 @@ import type {
 	StrategyKind,
 } from '@field-shift/shared'
 
+import catalog from '../../data/crops.json'
 import copy from '../../data/recommend-copy.json'
 import { analyzeField } from './fieldAnalysis'
+import { buildRecommendationPipeline } from './recommendationPipeline'
 
-type StrategyText = {
-	title: string
-	summary: string
+const SHARE_STEP = 5
+const SHARE_UNITS = 100 / SHARE_STEP
+
+function projectCurrentPractice(
+	history: readonly HistoryYear[],
+	years: readonly number[],
+	text: (typeof copy)['en']['current'],
+): Pick<RotationStrategy, 'summary' | 'rotationPlan' | 'dataGaps'> {
+	const cropsByYear = history.map(entry => [...new Set(entry.crops)])
+	if (cropsByYear.every(ids => ids.every(id => id === 'unknown'))) {
+		return {
+			summary: text.unavailable,
+			rotationPlan: [],
+			dataGaps: [text.unavailable],
+		}
+	}
+
+	const dataGaps = new Set<string>()
+	const rotationPlan = years.map((year, index) => {
+		const ids = cropsByYear[index] ?? []
+		// Unknown crops can account for an unknown fraction of the field.
+		if (ids.length === 0 || ids.includes('unknown')) {
+			dataGaps.add(text.unknownCrops)
+			return { year, blocks: [] }
+		}
+		if (ids.length > SHARE_UNITS) {
+			dataGaps.add(text.tooManyCrops)
+			return { year, blocks: [] }
+		}
+
+		dataGaps.add(text.equalShares)
+		const equalUnits = Math.floor(SHARE_UNITS / ids.length)
+		const remainder = SHARE_UNITS % ids.length
+		return {
+			year,
+			blocks: ids.map((cropId, cropIndex) => ({
+				cropId,
+				sharePct: (equalUnits + (cropIndex < remainder ? 1 : 0)) * SHARE_STEP,
+			})),
+		}
+	})
+
+	return { summary: text.summary, rotationPlan, dataGaps: [...dataGaps] }
 }
 
 export function recommend(input: LogicInput): LogicOutput {
 	const analysis = analyzeField(input)
 	const text = copy[input.lang]
+	const plan = buildRecommendationPipeline({
+		crops: catalog.crops,
+		climate: analysis.climate,
+		soil: analysis.soil,
+		history: input.history,
+		priorities: input.priorities,
+		// LogicInput does not supply validated risk. The stress indicators are screening estimates.
+		validatedRiskSuitabilityPct: null,
+	})
+	const status = text.status[plan.status]
+	const dataGaps = Object.entries(text.blockers)
+		.filter(([code]) => plan.warningCodes.includes(code))
+		.map(([code, message]) =>
+			code === 'SEASON_DATA_UNAVAILABLE' && analysis.climate === null
+				? text.missingClimate
+				: message,
+		)
 
 	const lastYear = input.history.at(-1)?.year
-
 	const years = Array.from({ length: 3 }, (_, index) =>
 		Number.isInteger(lastYear) ? lastYear! + index + 1 : index + 1,
 	)
+	const unavailablePlan: RotationYear[] = years.map(year => ({ year, blocks: [] }))
+	const current = projectCurrentPractice(input.history, years, text.current)
 
-	const unavailablePlan: RotationYear[] = years.map(year => ({
-		year,
-		blocks: [],
-	}))
-
-	function unavailableStrategy(
-		id: string,
+	function unscoredStrategy(
 		kind: StrategyKind,
-		description: StrategyText,
+		title: string,
+		summary: string,
+		rotationPlan: RotationYear[],
+		gaps: string[],
 	): RotationStrategy {
 		return {
-			id,
+			id: kind,
 			kind,
-			title: description.title,
-			summary: description.summary,
-
-			// The contract permits empty plans only for
-			// the current strategy. Other strategies require
-			// three year objects, even when not assessable.
-			rotationPlan:
-				kind === 'current'
-					? []
-					: unavailablePlan.map(year => ({
-							year: year.year,
-							blocks: [],
-						})),
-
-			// Contract placeholder, NOT a suitability score.
+			title,
+			summary,
+			rotationPlan,
+			// The API requires a number even when suitability cannot be scored.
 			score: 0,
-			why: text.unavailable,
+			why: text.unscored,
 			evidence: [],
 			benefits: [],
-			risks: [text.warning],
-			dataGaps: [text.gap],
+			risks: [],
+			dataGaps: gaps,
 			bareSoilMonths: null,
 			confidence: 'low',
 		}
@@ -67,23 +114,26 @@ export function recommend(input: LogicInput): LogicOutput {
 	const recommendation: Recommendation = {
 		crops: [],
 		rotationPlan: unavailablePlan,
-
 		strategies: [
-			unavailableStrategy('current', 'current', text.current),
-			unavailableStrategy('recommended', 'recommended', text.recommended),
-			unavailableStrategy('alternative', 'alternative', text.alternative),
+			unscoredStrategy(
+				'current', text.current.title, current.summary,
+				current.rotationPlan, current.dataGaps,
+			),
+			// Internal candidates still require field-level validation.
+			unscoredStrategy(
+				'recommended', text.recommended.title, text.recommended.summary,
+				unavailablePlan, dataGaps,
+			),
+			unscoredStrategy(
+				'alternative', text.alternative.title, text.alternative.summary,
+				unavailablePlan, dataGaps,
+			),
 		],
-
 		tillage: [],
-		warnings: [text.warning],
+		warnings: [status, ...dataGaps, text.unscored],
 		confidence: 'low',
 		assumptions: [text.assumption],
 	}
 
-	return {
-		climate: analysis.climate,
-		soil: analysis.soil,
-		stress: analysis.stress,
-		recommendation,
-	}
+	return { ...analysis, recommendation }
 }
