@@ -7,6 +7,7 @@ import type { AnalyzeRequest, AnalyzeResponse, Lang } from "@field-shift/shared"
 import mockRequest from "@field-shift/shared/mock-request.json";
 import { analyze, getHealth } from "./api";
 import { translate, type MessageKey } from "./i18n";
+import { FieldSelection } from "./components/FieldSelection";
 
 type ApiState = { kind: "checking" } | { kind: "ok"; version: string } | { kind: "down" };
 
@@ -44,6 +45,8 @@ export function App() {
           {t("lang.switch")}
         </button>
       </header>
+
+<FieldSelection lang={lang} />
 
       <section className="card">
         <p style={{ marginTop: 0 }}>{t("scaffold.note")}</p>
