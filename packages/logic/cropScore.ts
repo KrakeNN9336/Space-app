@@ -22,7 +22,7 @@ export interface CropConditions {
 	seasonTempC: number | null
 
 	// Annual precipitation, matching EcoCrop rainfall units.
-	annualPrecipMm: number | null
+	seasonPrecipMm: number | null
 
 	soilPh: number | null
 
@@ -96,7 +96,7 @@ export function scoreCrop(
 
 	const climate = rangeSuitability(conditions.seasonTempC, crop.tempRange)
 
-	const water = rangeSuitability(conditions.annualPrecipMm, crop.precipRange)
+	const water = rangeSuitability(conditions.seasonPrecipMm, crop.precipRange)
 
 	const soil = rangeSuitability(conditions.soilPh, crop.phRange)
 
@@ -159,7 +159,17 @@ export function scoreCrop(
 			warnings,
 		}
 	}
-
+	// A known hard climate or soil limitation must not be
+	// compensated by rotation or other weighted components.
+	if (climate === 0 || water === 0 || soil === 0) {
+		return {
+			id: crop.id,
+			score: 0,
+			confidence: 'low',
+			components,
+			warnings: ['HARD_CONSTRAINT_ZERO'],
+		}
+	}
 	// Requested baseline weights: 30 / 25 / 20 / 20 / 5.
 	// Priority multipliers are model preferences, not
 	// scientific calibration coefficients.

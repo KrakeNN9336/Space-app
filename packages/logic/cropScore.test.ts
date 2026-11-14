@@ -33,7 +33,7 @@ const fixture: CropProfile = {
 
 const conditions: CropConditions = {
 	seasonTempC: 22,
-	annualPrecipMm: 650,
+	seasonPrecipMm: 650,
 	soilPh: 6.5,
 	riskSuitabilityPct: 80,
 	previousCropIds: [],
@@ -100,4 +100,15 @@ describe('Crop suitability scoring', () => {
 
 		expect(result.score).toBeNull()
 	})
+
+it('does not compensate for a hard soil constraint', () => {
+	const result = scoreCrop(fixture, {
+		...conditions,
+		soilPh: 9,
+	})
+
+	expect(result.components.soil).toBe(0)
+	expect(result.score).toBe(0)
+})
+
 })
