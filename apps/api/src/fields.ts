@@ -36,8 +36,13 @@ export async function findOSMField(point: Point): Promise<Field | null> {
     'relation(around:150,' + point.lat + ',' + point.lon + ')[landuse~"^(farmland|meadow|orchard)$"];' +
     ');out geom;';
   const result = await fetchJson<{ elements?: Element[] }>(
-    "https://overpass-api.de/api/interpreter", 8000,
-    { method: "POST", body: new URLSearchParams({ data: query }) },
+    // Overpass answers 406 without a User-Agent and often needs 10-20 s.
+    "https://overpass-api.de/api/interpreter", 15000,
+    {
+      method: "POST",
+      headers: { "User-Agent": "FieldShift/0.1 (NASA Space Apps project)", Accept: "application/json" },
+      body: new URLSearchParams({ data: query }),
+    },
   );
   const fields = (result.elements ?? []).flatMap((item) => {
     const boundary = polygon(item);

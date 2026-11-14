@@ -9,6 +9,8 @@ export interface FieldMapProps {
   field?: Field | null;
   analysis?: AnalyzeResponse | null;
   onFieldSelected?: (field: Field) => void;
+  /** Fired for every click on the map, so the host can look a field up at that point. */
+  onMapClick?: (lat: number, lon: number) => void;
   radiusKm?: number;
   layer?: string;
 }
@@ -38,7 +40,9 @@ function getBounds(geometry: FieldGeometry): maplibregl.LngLatBounds | null {
   visit(geometry.coordinates);
   return count ? bounds : null;
 }
-export function FieldMap({ field, analysis, onFieldSelected, layer }: FieldMapProps) {
+export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer }: FieldMapProps) {
+  const clickRef = useRef(onMapClick);
+  clickRef.current = onMapClick;
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const [base, setBase] = useState<Layer>("satellite");
@@ -55,6 +59,7 @@ export function FieldMap({ field, analysis, onFieldSelected, layer }: FieldMapPr
     mapRef.current = map;
     map.addControl(new maplibregl.NavigationControl(), "top-right");
     map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
+    map.on("click", (e) => clickRef.current?.(e.lngLat.lat, e.lngLat.lng));
     map.on("error", () => setError("Не вдалося завантажити частину карти. Перевірте інтернет."));
     return () => { mapRef.current = null; map.remove(); };
   }, [base]);
