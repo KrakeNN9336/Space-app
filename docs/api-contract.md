@@ -26,7 +26,7 @@ example is [shared/mock-analyze.json](../shared/mock-analyze.json), and the runt
 ### GET /api/health
 
 ```json
-{ "ok": true, "contract": "2.0.0", "time": "2026-11-14T09:00:00.000Z" }
+{ "ok": true, "contract": "2.1.0", "time": "2026-11-14T09:00:00.000Z" }
 ```
 
 ### GET /api/crops
@@ -90,7 +90,7 @@ The full example is [shared/mock-analyze.json](../shared/mock-analyze.json) (num
 | `soil` | `wrbGroup {code, name, probability 0..1, explain}`, `properties {organicCarbonGkg, phH2O, sandPct, siltPct, clayPct}` each as `{median, low, high}`, `source` |
 | `terrain` | `elevationM`, `slopePct` |
 | `stress` | exactly 6 items, see below |
-| `recommendation` | `crops[]`, `rotationPlan[]`, `tillage[]`, `warnings[]`, `confidence`, `assumptions[]` |
+| `recommendation` | `crops[]`, `rotationPlan[]`, `strategies[]`, `tillage[]`, `warnings[]`, `confidence`, `assumptions[]` |
 | `dataStatus` | `{climate, soil, terrain}`, each `live`, `cached`, `partial` or `failed` |
 | `disclaimer` | always present |
 
@@ -104,8 +104,37 @@ Response rules (all checked by `validateAnalyzeResponse`):
   The same holds for `blocks` of every year in `rotationPlan`.
 - `rotationPlan` covers the three years that follow the last history year.
 - `tillage[]` items have `id`, `title`, `simple`, `expert`, `why`.
+- `recommendation.strategies` has **at least 3** items: exactly one with `kind: "current"`, exactly one
+  with `kind: "recommended"`, the rest `"alternative"`. See "Rotation strategies" below.
 - `climate`, `soil` or `terrain` may be `null` **only** when its `dataStatus` is `failed`.
 - If any `dataStatus` is not `live`, the frontend shows a warning and never invents numbers.
+
+### Rotation strategies (added in 2.1.0)
+
+The challenge asks to compare at least three rotation strategies, including the existing one, and
+for each to explain why it was suggested, the evidence, the benefits, the information gaps and the
+risks that need local review. `recommendation.strategies[]` carries exactly that:
+
+| Field | Meaning |
+| --- | --- |
+| `id` | stable id: `current`, `balanced`, `soil_first`, `water_saving`, ... |
+| `kind` | `current` (the farmer repeats the entered history), `recommended` (best score), `alternative` (a different trade-off) |
+| `title`, `summary` | name and one plain sentence |
+| `rotationPlan` | three years after the last history year, same shape as `recommendation.rotationPlan`; blocks may use `fallow` |
+| `score` | 0..100, relative and comparable between strategies; never a yield or money |
+| `why`, `evidence[]` | why it fits this very field, with numbers |
+| `benefits[]` | what it may improve |
+| `risks[]` | what the farmer or a local agronomist must review |
+| `dataGaps[]` | where information is missing or coarse |
+| `bareSoilMonths` | average months per year with nothing growing; `null` if it cannot be estimated |
+| `confidence` | `low`, `medium` or `high` |
+
+- The `recommended` strategy has the same plan as `recommendation.rotationPlan`, and
+  `recommendation.crops` is its first year.
+- For `current`, past years are projected forward in the same order. Shares inside a past year were
+  not entered, so they are split equally (rounded to multiples of 5, sum 100) and this is said in `dataGaps`.
+- If the history is entirely `unknown`, the `current` strategy is still returned, with an empty
+  `rotationPlan`, `bareSoilMonths: null`, low confidence and the reason in `dataGaps`.
 
 ## Errors
 

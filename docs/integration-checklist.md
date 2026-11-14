@@ -57,6 +57,7 @@ git push origin main
 - [ ] `data/crops.json` лишився об'єктом з масивом `crops`; є `id`, `name.en`, `name.uk`, `group`, `icon`.
 - [ ] Ідентифікатори `winter_wheat`, `corn`, `soybean`, `pea`, `clover` існують (вони в моку).
 - [ ] `recommend()` має сигнатуру `(input: LogicInput) => LogicOutput` і не робить мережевих запитів.
+- [ ] `recommend()` повертає щонайменше 3 стратегії: одна `current`, одна `recommended`; у кожної є `why`, `benefits`, `risks`, `dataGaps`.
 - [ ] `recommend()` з `climate: null` і `soil: null` не падає, а дає низьку впевненість.
 
 ### 2. backend (Єгор)
@@ -79,6 +80,7 @@ curl -s -X POST http://127.0.0.1:8787/api/analyze -H "Content-Type: application/
 - [ ] Мок вимкнено, фронт ходить у реальний `/api/analyze`.
 - [ ] Сценарій у браузері на ширині 360 px: поле → радіус → історія → рекомендація.
 - [ ] Перемикач Simple / Expert, перемикач мови, застереження внизу.
+- [ ] Видно порівняння трьох стратегій сівозміни, включно з поточною.
 - [ ] Стан помилки (зупинити API і натиснути «Спробувати ще раз») і жовта смуга для `partial` / `cached`.
 - [ ] У коді немає тексту для користувача поза `en.json` / `uk.json`.
 
