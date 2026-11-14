@@ -1,0 +1,579 @@
+{
+  "classification": "WRB 2006",
+  "dataset": "SoilGrids 2.0",
+  "source": "ISRIC SoilGrids WRB RSG probability maps",
+  "sourceUrl": "https://docs.isric.org/globaldata/soilgrids/SoilGrids_faqs_03.html",
+  "note": "General soil-group descriptions, not field-specific measurements. Check measured soil properties and local conditions.",
+  "groups": [
+    {
+      "code": "AC",
+      "name": {
+        "en": "Acrisols",
+        "uk": "Акрисолі"
+      },
+      "simple": {
+        "en": "These soils are often acidic and low in nutrients.",
+        "uk": "Ці ґрунти часто кислі та бідні на поживні речовини."
+      },
+      "expert": {
+        "en": "Strongly weathered soils with clay accumulation and low base status.",
+        "uk": "Сильно вивітрені ґрунти з накопиченням глини та низькою насиченістю основами."
+      },
+      "limitations": {
+        "en": "Acidity and nutrient availability require assessment.",
+        "uk": "Потрібно оцінити кислотність і доступність поживних речовин."
+      }
+    },
+    {
+      "code": "AB",
+      "name": {
+        "en": "Albeluvisols",
+        "uk": "Альбелювісолі"
+      },
+      "simple": {
+        "en": "Different soil layers can make water movement difficult.",
+        "uk": "Різні шари ґрунту можуть ускладнювати рух води."
+      },
+      "expert": {
+        "en": "Older WRB group with a lighter eluvial horizon and clay-enriched subsoil.",
+        "uk": "Група старішої WRB з освітленим елювіальним горизонтом і глинистішим підґрунтям."
+      },
+      "limitations": {
+        "en": "Check drainage, rooting depth and soil acidity.",
+        "uk": "Перевірити дренаж, глибину коренів і кислотність."
+      }
+    },
+    {
+      "code": "AL",
+      "name": {
+        "en": "Alisols",
+        "uk": "Алісолі"
+      },
+      "simple": {
+        "en": "Acidic soils that may need careful nutrient management.",
+        "uk": "Кислі ґрунти, що можуть потребувати коригування живлення."
+      },
+      "expert": {
+        "en": "Clay-enriched subsoils with high-activity clays and low base status.",
+        "uk": "Підґрунтя з накопиченням високоактивних глин і низькою насиченістю основами."
+      },
+      "limitations": {
+        "en": "Acidity and possible aluminium toxicity need testing.",
+        "uk": "Потрібно перевірити кислотність і можливу токсичність алюмінію."
+      }
+    },
+    {
+      "code": "AN",
+      "name": {
+        "en": "Andosols",
+        "uk": "Андосолі"
+      },
+      "simple": {
+        "en": "Volcanic soils that can hold considerable water.",
+        "uk": "Вулканічні ґрунти, які можуть утримувати багато води."
+      },
+      "expert": {
+        "en": "Volcanic materials often provide high water retention and strong phosphorus fixation.",
+        "uk": "Вулканічний матеріал часто забезпечує високе водоутримання та сильну фіксацію фосфору."
+      },
+      "limitations": {
+        "en": "Phosphorus availability can be restricted.",
+        "uk": "Доступність фосфору може бути обмеженою."
+      }
+    },
+    {
+      "code": "AR",
+      "name": {
+        "en": "Arenosols",
+        "uk": "Ареносолі"
+      },
+      "simple": {
+        "en": "Sandy soils that often dry out quickly.",
+        "uk": "Піщані ґрунти, які часто швидко пересихають."
+      },
+      "expert": {
+        "en": "Coarse-textured soils commonly have low water and nutrient retention.",
+        "uk": "Ґрунти грубого гранулометричного складу часто мають низьку водо- та поживоутримувальну здатність."
+      },
+      "limitations": {
+        "en": "Drought and nutrient leaching.",
+        "uk": "Посуха та вимивання поживних речовин."
+      }
+    },
+    {
+      "code": "CL",
+      "name": {
+        "en": "Calcisols",
+        "uk": "Кальцисолі"
+      },
+      "simple": {
+        "en": "Soils containing accumulated calcium carbonate.",
+        "uk": "Ґрунти з накопиченням карбонату кальцію."
+      },
+      "expert": {
+        "en": "Carbonate accumulation is common in relatively dry environments.",
+        "uk": "Накопичення карбонатів характерне для відносно посушливих умов."
+      },
+      "limitations": {
+        "en": "Water shortage and reduced availability of some micronutrients.",
+        "uk": "Дефіцит води та знижена доступність деяких мікроелементів."
+      }
+    },
+    {
+      "code": "CM",
+      "name": {
+        "en": "Cambisols",
+        "uk": "Камбісолі"
+      },
+      "simple": {
+        "en": "Moderately developed soils with variable farming potential.",
+        "uk": "Помірно розвинені ґрунти з різним потенціалом для землеробства."
+      },
+      "expert": {
+        "en": "A cambic horizon indicates initial or moderate soil development.",
+        "uk": "Камбічний горизонт свідчить про початковий або помірний розвиток профілю."
+      },
+      "limitations": {
+        "en": "Local texture, slope and chemistry must be checked.",
+        "uk": "Потрібно перевірити склад, ухил і хімічні властивості."
+      }
+    },
+    {
+      "code": "CH",
+      "name": {
+        "en": "Chernozems",
+        "uk": "Чорноземи"
+      },
+      "simple": {
+        "en": "Dark soils often rich in organic matter.",
+        "uk": "Темні ґрунти, часто багаті на органічну речовину."
+      },
+      "expert": {
+        "en": "Humus-rich topsoil with high base status and characteristic carbonate features.",
+        "uk": "Гумусований верхній горизонт із високою насиченістю основами та характерними карбонатними ознаками."
+      },
+      "limitations": {
+        "en": "Moisture limitation and loss of organic matter can be important.",
+        "uk": "Важливими ризиками є нестача вологи та втрата органічної речовини."
+      }
+    },
+    {
+      "code": "CR",
+      "name": {
+        "en": "Cryosols",
+        "uk": "Кріосолі"
+      },
+      "simple": {
+        "en": "Very cold soils affected by frozen ground.",
+        "uk": "Дуже холодні ґрунти, на які впливає мерзлота."
+      },
+      "expert": {
+        "en": "Permafrost and cryogenic processes restrict soil use.",
+        "uk": "Багаторічна мерзлота та кріогенні процеси обмежують використання ґрунту."
+      },
+      "limitations": {
+        "en": "Short growing season and restricted rooting.",
+        "uk": "Короткий вегетаційний сезон та обмежений розвиток коренів."
+      }
+    },
+    {
+      "code": "DU",
+      "name": {
+        "en": "Durisols",
+        "uk": "Дюрисолі"
+      },
+      "simple": {
+        "en": "Some layers can become extremely hard.",
+        "uk": "Окремі шари можуть бути надзвичайно твердими."
+      },
+      "expert": {
+        "en": "Silica accumulation can form cemented duric horizons.",
+        "uk": "Накопичення кремнезему може формувати зцементовані дурикові горизонти."
+      },
+      "limitations": {
+        "en": "Restricted rooting depth and water movement.",
+        "uk": "Обмежена глибина коренів і рух води."
+      }
+    },
+    {
+      "code": "FR",
+      "name": {
+        "en": "Ferralsols",
+        "uk": "Фералсолі"
+      },
+      "simple": {
+        "en": "Deep tropical soils that may need nutrient management.",
+        "uk": "Глибокі тропічні ґрунти, які можуть потребувати додаткового живлення."
+      },
+      "expert": {
+        "en": "Highly weathered soils dominated by low-activity clays and iron or aluminium oxides.",
+        "uk": "Сильно вивітрені ґрунти з низькоактивними глинами й оксидами заліза та алюмінію."
+      },
+      "limitations": {
+        "en": "Low nutrient reserves and phosphorus fixation.",
+        "uk": "Низькі запаси поживних речовин і фіксація фосфору."
+      }
+    },
+    {
+      "code": "FL",
+      "name": {
+        "en": "Fluvisols",
+        "uk": "Флювісолі"
+      },
+      "simple": {
+        "en": "Young soils formed from river deposits.",
+        "uk": "Молоді ґрунти, утворені річковими відкладами."
+      },
+      "expert": {
+        "en": "Stratified alluvial sediments cause variable soil properties.",
+        "uk": "Шаруваті алювіальні відклади зумовлюють мінливі властивості ґрунту."
+      },
+      "limitations": {
+        "en": "Flooding, drainage and variable texture.",
+        "uk": "Затоплення, дренаж і неоднорідний механічний склад."
+      }
+    },
+    {
+      "code": "GL",
+      "name": {
+        "en": "Gleysols",
+        "uk": "Глейсолі"
+      },
+      "simple": {
+        "en": "Wet soils where roots may lack oxygen.",
+        "uk": "Вологі ґрунти, у яких кореням може бракувати кисню."
+      },
+      "expert": {
+        "en": "Groundwater saturation creates reducing conditions in the profile.",
+        "uk": "Насичення ґрунтовими водами створює відновні умови в профілі."
+      },
+      "limitations": {
+        "en": "Waterlogging and poor aeration.",
+        "uk": "Перезволоження та недостатня аерація."
+      }
+    },
+    {
+      "code": "GY",
+      "name": {
+        "en": "Gypsisols",
+        "uk": "Гіпсисолі"
+      },
+      "simple": {
+        "en": "Soils containing accumulated gypsum.",
+        "uk": "Ґрунти з накопиченням гіпсу."
+      },
+      "expert": {
+        "en": "Gypsum enrichment commonly occurs in dry climates.",
+        "uk": "Накопичення гіпсу часто відбувається у посушливому кліматі."
+      },
+      "limitations": {
+        "en": "Water shortage and possible root restrictions.",
+        "uk": "Нестача води та можливі обмеження розвитку коренів."
+      }
+    },
+    {
+      "code": "HS",
+      "name": {
+        "en": "Histosols",
+        "uk": "Гістосолі"
+      },
+      "simple": {
+        "en": "Soils with thick layers of organic material.",
+        "uk": "Ґрунти з потужними шарами органічного матеріалу."
+      },
+      "expert": {
+        "en": "Organic-rich soils often occur under prolonged wet conditions.",
+        "uk": "Органогенні ґрунти часто формуються за тривалого надлишку вологи."
+      },
+      "limitations": {
+        "en": "Drainage can cause subsidence and carbon loss.",
+        "uk": "Осушення може спричиняти просідання та втрату вуглецю."
+      }
+    },
+    {
+      "code": "KS",
+      "name": {
+        "en": "Kastanozems",
+        "uk": "Каштаноземи"
+      },
+      "simple": {
+        "en": "Dark steppe soils where water is often limited.",
+        "uk": "Темні степові ґрунти, де часто бракує води."
+      },
+      "expert": {
+        "en": "Humus-rich surface horizons commonly occur in relatively dry grasslands.",
+        "uk": "Гумусовані поверхневі горизонти часто формуються в посушливих степах."
+      },
+      "limitations": {
+        "en": "Drought and soil organic matter conservation.",
+        "uk": "Посуха та необхідність збереження органічної речовини."
+      }
+    },
+    {
+      "code": "LP",
+      "name": {
+        "en": "Leptosols",
+        "uk": "Лептосолі"
+      },
+      "simple": {
+        "en": "Shallow or rocky soils with little rooting space.",
+        "uk": "Мілкі або кам'янисті ґрунти з невеликим простором для коренів."
+      },
+      "expert": {
+        "en": "Limited soil depth or abundant coarse fragments restrict root growth.",
+        "uk": "Мала потужність профілю або велика кількість уламків обмежують розвиток коренів."
+      },
+      "limitations": {
+        "en": "Low water storage and erosion risk.",
+        "uk": "Малі запаси води та ризик ерозії."
+      }
+    },
+    {
+      "code": "LX",
+      "name": {
+        "en": "Lixisols",
+        "uk": "Ліксисолі"
+      },
+      "simple": {
+        "en": "Soils with a clay-rich layer below the surface.",
+        "uk": "Ґрунти зі збагаченим глиною підповерхневим шаром."
+      },
+      "expert": {
+        "en": "Clay accumulation occurs with low-activity clays and high base status.",
+        "uk": "Накопичення глини поєднується з низькою активністю глин і високою насиченістю основами."
+      },
+      "limitations": {
+        "en": "Nutrient management and surface degradation.",
+        "uk": "Контроль живлення та деградації поверхневого шару."
+      }
+    },
+    {
+      "code": "LV",
+      "name": {
+        "en": "Luvisols",
+        "uk": "Лювісолі"
+      },
+      "simple": {
+        "en": "Soils with clay accumulation below the surface.",
+        "uk": "Ґрунти з накопиченням глини під поверхнею."
+      },
+      "expert": {
+        "en": "Clay-enriched subsoil has high-activity clays and relatively high base status.",
+        "uk": "Глинисте підґрунтя має високоактивні глини та відносно високу насиченість основами."
+      },
+      "limitations": {
+        "en": "Check drainage, compaction and erosion.",
+        "uk": "Перевірити дренаж, ущільнення та ерозію."
+      }
+    },
+    {
+      "code": "NT",
+      "name": {
+        "en": "Nitisols",
+        "uk": "Нітісолі"
+      },
+      "simple": {
+        "en": "Deep tropical soils with a well-developed structure.",
+        "uk": "Глибокі тропічні ґрунти з добре розвиненою структурою."
+      },
+      "expert": {
+        "en": "Strongly structured clay-rich horizons may support deep rooting.",
+        "uk": "Добре структуровані глинисті горизонти можуть сприяти глибокому вкоріненню."
+      },
+      "limitations": {
+        "en": "Phosphorus availability and nutrient balance.",
+        "uk": "Доступність фосфору та баланс поживних речовин."
+      }
+    },
+    {
+      "code": "PH",
+      "name": {
+        "en": "Phaeozems",
+        "uk": "Фаеоземи"
+      },
+      "simple": {
+        "en": "Dark soils often favourable for farming.",
+        "uk": "Темні ґрунти, часто сприятливі для землеробства."
+      },
+      "expert": {
+        "en": "Organic-rich surface horizons have relatively high base status.",
+        "uk": "Багаті на органічну речовину поверхневі горизонти мають відносно високу насиченість основами."
+      },
+      "limitations": {
+        "en": "Erosion and organic matter depletion.",
+        "uk": "Ерозія та виснаження органічної речовини."
+      }
+    },
+    {
+      "code": "PL",
+      "name": {
+        "en": "Planosols",
+        "uk": "Планосолі"
+      },
+      "simple": {
+        "en": "Some soil layers can retain excess water.",
+        "uk": "Окремі шари ґрунту можуть затримувати надлишок води."
+      },
+      "expert": {
+        "en": "Abrupt changes in texture can restrict drainage and root penetration.",
+        "uk": "Різка зміна гранулометричного складу може обмежувати дренаж і проникнення коренів."
+      },
+      "limitations": {
+        "en": "Seasonal waterlogging and restricted rooting.",
+        "uk": "Сезонне перезволоження та обмеження розвитку коренів."
+      }
+    },
+    {
+      "code": "PT",
+      "name": {
+        "en": "Plinthosols",
+        "uk": "Плінтосолі"
+      },
+      "simple": {
+        "en": "Iron-rich layers may harden when exposed to drying.",
+        "uk": "Залізисті шари можуть тверднути під час висихання."
+      },
+      "expert": {
+        "en": "Plinthic material may become strongly hardened after repeated wetting and drying.",
+        "uk": "Плінтитовий матеріал може сильно тверднути за чергування зволоження та висихання."
+      },
+      "limitations": {
+        "en": "Root restriction and drainage limitations.",
+        "uk": "Обмеження коренів і проблеми дренажу."
+      }
+    },
+    {
+      "code": "PZ",
+      "name": {
+        "en": "Podzols",
+        "uk": "Подзоли"
+      },
+      "simple": {
+        "en": "Often acidic soils with limited nutrient availability.",
+        "uk": "Часто кислі ґрунти з обмеженою доступністю поживних речовин."
+      },
+      "expert": {
+        "en": "Podzolization redistributes organic matter and iron or aluminium compounds.",
+        "uk": "Підзолистий процес перерозподіляє органічну речовину та сполуки заліза й алюмінію."
+      },
+      "limitations": {
+        "en": "Acidity and nutrient deficiency.",
+        "uk": "Кислотність і нестача поживних речовин."
+      }
+    },
+    {
+      "code": "RG",
+      "name": {
+        "en": "Regosols",
+        "uk": "Регосолі"
+      },
+      "simple": {
+        "en": "Young soils with weakly developed layers.",
+        "uk": "Молоді ґрунти зі слабко розвиненими горизонтами."
+      },
+      "expert": {
+        "en": "Little profile development means properties depend strongly on parent material.",
+        "uk": "Слабкий розвиток профілю означає значну залежність властивостей від материнської породи."
+      },
+      "limitations": {
+        "en": "Possible erosion and limited soil depth.",
+        "uk": "Можлива ерозія та обмежена потужність профілю."
+      }
+    },
+    {
+      "code": "SC",
+      "name": {
+        "en": "Solonchaks",
+        "uk": "Солончаки"
+      },
+      "simple": {
+        "en": "Salty soils that can make farming difficult.",
+        "uk": "Засолені ґрунти, які можуть ускладнювати землеробство."
+      },
+      "expert": {
+        "en": "High concentrations of soluble salts can cause osmotic stress.",
+        "uk": "Висока концентрація розчинних солей може спричиняти осмотичний стрес."
+      },
+      "limitations": {
+        "en": "Salinity, water quality and drainage.",
+        "uk": "Засолення, якість води та дренаж."
+      }
+    },
+    {
+      "code": "SN",
+      "name": {
+        "en": "Solonetz",
+        "uk": "Солонці"
+      },
+      "simple": {
+        "en": "Sodium-affected soils with possible structural problems.",
+        "uk": "Ґрунти з підвищеним впливом натрію та можливими структурними проблемами."
+      },
+      "expert": {
+        "en": "Exchangeable sodium may contribute to dense, poorly permeable horizons.",
+        "uk": "Обмінний натрій може сприяти утворенню щільних слабкопроникних горизонтів."
+      },
+      "limitations": {
+        "en": "Poor infiltration and root restriction.",
+        "uk": "Слабка інфільтрація та обмеження розвитку коренів."
+      }
+    },
+    {
+      "code": "ST",
+      "name": {
+        "en": "Stagnosols",
+        "uk": "Стагносолі"
+      },
+      "simple": {
+        "en": "Water can remain trapped in the upper soil layers.",
+        "uk": "Вода може застоюватися у верхніх шарах ґрунту."
+      },
+      "expert": {
+        "en": "Seasonal stagnation of water causes alternating reducing and oxidizing conditions.",
+        "uk": "Сезонний застій води спричиняє чергування відновних та окисних умов."
+      },
+      "limitations": {
+        "en": "Waterlogging, delayed field operations and poor aeration.",
+        "uk": "Перезволоження, затримка польових робіт і слабка аерація."
+      }
+    },
+    {
+      "code": "UM",
+      "name": {
+        "en": "Umbrisols",
+        "uk": "Умбрісолі"
+      },
+      "simple": {
+        "en": "Dark surface soils that may still be acidic.",
+        "uk": "Ґрунти з темним поверхневим шаром, які можуть бути кислими."
+      },
+      "expert": {
+        "en": "Organic-rich surface horizons have relatively low base saturation.",
+        "uk": "Багаті на органічну речовину поверхневі горизонти мають відносно низьку насиченість основами."
+      },
+      "limitations": {
+        "en": "Acidity and nutrient management.",
+        "uk": "Кислотність та управління живленням."
+      }
+    },
+    {
+      "code": "VR",
+      "name": {
+        "en": "Vertisols",
+        "uk": "Вертисоли"
+      },
+      "simple": {
+        "en": "Heavy clay soils that shrink and swell.",
+        "uk": "Важкі глинисті ґрунти, які набухають і усихають."
+      },
+      "expert": {
+        "en": "Expansive clays create cracks on drying and swelling on wetting.",
+        "uk": "Набухаючі глини утворюють тріщини під час висихання та розширюються при зволоженні."
+      },
+      "limitations": {
+        "en": "Difficult tillage, drainage and seasonal cracking.",
+        "uk": "Складність обробітку, дренажу та сезонне розтріскування."
+      }
+    }
+  ]
+}
