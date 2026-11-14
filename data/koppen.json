@@ -1,0 +1,335 @@
+{
+  "source": "Beck et al. 2018, doi:10.1038/sdata.2018.214",
+  "classes": {
+    "Af": {
+      "code": "Af",
+      "name": {
+        "en": "Tropical rainforest",
+        "uk": "Тропічний дощовий"
+      },
+      "explain": {
+        "en": "Hot and wet throughout the year, without a pronounced dry season.",
+        "uk": "Жарко й волого протягом року, без вираженого сухого сезону."
+      }
+    },
+    "Am": {
+      "code": "Am",
+      "name": {
+        "en": "Tropical monsoon",
+        "uk": "Тропічний мусонний"
+      },
+      "explain": {
+        "en": "Hot throughout the year, with abundant rain and a short drier period.",
+        "uk": "Жарко протягом року, з рясними опадами та коротшим сухішим періодом."
+      }
+    },
+    "Aw": {
+      "code": "Aw",
+      "name": {
+        "en": "Tropical savanna",
+        "uk": "Тропічна савана"
+      },
+      "explain": {
+        "en": "Hot throughout the year, with a pronounced dry season.",
+        "uk": "Жарко протягом року, є виражений сухий сезон."
+      }
+    },
+    "BWh": {
+      "code": "BWh",
+      "name": {
+        "en": "Hot desert",
+        "uk": "Жарка пустеля"
+      },
+      "explain": {
+        "en": "Very limited rainfall and a hot annual climate.",
+        "uk": "Дуже мало опадів і високі середньорічні температури."
+      }
+    },
+    "BWk": {
+      "code": "BWk",
+      "name": {
+        "en": "Cold desert",
+        "uk": "Холодна пустеля"
+      },
+      "explain": {
+        "en": "Very limited rainfall and a cooler annual climate.",
+        "uk": "Дуже мало опадів і прохолодніший середньорічний клімат."
+      }
+    },
+    "BSh": {
+      "code": "BSh",
+      "name": {
+        "en": "Hot semi-arid",
+        "uk": "Жаркий напівпосушливий"
+      },
+      "explain": {
+        "en": "Limited rainfall, hot conditions and frequent water constraints.",
+        "uk": "Мало опадів, жаркі умови та часті обмеження доступності води."
+      }
+    },
+    "BSk": {
+      "code": "BSk",
+      "name": {
+        "en": "Cold semi-arid",
+        "uk": "Холодний напівпосушливий"
+      },
+      "explain": {
+        "en": "Limited rainfall and relatively cool annual conditions.",
+        "uk": "Мало опадів і порівняно прохолодні середньорічні умови."
+      }
+    },
+    "Cfa": {
+      "code": "Cfa",
+      "name": {
+        "en": "Temperate, no dry season, hot summer",
+        "uk": "Помірний, без сухого сезону, жарке літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. There is no pronounced seasonal drought in the classification. Summers are hot.",
+        "uk": "Це клімат помірного типу. За класифікацією немає вираженого сезонного сухого періоду. Літо жарке."
+      }
+    },
+    "Cfb": {
+      "code": "Cfb",
+      "name": {
+        "en": "Temperate, no dry season, warm summer",
+        "uk": "Помірний, без сухого сезону, тепле літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. There is no pronounced seasonal drought in the classification. Summers are warm.",
+        "uk": "Це клімат помірного типу. За класифікацією немає вираженого сезонного сухого періоду. Літо тепле."
+      }
+    },
+    "Cfc": {
+      "code": "Cfc",
+      "name": {
+        "en": "Temperate, no dry season, cool summer",
+        "uk": "Помірний, без сухого сезону, прохолодне літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. There is no pronounced seasonal drought in the classification. Summers are relatively cool and the warm season is short.",
+        "uk": "Це клімат помірного типу. За класифікацією немає вираженого сезонного сухого періоду. Літо відносно прохолодне, теплий сезон короткий."
+      }
+    },
+    "Csa": {
+      "code": "Csa",
+      "name": {
+        "en": "Temperate, dry summer, hot summer",
+        "uk": "Помірний, сухе літо, жарке літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. Summers are relatively dry. Summers are hot.",
+        "uk": "Це клімат помірного типу. Літній період відносно сухий. Літо жарке."
+      }
+    },
+    "Csb": {
+      "code": "Csb",
+      "name": {
+        "en": "Temperate, dry summer, warm summer",
+        "uk": "Помірний, сухе літо, тепле літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. Summers are relatively dry. Summers are warm.",
+        "uk": "Це клімат помірного типу. Літній період відносно сухий. Літо тепле."
+      }
+    },
+    "Csc": {
+      "code": "Csc",
+      "name": {
+        "en": "Temperate, dry summer, cool summer",
+        "uk": "Помірний, сухе літо, прохолодне літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. Summers are relatively dry. Summers are relatively cool and the warm season is short.",
+        "uk": "Це клімат помірного типу. Літній період відносно сухий. Літо відносно прохолодне, теплий сезон короткий."
+      }
+    },
+    "Cwa": {
+      "code": "Cwa",
+      "name": {
+        "en": "Temperate, dry winter, hot summer",
+        "uk": "Помірний, суха зима, жарке літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. Winters are relatively dry. Summers are hot.",
+        "uk": "Це клімат помірного типу. Зимовий період відносно сухий. Літо жарке."
+      }
+    },
+    "Cwb": {
+      "code": "Cwb",
+      "name": {
+        "en": "Temperate, dry winter, warm summer",
+        "uk": "Помірний, суха зима, тепле літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. Winters are relatively dry. Summers are warm.",
+        "uk": "Це клімат помірного типу. Зимовий період відносно сухий. Літо тепле."
+      }
+    },
+    "Cwc": {
+      "code": "Cwc",
+      "name": {
+        "en": "Temperate, dry winter, cool summer",
+        "uk": "Помірний, суха зима, прохолодне літо"
+      },
+      "explain": {
+        "en": "This is a temperate climate. Winters are relatively dry. Summers are relatively cool and the warm season is short.",
+        "uk": "Це клімат помірного типу. Зимовий період відносно сухий. Літо відносно прохолодне, теплий сезон короткий."
+      }
+    },
+    "Dfa": {
+      "code": "Dfa",
+      "name": {
+        "en": "Cold continental, no dry season, hot summer",
+        "uk": "Холодний континентальний, без сухого сезону, жарке літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. There is no pronounced seasonal drought in the classification. Summers are hot.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. За класифікацією немає вираженого сезонного сухого періоду. Літо жарке."
+      }
+    },
+    "Dfb": {
+      "code": "Dfb",
+      "name": {
+        "en": "Cold continental, no dry season, warm summer",
+        "uk": "Холодний континентальний, без сухого сезону, тепле літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. There is no pronounced seasonal drought in the classification. Summers are warm.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. За класифікацією немає вираженого сезонного сухого періоду. Літо тепле."
+      }
+    },
+    "Dfc": {
+      "code": "Dfc",
+      "name": {
+        "en": "Cold continental, no dry season, cool summer",
+        "uk": "Холодний континентальний, без сухого сезону, прохолодне літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. There is no pronounced seasonal drought in the classification. Summers are relatively cool and the warm season is short.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. За класифікацією немає вираженого сезонного сухого періоду. Літо відносно прохолодне, теплий сезон короткий."
+      }
+    },
+    "Dfd": {
+      "code": "Dfd",
+      "name": {
+        "en": "Cold continental, no dry season, very cold winter",
+        "uk": "Холодний континентальний, без сухого сезону, дуже холодна зима"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. There is no pronounced seasonal drought in the classification. Winters can be exceptionally cold.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. За класифікацією немає вираженого сезонного сухого періоду. Узимку можливі надзвичайно низькі температури."
+      }
+    },
+    "Dsa": {
+      "code": "Dsa",
+      "name": {
+        "en": "Cold continental, dry summer, hot summer",
+        "uk": "Холодний континентальний, сухе літо, жарке літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Summers are relatively dry. Summers are hot.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Літній період відносно сухий. Літо жарке."
+      }
+    },
+    "Dsb": {
+      "code": "Dsb",
+      "name": {
+        "en": "Cold continental, dry summer, warm summer",
+        "uk": "Холодний континентальний, сухе літо, тепле літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Summers are relatively dry. Summers are warm.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Літній період відносно сухий. Літо тепле."
+      }
+    },
+    "Dsc": {
+      "code": "Dsc",
+      "name": {
+        "en": "Cold continental, dry summer, cool summer",
+        "uk": "Холодний континентальний, сухе літо, прохолодне літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Summers are relatively dry. Summers are relatively cool and the warm season is short.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Літній період відносно сухий. Літо відносно прохолодне, теплий сезон короткий."
+      }
+    },
+    "Dsd": {
+      "code": "Dsd",
+      "name": {
+        "en": "Cold continental, dry summer, very cold winter",
+        "uk": "Холодний континентальний, сухе літо, дуже холодна зима"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Summers are relatively dry. Winters can be exceptionally cold.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Літній період відносно сухий. Узимку можливі надзвичайно низькі температури."
+      }
+    },
+    "Dwa": {
+      "code": "Dwa",
+      "name": {
+        "en": "Cold continental, dry winter, hot summer",
+        "uk": "Холодний континентальний, суха зима, жарке літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Winters are relatively dry. Summers are hot.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Зимовий період відносно сухий. Літо жарке."
+      }
+    },
+    "Dwb": {
+      "code": "Dwb",
+      "name": {
+        "en": "Cold continental, dry winter, warm summer",
+        "uk": "Холодний континентальний, суха зима, тепле літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Winters are relatively dry. Summers are warm.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Зимовий період відносно сухий. Літо тепле."
+      }
+    },
+    "Dwc": {
+      "code": "Dwc",
+      "name": {
+        "en": "Cold continental, dry winter, cool summer",
+        "uk": "Холодний континентальний, суха зима, прохолодне літо"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Winters are relatively dry. Summers are relatively cool and the warm season is short.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Зимовий період відносно сухий. Літо відносно прохолодне, теплий сезон короткий."
+      }
+    },
+    "Dwd": {
+      "code": "Dwd",
+      "name": {
+        "en": "Cold continental, dry winter, very cold winter",
+        "uk": "Холодний континентальний, суха зима, дуже холодна зима"
+      },
+      "explain": {
+        "en": "Cold winters are an important feature of this climate. Winters are relatively dry. Winters can be exceptionally cold.",
+        "uk": "Важливою особливістю цього клімату є холодні зими. Зимовий період відносно сухий. Узимку можливі надзвичайно низькі температури."
+      }
+    },
+    "ET": {
+      "code": "ET",
+      "name": {
+        "en": "Polar tundra",
+        "uk": "Полярна тундра"
+      },
+      "explain": {
+        "en": "A very short, cold growing season limits most crops.",
+        "uk": "Дуже короткий і холодний вегетаційний період обмежує більшість культур."
+      }
+    },
+    "EF": {
+      "code": "EF",
+      "name": {
+        "en": "Polar ice",
+        "uk": "Полярні льодовики"
+      },
+      "explain": {
+        "en": "Temperatures remain too low for normal field-crop cultivation.",
+        "uk": "Температури залишаються надто низькими для звичайного польового землеробства."
+      }
+    }
+  }
+}

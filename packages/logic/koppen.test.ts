@@ -33,4 +33,20 @@ describe('Koppen-Geiger climate classification', () => {
 	it('returns null for incomplete climate data', () => {
 		expect(classifyKoppen([10, 15], [50, 60], 49)).toBeNull()
 	})
-})
+
+  it('classifies zero precipitation as desert', () => {
+		const precip = Array(12).fill(0)
+
+		expect(classifyKoppen(Array(12).fill(25), precip, 25)).toBe('BWh')
+
+		expect(classifyKoppen(Array(12).fill(5), precip, 45)).toBe('BWk')
+	})
+
+	it('uses Aw for tropical climate with a dry season', () => {
+		const temp = Array(12).fill(26)
+		const precip = [100, 100, 100, 10, 10, 10, 70, 70, 70, 100, 100, 100]
+
+		expect(classifyKoppen(temp, precip, 5)).toBe('Aw')
+	})
+
+});

@@ -21,7 +21,7 @@ export function classifyKoppen(
 	const annualTemp = sum(monthlyTemp) / 12
 	const annualPrecip = sum(monthlyPrecip)
 	const driest = Math.min(...monthlyPrecip)
-	const monthsAbove10 = monthlyTemp.filter(t => t > 10).length
+	const monthsAbove10 = monthlyTemp.filter(t => t >= 10).length
 
 	// April–September in the Northern Hemisphere.
 	const summerMonths = lat >= 0 ? [3, 4, 5, 6, 7, 8] : [9, 10, 11, 0, 1, 2]
@@ -52,6 +52,12 @@ export function classifyKoppen(
 
 	const aridThreshold = Math.max(0, dryThreshold)
 
+
+if (annualPrecip === 0) {
+	return annualTemp >= 18 ? 'BWh' : 'BWk'
+}
+
+
 	if (annualPrecip < aridThreshold) {
 		const desert = annualPrecip < aridThreshold / 2
 		const thermal = annualTemp >= 18 ? 'h' : 'k'
@@ -63,12 +69,13 @@ export function classifyKoppen(
 		if (driest >= 60) return 'Af'
 		if (driest >= 100 - annualPrecip / 25) return 'Am'
 
-		const driestMonth = monthlyPrecip.indexOf(driest)
-		return summerSet.has(driestMonth) ? 'As' : 'Aw'
+		
+		return 'Aw'
+
 	}
 
 	// Polar climate.
-	if (hottest < 10) {
+	if (hottest <= 10) {
 		return hottest <= 0 ? 'EF' : 'ET'
 	}
 
