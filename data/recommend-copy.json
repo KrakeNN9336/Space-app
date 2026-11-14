@@ -1,0 +1,38 @@
+{
+	"en": {
+		"warning": "Crop recommendations are unavailable until agronomic requirements and risk indicators are validated.",
+		"assumption": "No missing crop measurements, yields or financial values were estimated.",
+		"unavailable": "Not assessed: sufficient validated data is not available. A score of 0 is a technical placeholder, not a suitability result.",
+		"gap": "Verified crop suitability and field-specific agronomic evidence are missing.",
+		"current": {
+			"title": "Current practice",
+			"summary": "Historical crops have been recorded, but spatial placement and planting shares are unknown."
+		},
+		"recommended": {
+			"title": "Recommended rotation",
+			"summary": "A validated three-year crop rotation is not yet available."
+		},
+		"alternative": {
+			"title": "Alternative strategy",
+			"summary": "A defensible alternative requires verified crop suitability and rotation constraints."
+		}
+	},
+	"uk": {
+		"warning": "Рекомендації культур поки недоступні: агрономічні вимоги та індикатори ризиків потребують перевірки.",
+		"assumption": "Відсутні показники культур, врожайність і фінансові значення не оцінювалися.",
+		"unavailable": "Не оцінено: недостатньо перевірених даних. Оцінка 0 є технічною заглушкою, а не результатом придатності.",
+		"gap": "Відсутні підтверджені оцінки придатності культур і агрономічні дані конкретного поля.",
+		"current": {
+			"title": "Поточна практика",
+			"summary": "Історія культур записана, але розташування та частки посівів невідомі."
+		},
+		"recommended": {
+			"title": "Рекомендована сівозміна",
+			"summary": "Перевірений трирічний план сівозміни поки недоступний."
+		},
+		"alternative": {
+			"title": "Альтернативна стратегія",
+			"summary": "Для обґрунтованої альтернативи потрібні перевірені вимоги культур та обмеження сівозміни."
+		}
+	}
+}
