@@ -22,8 +22,8 @@ const severity = { low: "#49c58b", moderate: "#f3bf4b", high: "#ed746c" };
 const titles: Record<string, string> = { drought: "Посуха", waterlogging: "Перезволоження", frost: "Заморозки", heat: "Спека", erosion: "Ерозія", fertility: "Родючість" };
 const labels = { low: "Низький ризик", moderate: "Потребує уваги", high: "Високий ризик" };
 
-function fieldFeature(geometry: FieldGeometry): GeoJSON.Feature {
-  return { type: "Feature", properties: {}, geometry: geometry as GeoJSON.Geometry };
+function fieldFeature(geometry: FieldGeometry) {
+  return { type: "Feature", properties: {}, geometry: geometry as any };
 }
 function getBounds(geometry: FieldGeometry): maplibregl.LngLatBounds | null {
   const bounds = new maplibregl.LngLatBounds();
@@ -67,7 +67,7 @@ export function FieldMap({ field, analysis, onFieldSelected, layer }: FieldMapPr
       if (map.getSource("selected-field")) map.removeSource("selected-field");
       if (!currentField) return;
       const geometry = currentField.geometry;
-      map.addSource("selected-field", { type: "geojson", data: fieldFeature(geometry) });
+      map.addSource("selected-field", { type: "geojson", data: fieldFeature(geometry) as any });
       if (geometry.type !== "Point") {
         map.addLayer({ id: "field-fill", type: "fill", source: "selected-field", paint: { "fill-color": mainStress ? severity[mainStress.level] : "#49c58b", "fill-opacity": showSoil ? 0.33 : 0.06 } });
         map.addLayer({ id: "field-outline", type: "line", source: "selected-field", paint: { "line-color": "#f5fff8", "line-width": 3 } });
