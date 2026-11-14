@@ -18,11 +18,16 @@ import type {
 } from "@field-shift/shared";
 import { CONTRACT_VERSION, PRIORITY_DEFAULT, validateAnalyzeRequest } from "@field-shift/shared";
 import { recommend } from "@field-shift/logic";
-import mockAnalyze from "@field-shift/shared/mock-analyze.json";
 import cropsFile from "../../../data/crops.json";
+import { findOSMField } from "./fields";
+import { collectRawClimate } from "./power";
+import { collectRawSoil } from "./soil";
+import { collectTerrain } from "./terrain";
+import { cached, type CachedResult } from "./http";
+import type { RawClimate, RawSoil, Terrain, DataStatusValue } from "@field-shift/shared";
 
 type Bindings = {
-  CACHE: KVNamespace;
+  CACHE?: KVNamespace;
   ASSETS: Fetcher;
 };
 
@@ -51,15 +56,33 @@ app.get("/crops", (c) => {
   return c.json(body);
 });
 
-app.get("/field", (c) => {
-  const lat = Number(c.req.query("lat") ?? NaN);
-  const lon = Number(c.req.query("lon") ?? NaN);
-  if (!Number.isFinite(lat) || lat < -90 || lat > 90 || !Number.isFinite(lon) || lon < -180 || lon > 180) {
+app.get("/field", async (c) => {
+  const rawLat = c.req.query("lat"), rawLon = c.req.query("lon");
+  const lat = Number(rawLat), lon = Number(rawLon);
+  if (!rawLat || !rawLon || !Number.isFinite(lat) || lat < -90 || lat > 90 ||
+      !Number.isFinite(lon) || lon < -180 || lon > 180)
     return c.json(fail("INVALID_REQUEST", "lat must be -90..90 and lon must be -180..180"), 400);
+  try {
+    const key = "field:v1:" + lat.toFixed(4) + ":" + lon.toFixed(4);
+    const result = await cached(c.env.CACHE, key, 86400, () => findOSMField({ lat, lon }));
+    return c.json<FieldResponse>({ field: result.value });
+  } catch (err) {
+    console.warn("Field lookup unavailable", err);
+    return c.json(fail("UPSTREAM_UNAVAILABLE", "Field boundary provider unavailable"), 502);
   }
-  // TODO(backend): OSM Overpass lookup. Until then: nothing found, the UI falls back to a point.
-  return c.json<FieldResponse>({ field: null });
 });
+
+function unpack<T>(result: PromiseSettledResult<CachedResult<T>>):
+  { value: T | null; status: DataStatusValue } {
+  if (result.status === "rejected") {
+    console.warn("Data provider failed", result.reason);
+    return { value: null, status: "failed" };
+  }
+  return {
+    value: result.value.value,
+    status: result.value.source === "live" ? "live" : "cached",
+  };
+}
 
 app.post("/analyze", async (c) => {
   let body: unknown;
@@ -76,9 +99,29 @@ app.post("/analyze", async (c) => {
   const lang = req.lang ?? "en";
   const d = PRIORITY_DEFAULT;
 
-  // TODO(backend): collect real climate / soil / terrain here (NASA POWER, SoilGrids, elevation API).
-  // Until then the mock stands in for the collected data and for the result of recommend().
-  const mock = mockAnalyze as unknown as AnalyzeResponse;
+  const climateKey = "climate:v2:" + req.location.lat.toFixed(1) + ":" +
+    req.location.lon.toFixed(1) + ":" + req.radiusKm;
+  const soilKey = "soil:v1:" + req.location.lat.toFixed(1) + ":" + req.location.lon.toFixed(1);
+  const terrainKey = "terrain:v1:" + req.location.lat.toFixed(2) + ":" + req.location.lon.toFixed(2);
+
+  const results = await Promise.allSettled([
+    cached(c.env.CACHE, climateKey, 604800, () => collectRawClimate(req.location, req.radiusKm)),
+    cached(c.env.CACHE, soilKey, 2592000, () => collectRawSoil(req.location)),
+    cached(c.env.CACHE, terrainKey, 2592000, () => collectTerrain(req.location)),
+  ] as const);
+  const climate = unpack<RawClimate>(results[0]);
+  const soil = unpack<RawSoil>(results[1]);
+  const terrain = unpack<Terrain>(results[2]);
+
+  if (climate.value === null && soil.value === null && terrain.value === null) {
+    return c.json(fail("UPSTREAM_UNAVAILABLE", "No data providers responded"), 502);
+  }
+  const dataStatus = {
+    climate: climate.value !== null && climate.value.samples < 9 && climate.status === "live"
+      ? "partial" as const : climate.status,
+    soil: soil.status,
+    terrain: terrain.status,
+  };
   const input: LogicInput = {
     location: req.location,
     field: req.field,
@@ -86,21 +129,22 @@ app.post("/analyze", async (c) => {
     history: req.history,
     priorities: req.priorities ?? { water: d, income: d, soil: d, erosion: d },
     lang,
-    climate: null,
-    soil: null,
-    terrain: mock.terrain,
-    dataStatus: mock.dataStatus,
+    climate: climate.value,
+    soil: soil.value,
+    terrain: terrain.value,
+    dataStatus,
   };
+  // recommend() computes climate and soil; stress and rotation are still the flagged sample.
   const logic = recommend(input);
 
   const response: AnalyzeResponse = {
     field: { ...req.field, note: req.field.note ?? null },
-    climate: logic.climate,
-    soil: logic.soil,
-    terrain: input.terrain,
+    climate: climate.value === null ? null : logic.climate,
+    soil: soil.value === null ? null : logic.soil,
+    terrain: terrain.value,
     stress: logic.stress,
     recommendation: logic.recommendation,
-    dataStatus: input.dataStatus,
+    dataStatus,
     disclaimer: DISCLAIMER[lang],
   };
   return c.json(response);

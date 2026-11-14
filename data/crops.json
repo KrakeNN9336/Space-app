@@ -1,5 +1,5 @@
 {
-  "_note": "25 crop records. Agronomic values marked verify require source validation. Null means unknown.",
+  "_note": "25 crop records. Climate, rainfall, pH and season ranges are from the FAO EcoCrop database (species level, not variety level). precipRange is annual rainfall, mm; tempRange is temperature during growth, C; seasonDays and seasonDaysRange are the crop cycle length in days. verificationStatus verify means imported from EcoCrop but not yet validated by hand. Sensitivities, predecessors and econScore are not filled yet. Null means unknown. sugar_beet currently uses the generic EcoCrop species record (Beta vulgaris); the choice of record is pending review.",
   "crops": [
     {
       "id": "winter_wheat",
@@ -29,7 +29,10 @@
         "optMax": 7,
         "max": 8.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 90,
+        "max": 250
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -71,7 +74,10 @@
         "optMax": 7,
         "max": 8.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 90,
+        "max": 250
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -113,7 +119,10 @@
         "optMax": 7.5,
         "max": 8
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 90,
+        "max": 240
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -155,7 +164,10 @@
         "optMax": 7,
         "max": 8.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 65,
+        "max": 365
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -197,7 +209,10 @@
         "optMax": 6.5,
         "max": 8.4
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 75,
+        "max": 180
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -239,7 +254,10 @@
         "optMax": 7,
         "max": 8.3
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 60,
+        "max": 140
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -281,7 +299,10 @@
         "optMax": 7.5,
         "max": 8
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 70,
+        "max": 200
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -323,7 +344,10 @@
         "optMax": 7.6,
         "max": 8
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 85,
+        "max": 340
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -365,7 +389,10 @@
         "optMax": 6.2,
         "max": 8.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 90,
+        "max": 160
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -407,7 +434,10 @@
         "optMax": 7.5,
         "max": 8.2
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 120,
+        "max": 300
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -449,7 +479,10 @@
         "optMax": 7,
         "max": 9
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 80,
+        "max": 180
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -491,7 +524,10 @@
         "optMax": 7.5,
         "max": 8
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 90,
+        "max": 300
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -533,7 +569,10 @@
         "optMax": 6.5,
         "max": 8.2
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 55,
+        "max": 280
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -575,7 +614,10 @@
         "optMax": 8.5,
         "max": 9.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 90,
+        "max": 180
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -617,7 +659,10 @@
         "optMax": 7.5,
         "max": 8.2
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 70,
+        "max": 240
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -659,7 +704,10 @@
         "optMax": 6,
         "max": 7.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 110,
+        "max": 270
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -701,7 +749,10 @@
         "optMax": 6,
         "max": 8.2
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 110,
+        "max": 270
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -743,7 +794,10 @@
         "optMax": 6.5,
         "max": 7.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 55,
+        "max": 85
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -768,35 +822,38 @@
       "family": "Amaranthaceae",
       "type": "root",
       "tempRange": {
-        "min": 7,
+        "min": 4,
         "optMin": 15,
         "optMax": 25,
-        "max": 30
+        "max": 35
       },
       "precipRange": {
-        "min": 250,
-        "optMin": 400,
-        "optMax": 700,
+        "min": 500,
+        "optMin": 600,
+        "optMax": 800,
         "max": 1000
       },
       "phRange": {
         "min": 5.5,
         "optMin": 6,
-        "optMax": 6.8,
-        "max": 8.5
+        "optMax": 7,
+        "max": 7.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 160,
+        "max": 240
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop via OpenCLIM; species=Beta vulgaris var. saccharifera; EcoPort=48742",
+      "source": "FAO EcoCrop: Beta vulgaris (EcoPort code 514)",
       "verificationStatus": "verify",
       "seasonDaysRange": {
-        "min": 60,
-        "max": 140
+        "min": 160,
+        "max": 240
       }
     },
     {
@@ -827,7 +884,10 @@
         "optMax": 7.5,
         "max": 9.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 150,
+        "max": 200
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -869,7 +929,10 @@
         "optMax": 6.5,
         "max": 8.5
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 90,
+        "max": 150
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -911,7 +974,10 @@
         "optMax": 8,
         "max": 9
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 180,
+        "max": 365
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -953,7 +1019,10 @@
         "optMax": 7,
         "max": 8.7
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 80,
+        "max": 170
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -995,7 +1064,10 @@
         "optMax": 7.5,
         "max": 9
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 50,
+        "max": 270
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
@@ -1037,7 +1109,10 @@
         "optMax": 6,
         "max": 8.2
       },
-      "seasonDays": null,
+      "seasonDays": {
+        "min": 110,
+        "max": 270
+      },
       "droughtSensitivity": null,
       "floodSensitivity": null,
       "frostSensitivity": null,
