@@ -99,7 +99,7 @@ app.post("/analyze", async (c) => {
   const lang = req.lang ?? "en";
   const d = PRIORITY_DEFAULT;
 
-  const climateKey = "climate:v1:" + req.location.lat.toFixed(1) + ":" +
+  const climateKey = "climate:v2:" + req.location.lat.toFixed(1) + ":" +
     req.location.lon.toFixed(1) + ":" + req.radiusKm;
   const soilKey = "soil:v1:" + req.location.lat.toFixed(1) + ":" + req.location.lon.toFixed(1);
   const terrainKey = "terrain:v1:" + req.location.lat.toFixed(2) + ":" + req.location.lon.toFixed(2);
@@ -134,7 +134,7 @@ app.post("/analyze", async (c) => {
     terrain: terrain.value,
     dataStatus,
   };
-  // The team's recommend() currently returns a mock; Serhii will replace that logic.
+  // recommend() computes climate and soil; stress and rotation are still the flagged sample.
   const logic = recommend(input);
 
   const response: AnalyzeResponse = {

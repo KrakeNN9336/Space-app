@@ -4,7 +4,10 @@ import { fetchJson } from "./http";
 
 const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 const DAYS = [31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-const PARAMETERS = ["T2M", "T2M_MIN", "T2M_MAX", "PRECTOTCORR", "ALLSKY_SFC_SW_DWN"] as const;
+// In the climatology endpoint T2M_MIN / T2M_MAX are the extremes of the whole period
+// (checked for Lviv: January minimum -31.7 C), not mean daily values. Mean daily minimum and
+// maximum are therefore derived from the mean and the mean daily range (T2M_RANGE).
+const PARAMETERS = ["T2M", "T2M_RANGE", "PRECTOTCORR", "ALLSKY_SFC_SW_DWN"] as const;
 type Parameter = typeof PARAMETERS[number];
 type POWER = {
   properties?: { parameter?: Record<string, Record<string, number | null>> };
@@ -34,10 +37,11 @@ async function sample(point: Point): Promise<Sample> {
   }).toString();
   const response = await fetchJson<POWER>(url.toString(), 8000);
   const tempC = values(response, "T2M");
-  const tempMinC = values(response, "T2M_MIN");
-  const tempMaxC = values(response, "T2M_MAX");
+  const range = values(response, "T2M_RANGE");
   const precipitation = values(response, "PRECTOTCORR");
-  if (!tempC || !tempMinC || !tempMaxC || !precipitation) throw new Error("NO_CLIMATE_DATA");
+  if (!tempC || !range || !precipitation) throw new Error("NO_CLIMATE_DATA");
+  const tempMinC = tempC.map((t, i) => t - range[i] / 2);
+  const tempMaxC = tempC.map((t, i) => t + range[i] / 2);
   return {
     tempC, tempMinC, tempMaxC,
     precipMm: precipitation.map((value, i) => value * DAYS[i]),

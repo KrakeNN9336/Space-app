@@ -300,6 +300,17 @@ export function validateAnalyzeResponse(res: unknown): string[] {
       });
     }
 
+    if (rec.avoid !== undefined) {
+      if (!Array.isArray(rec.avoid)) c.fail("recommendation.avoid", "must be an array when present");
+      else
+        rec.avoid.forEach((a, i) => {
+          const p = `recommendation.avoid[${i}]`;
+          if (!isObj(a)) return c.fail(p, "must be an object");
+          for (const f of ["id", "name", "why"]) c.str(a, f, p, { nonEmpty: true });
+          if (a.reason !== "rotation" && a.reason !== "site") c.fail(`${p}.reason`, 'must be "rotation" or "site"');
+        });
+    }
+
     if (!Array.isArray(rec.tillage)) c.fail("recommendation.tillage", "must be an array");
     else
       rec.tillage.forEach((t, i) => {

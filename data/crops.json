@@ -1,15 +1,1030 @@
 {
-  "_note": "SEED ONLY: ids, names, groups and icons so the crop picker and the mock work. Serhii (branch data) replaces this file with the full agronomic table. Keep these ids stable: they are used in shared/mock-analyze.json.",
+  "_note": "Climate, rainfall, pH and season ranges are from the FAO EcoCrop database (species level, not variety level). precipRange is annual rainfall, mm; tempRange is temperature during growth, C; seasonDays is the crop cycle length. Sensitivities, predecessors and econScore are not filled yet.",
   "crops": [
-    { "id": "winter_wheat", "name": { "en": "Winter wheat", "uk": "Пшениця озима" }, "group": "cereal", "icon": "🌾" },
-    { "id": "spring_wheat", "name": { "en": "Spring wheat", "uk": "Пшениця яра" }, "group": "cereal", "icon": "🌾" },
-    { "id": "barley", "name": { "en": "Barley", "uk": "Ячмінь" }, "group": "cereal", "icon": "🌾" },
-    { "id": "corn", "name": { "en": "Corn (maize)", "uk": "Кукурудза" }, "group": "cereal", "icon": "🌽" },
-    { "id": "soybean", "name": { "en": "Soybean", "uk": "Соя" }, "group": "legume", "icon": "🫘" },
-    { "id": "pea", "name": { "en": "Pea", "uk": "Горох" }, "group": "legume", "icon": "🫛" },
-    { "id": "sunflower", "name": { "en": "Sunflower", "uk": "Соняшник" }, "group": "oilseed", "icon": "🌻" },
-    { "id": "rapeseed", "name": { "en": "Rapeseed", "uk": "Ріпак" }, "group": "oilseed", "icon": "🌼" },
-    { "id": "potato", "name": { "en": "Potato", "uk": "Картопля" }, "group": "root", "icon": "🥔" },
-    { "id": "clover", "name": { "en": "Clover cover crop", "uk": "Конюшина (покривна)" }, "group": "cover", "icon": "🍀" }
+    {
+      "id": "winter_wheat",
+      "name": {
+        "en": "Winter wheat",
+        "uk": "Пшениця озима"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 5,
+        "optMin": 15,
+        "optMax": 23,
+        "max": 27
+      },
+      "precipRange": {
+        "min": 300,
+        "optMin": 750,
+        "optMax": 900,
+        "max": 1600
+      },
+      "phRange": {
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 7,
+        "max": 8.5
+      },
+      "seasonDays": {
+        "min": 90,
+        "max": 250
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Triticum aestivum (EcoPort code 2114)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "spring_wheat",
+      "name": {
+        "en": "Spring wheat",
+        "uk": "Пшениця яра"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 5,
+        "optMin": 15,
+        "optMax": 23,
+        "max": 27
+      },
+      "precipRange": {
+        "min": 300,
+        "optMin": 750,
+        "optMax": 900,
+        "max": 1600
+      },
+      "phRange": {
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 7,
+        "max": 8.5
+      },
+      "seasonDays": {
+        "min": 90,
+        "max": 250
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Triticum aestivum (EcoPort code 2114)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "barley",
+      "name": {
+        "en": "Barley",
+        "uk": "Ячмінь"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 2,
+        "optMin": 15,
+        "optMax": 20,
+        "max": 40
+      },
+      "precipRange": {
+        "min": 200,
+        "optMin": 500,
+        "optMax": 1000,
+        "max": 2000
+      },
+      "phRange": {
+        "min": 6,
+        "optMin": 6.5,
+        "optMax": 7.5,
+        "max": 8
+      },
+      "seasonDays": {
+        "min": 90,
+        "max": 240
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Hordeum vulgare (EcoPort code 1232)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "corn",
+      "name": {
+        "en": "Corn (maize)",
+        "uk": "Кукурудза"
+      },
+      "group": "cereal",
+      "icon": "🌽",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 10,
+        "optMin": 18,
+        "optMax": 33,
+        "max": 47
+      },
+      "precipRange": {
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1200,
+        "max": 1800
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5,
+        "optMax": 7,
+        "max": 8.5
+      },
+      "seasonDays": {
+        "min": 65,
+        "max": 365
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Zea mays (EcoPort code 2175)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "soybean",
+      "name": {
+        "en": "Soybean",
+        "uk": "Соя"
+      },
+      "group": "legume",
+      "icon": "🫘",
+      "family": "Fabaceae",
+      "type": "legume",
+      "tempRange": {
+        "min": 10,
+        "optMin": 20,
+        "optMax": 33,
+        "max": 38
+      },
+      "precipRange": {
+        "min": 450,
+        "optMin": 600,
+        "optMax": 1500,
+        "max": 1800
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6.5,
+        "max": 8.4
+      },
+      "seasonDays": {
+        "min": 75,
+        "max": 180
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Glycine max (EcoPort code 1150)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "pea",
+      "name": {
+        "en": "Pea",
+        "uk": "Горох"
+      },
+      "group": "legume",
+      "icon": "🫛",
+      "family": "Fabaceae",
+      "type": "legume",
+      "tempRange": {
+        "min": 4,
+        "optMin": 10,
+        "optMax": 24,
+        "max": 30
+      },
+      "precipRange": {
+        "min": 350,
+        "optMin": 800,
+        "optMax": 1200,
+        "max": 2500
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 7,
+        "max": 8.3
+      },
+      "seasonDays": {
+        "min": 60,
+        "max": 140
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Pisum sativum (EcoPort code 1721)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "sunflower",
+      "name": {
+        "en": "Sunflower",
+        "uk": "Соняшник"
+      },
+      "group": "oilseed",
+      "icon": "🌻",
+      "family": "Asteraceae",
+      "type": "oilseed",
+      "tempRange": {
+        "min": 5,
+        "optMin": 17,
+        "optMax": 34,
+        "max": 45
+      },
+      "precipRange": {
+        "min": 300,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 1600
+      },
+      "phRange": {
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 7.5,
+        "max": 8
+      },
+      "seasonDays": {
+        "min": 70,
+        "max": 200
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Helianthus annuus (EcoPort code 1191)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "rapeseed",
+      "name": {
+        "en": "Rapeseed",
+        "uk": "Ріпак"
+      },
+      "group": "oilseed",
+      "icon": "🌼",
+      "family": "Brassicaceae",
+      "type": "oilseed",
+      "tempRange": {
+        "min": 5,
+        "optMin": 15,
+        "optMax": 25,
+        "max": 41
+      },
+      "precipRange": {
+        "min": 400,
+        "optMin": 500,
+        "optMax": 1000,
+        "max": 2800
+      },
+      "phRange": {
+        "min": 5.5,
+        "optMin": 6.5,
+        "optMax": 7.6,
+        "max": 8
+      },
+      "seasonDays": {
+        "min": 85,
+        "max": 340
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Brassica napus (EcoPort code 549)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "potato",
+      "name": {
+        "en": "Potato",
+        "uk": "Картопля"
+      },
+      "group": "root",
+      "icon": "🥔",
+      "family": "Solanaceae",
+      "type": "root",
+      "tempRange": {
+        "min": 7,
+        "optMin": 15,
+        "optMax": 25,
+        "max": 30
+      },
+      "precipRange": {
+        "min": 250,
+        "optMin": 500,
+        "optMax": 800,
+        "max": 2000
+      },
+      "phRange": {
+        "min": 4.2,
+        "optMin": 5,
+        "optMax": 6.2,
+        "max": 8.5
+      },
+      "seasonDays": {
+        "min": 90,
+        "max": 160
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Solanum tuberosum (EcoPort code 1971)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "clover",
+      "name": {
+        "en": "Clover cover crop",
+        "uk": "Конюшина (покривна)"
+      },
+      "group": "cover",
+      "icon": "🍀",
+      "family": "Fabaceae",
+      "type": "cover",
+      "tempRange": {
+        "min": 4,
+        "optMin": 18,
+        "optMax": 25,
+        "max": 40
+      },
+      "precipRange": {
+        "min": 300,
+        "optMin": 700,
+        "optMax": 1200,
+        "max": 2100
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 6,
+        "optMax": 7.5,
+        "max": 8.2
+      },
+      "seasonDays": {
+        "min": 120,
+        "max": 300
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Trifolium pratense (EcoPort code 2104)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "rice",
+      "name": {
+        "en": "Rice",
+        "uk": "Рис"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 10,
+        "optMin": 20,
+        "optMax": 30,
+        "max": 36
+      },
+      "precipRange": {
+        "min": 1000,
+        "optMin": 1500,
+        "optMax": 2000,
+        "max": 4000
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 7,
+        "max": 9
+      },
+      "seasonDays": {
+        "min": 80,
+        "max": 180
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Oryza sativa (EcoPort code 1574)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "sorghum",
+      "name": {
+        "en": "Sorghum",
+        "uk": "Сорго"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 8,
+        "optMin": 22,
+        "optMax": 35,
+        "max": 40
+      },
+      "precipRange": {
+        "min": 300,
+        "optMin": 400,
+        "optMax": 600,
+        "max": 700
+      },
+      "phRange": {
+        "min": 5,
+        "optMin": 5.5,
+        "optMax": 7.5,
+        "max": 8
+      },
+      "seasonDays": {
+        "min": 90,
+        "max": 300
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Sorghum bicolor (EcoPort code 48747)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "millet",
+      "name": {
+        "en": "Millet",
+        "uk": "Просо"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 15,
+        "optMin": 20,
+        "optMax": 32,
+        "max": 45
+      },
+      "precipRange": {
+        "min": 200,
+        "optMin": 500,
+        "optMax": 750,
+        "max": 1000
+      },
+      "phRange": {
+        "min": 5.2,
+        "optMin": 6,
+        "optMax": 6.5,
+        "max": 8.2
+      },
+      "seasonDays": {
+        "min": 55,
+        "max": 280
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Panicum miliaceum (EcoPort code 8280)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "chickpea",
+      "name": {
+        "en": "Chickpea",
+        "uk": "Нут"
+      },
+      "group": "legume",
+      "icon": "🫘",
+      "family": "Fabaceae",
+      "type": "legume",
+      "tempRange": {
+        "min": 7,
+        "optMin": 15,
+        "optMax": 29,
+        "max": 35
+      },
+      "precipRange": {
+        "min": 300,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 1800
+      },
+      "phRange": {
+        "min": 4.7,
+        "optMin": 6,
+        "optMax": 8.5,
+        "max": 9.5
+      },
+      "seasonDays": {
+        "min": 90,
+        "max": 180
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Cicer arietinum (EcoPort code 2479)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "lentil",
+      "name": {
+        "en": "Lentil",
+        "uk": "Сочевиця"
+      },
+      "group": "legume",
+      "icon": "🫘",
+      "family": "Fabaceae",
+      "type": "legume",
+      "tempRange": {
+        "min": 5,
+        "optMin": 15,
+        "optMax": 29,
+        "max": 32
+      },
+      "precipRange": {
+        "min": 250,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 2500
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 7.5,
+        "max": 8.2
+      },
+      "seasonDays": {
+        "min": 70,
+        "max": 240
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Lens culinaris (EcoPort code 7209)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "oats",
+      "name": {
+        "en": "Oats",
+        "uk": "Овес"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 5,
+        "optMin": 16,
+        "optMax": 20,
+        "max": 30
+      },
+      "precipRange": {
+        "min": 250,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 1500
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5,
+        "optMax": 6,
+        "max": 7.5
+      },
+      "seasonDays": {
+        "min": 110,
+        "max": 270
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Avena sativa (EcoPort code 481)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "rye",
+      "name": {
+        "en": "Rye",
+        "uk": "Жито"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Poaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 3,
+        "optMin": 15,
+        "optMax": 20,
+        "max": 31
+      },
+      "precipRange": {
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 2000
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6,
+        "max": 8.2
+      },
+      "seasonDays": {
+        "min": 110,
+        "max": 270
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Secale cereale (EcoPort code 1929)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "buckwheat",
+      "name": {
+        "en": "Buckwheat",
+        "uk": "Гречка"
+      },
+      "group": "cereal",
+      "icon": "🌾",
+      "family": "Polygonaceae",
+      "type": "cereal",
+      "tempRange": {
+        "min": 7,
+        "optMin": 17,
+        "optMax": 27,
+        "max": 40
+      },
+      "precipRange": {
+        "min": 400,
+        "optMin": 700,
+        "optMax": 1000,
+        "max": 1300
+      },
+      "phRange": {
+        "min": 4.4,
+        "optMin": 5,
+        "optMax": 6.5,
+        "max": 7.5
+      },
+      "seasonDays": {
+        "min": 55,
+        "max": 85
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Fagopyrum esculentum (EcoPort code 2285)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "sugar_beet",
+      "name": {
+        "en": "Sugar beet",
+        "uk": "Цукровий буряк"
+      },
+      "group": "root",
+      "icon": "🌱",
+      "family": "Amaranthaceae",
+      "type": "root",
+      "tempRange": {
+        "min": 4,
+        "optMin": 15,
+        "optMax": 25,
+        "max": 35
+      },
+      "precipRange": {
+        "min": 500,
+        "optMin": 600,
+        "optMax": 800,
+        "max": 1000
+      },
+      "phRange": {
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 7,
+        "max": 7.5
+      },
+      "seasonDays": {
+        "min": 160,
+        "max": 240
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Beta vulgaris (EcoPort code 514)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "cotton",
+      "name": {
+        "en": "Cotton",
+        "uk": "Бавовник"
+      },
+      "group": "industrial",
+      "icon": "🌿",
+      "family": "Malvaceae",
+      "type": "industrial",
+      "tempRange": {
+        "min": 15,
+        "optMin": 22,
+        "optMax": 36,
+        "max": 42
+      },
+      "precipRange": {
+        "min": 450,
+        "optMin": 750,
+        "optMax": 1200,
+        "max": 1500
+      },
+      "phRange": {
+        "min": 5,
+        "optMin": 6,
+        "optMax": 7.5,
+        "max": 9.5
+      },
+      "seasonDays": {
+        "min": 150,
+        "max": 200
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Gossypium hirsutum (EcoPort code 1160)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "groundnut",
+      "name": {
+        "en": "Groundnut",
+        "uk": "Арахіс"
+      },
+      "group": "legume",
+      "icon": "🥜",
+      "family": "Fabaceae",
+      "type": "legume",
+      "tempRange": {
+        "min": 10,
+        "optMin": 22,
+        "optMax": 32,
+        "max": 45
+      },
+      "precipRange": {
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1500,
+        "max": 4000
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6.5,
+        "max": 8.5
+      },
+      "seasonDays": {
+        "min": 90,
+        "max": 150
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Arachis hypogaea (EcoPort code 2199)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "cassava",
+      "name": {
+        "en": "Cassava",
+        "uk": "Маніок"
+      },
+      "group": "root",
+      "icon": "🌱",
+      "family": "Euphorbiaceae",
+      "type": "root",
+      "tempRange": {
+        "min": 10,
+        "optMin": 20,
+        "optMax": 29,
+        "max": 35
+      },
+      "precipRange": {
+        "min": 500,
+        "optMin": 1000,
+        "optMax": 1500,
+        "max": 5000
+      },
+      "phRange": {
+        "min": 4,
+        "optMin": 5.5,
+        "optMax": 8,
+        "max": 9
+      },
+      "seasonDays": {
+        "min": 180,
+        "max": 365
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Manihot esculenta (EcoPort code 1420)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "sweet_potato",
+      "name": {
+        "en": "Sweet potato",
+        "uk": "Батат"
+      },
+      "group": "root",
+      "icon": "🍠",
+      "family": "Convolvulaceae",
+      "type": "root",
+      "tempRange": {
+        "min": 10,
+        "optMin": 18,
+        "optMax": 28,
+        "max": 38
+      },
+      "precipRange": {
+        "min": 350,
+        "optMin": 750,
+        "optMax": 2000,
+        "max": 5000
+      },
+      "phRange": {
+        "min": 4,
+        "optMin": 5,
+        "optMax": 7,
+        "max": 8.7
+      },
+      "seasonDays": {
+        "min": 80,
+        "max": 170
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Ipomoea batatas (EcoPort code 1265)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "common_bean",
+      "name": {
+        "en": "Common bean",
+        "uk": "Квасоля"
+      },
+      "group": "legume",
+      "icon": "🫘",
+      "family": "Fabaceae",
+      "type": "legume",
+      "tempRange": {
+        "min": 7,
+        "optMin": 16,
+        "optMax": 25,
+        "max": 32
+      },
+      "precipRange": {
+        "min": 300,
+        "optMin": 500,
+        "optMax": 2000,
+        "max": 4300
+      },
+      "phRange": {
+        "min": 4,
+        "optMin": 5.5,
+        "optMax": 7.5,
+        "max": 9
+      },
+      "seasonDays": {
+        "min": 50,
+        "max": 270
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Phaseolus vulgaris (EcoPort code 1668)",
+      "verificationStatus": "ecocrop"
+    },
+    {
+      "id": "cover_rye",
+      "name": {
+        "en": "Cover crop rye",
+        "uk": "Жито як сидерат"
+      },
+      "group": "cover",
+      "icon": "🌱",
+      "family": "Poaceae",
+      "type": "cover",
+      "tempRange": {
+        "min": 3,
+        "optMin": 15,
+        "optMax": 20,
+        "max": 31
+      },
+      "precipRange": {
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 2000
+      },
+      "phRange": {
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6,
+        "max": 8.2
+      },
+      "seasonDays": {
+        "min": 110,
+        "max": 270
+      },
+      "droughtSensitivity": null,
+      "floodSensitivity": null,
+      "frostSensitivity": null,
+      "goodPredecessors": [],
+      "badPredecessors": [],
+      "econScore": null,
+      "source": "FAO EcoCrop: Secale cereale (EcoPort code 1929)",
+      "verificationStatus": "ecocrop"
+    }
   ]
 }

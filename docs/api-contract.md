@@ -26,7 +26,7 @@ example is [shared/mock-analyze.json](../shared/mock-analyze.json), and the runt
 ### GET /api/health
 
 ```json
-{ "ok": true, "contract": "2.1.0", "time": "2026-11-14T09:00:00.000Z" }
+{ "ok": true, "contract": "2.2.0", "time": "2026-11-14T09:00:00.000Z" }
 ```
 
 ### GET /api/crops
@@ -90,7 +90,7 @@ The full example is [shared/mock-analyze.json](../shared/mock-analyze.json) (num
 | `soil` | `wrbGroup {code, name, probability 0..1, explain}`, `properties {organicCarbonGkg, phH2O, sandPct, siltPct, clayPct}` each as `{median, low, high}`, `source` |
 | `terrain` | `elevationM`, `slopePct` |
 | `stress` | exactly 6 items, see below |
-| `recommendation` | `crops[]`, `rotationPlan[]`, `strategies[]`, `tillage[]`, `warnings[]`, `confidence`, `assumptions[]` |
+| `recommendation` | `crops[]`, `rotationPlan[]`, `strategies[]`, `avoid[]`, `tillage[]`, `warnings[]`, `confidence`, `assumptions[]` |
 | `dataStatus` | `{climate, soil, terrain}`, each `live`, `cached`, `partial` or `failed` |
 | `disclaimer` | always present |
 
@@ -135,6 +135,13 @@ risks that need local review. `recommendation.strategies[]` carries exactly that
   not entered, so they are split equally (rounded to multiples of 5, sum 100) and this is said in `dataGaps`.
 - If the history is entirely `unknown`, the `current` strategy is still returned, with an empty
   `rotationPlan`, `bareSoilMonths: null`, low confidence and the reason in `dataGaps`.
+
+### Crops to avoid (added in 2.2.0)
+
+`recommendation.avoid[]` lists crops the farmer should **not** sow next year. Each item has `id`,
+`name`, `reason` and `why` (one sentence with numbers). `reason` is `rotation` (the crop repeats last
+year's crop or botanical family) or `site` (temperature, annual rainfall or soil pH is outside what the
+crop tolerates, by FAO EcoCrop limits). The list may be empty and the field may be absent in old data.
 
 ## Errors
 

@@ -1,4 +1,4 @@
-import type { AnalyzeRequest, AnalyzeResponse, ApiError, CropsResponse, HealthResponse } from "@field-shift/shared";
+import type { AnalyzeRequest, AnalyzeResponse, ApiError, CropsResponse, FieldResponse, HealthResponse } from "@field-shift/shared";
 
 /** Thrown for any non-2xx answer; `code` comes from the contract error body when present. */
 export class ApiRequestError extends Error {
@@ -23,6 +23,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const getHealth = () => request<HealthResponse>("/api/health");
 export const getCrops = () => request<CropsResponse>("/api/crops");
+export const getField = (lat: number, lon: number) =>
+  request<FieldResponse>(`/api/field?lat=${lat.toFixed(5)}&lon=${lon.toFixed(5)}`);
 export const analyze = (body: AnalyzeRequest) =>
   request<AnalyzeResponse>("/api/analyze", {
     method: "POST",
