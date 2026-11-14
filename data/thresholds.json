@@ -1,0 +1,33 @@
+{
+	"aridity": {
+		"highBelow": 0.2,
+		"moderateBelow": 0.65,
+		"source": "UNCCD / UNEP aridity classification",
+		"verified": true
+	},
+	"soilPh": {
+		"strongAcidAtOrBelow": 5.5,
+		"moderateAcidBelow": 6.1,
+		"moderateAlkalineAbove": 7.8,
+		"strongAlkalineAtOrAbove": 8.5,
+		"source": "USDA NRCS soil reaction classes",
+		"verified": true
+	},
+	"freezing": {
+		"temperatureC": 0,
+		"source": "Physical freezing point of pure water"
+	},
+	"pendingValidation": {
+		"cropHeatThresholdC": null,
+		"waterloggingSeverityThreshold": null,
+		"erosionRiskThreshold": null,
+		"source": "TODO: crop-specific and field-specific validation"
+	},
+	"scoreMapping": {
+		"low": 0,
+		"moderate": 50,
+		"high": 100,
+		"unknown": 0,
+		"note": "Ordinal display scale, not a calibrated probability or measured risk"
+	}
+}
