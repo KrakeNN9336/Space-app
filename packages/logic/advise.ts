@@ -126,27 +126,27 @@ function rotationEffect(crop: CropRecord, past: string[][], lang: Lang): Rotatio
   const name = crop.name[lang];
   if (last.some((c) => c.id === crop.id)) {
     factor *= W.sameCropLastYear;
-    avoid = tx(lang, `${name} was grown here last year: repeating it builds up its diseases, pests and weeds.`,
-      `Культура «${name}» росла тут торік: повтор накопичує її хвороби, шкідників і бур'яни.`);
-    notes.push(tx(lang, "it was grown here last year", "торік вона вже росла на цьому полі"));
+    avoid = tx(lang, `${name}: it grew here last year. Sown again, its diseases, pests and weeds stay in the soil and get stronger. Give the field a break from it.`,
+      `${name}: торік ця культура вже росла на цьому полі. Якщо посіяти її знову, її хвороби, шкідники й бур'яни залишаться в ґрунті та посиляться. Дайте полю від неї перепочити.`);
+    notes.push(tx(lang, "It already grew here last year, so the score is lower.", "Торік ця культура вже росла тут, тому оцінка нижча."));
   } else if (last.some((c) => c.family === crop.family)) {
     const prev = last.find((c) => c.family === crop.family) as CropRecord;
     factor *= W.sameFamilyLastYear;
-    avoid = tx(lang, `${name} is in the same family (${crop.family}) as last year's ${prev.name.en.toLowerCase()}, so they share diseases and pests.`,
-      `Культура «${name}» з тієї ж родини (${crop.family}), що й торішня (${prev.name.uk.toLowerCase()}): у них спільні хвороби та шкідники.`);
-    notes.push(tx(lang, `same family as last year's ${prev.name.en.toLowerCase()}`, `та сама родина, що й торік (${prev.name.uk.toLowerCase()})`));
+    avoid = tx(lang, `${name}: it is a close relative of last year's crop (${prev.name.en.toLowerCase()}). Relatives share the same diseases and pests, so it is better to wait a year.`,
+      `${name}: це близький родич торішньої культури (${prev.name.uk.toLowerCase()}). У родичів спільні хвороби та шкідники, тому краще зачекати рік.`);
+    notes.push(tx(lang, `It is a relative of last year's crop (${prev.name.en.toLowerCase()}), so the score is lower.`, `Це родич торішньої культури (${prev.name.uk.toLowerCase()}), тому оцінка нижча.`));
   }
   const familyYears = all.filter((year) => year.some((c) => c.family === crop.family)).length;
   if (familyYears >= 2) {
     factor *= W.familyTwiceInThree;
-    notes.push(tx(lang, `${crop.family} crops were grown in ${familyYears} of the last 3 years`, `культури родини ${crop.family} були у ${familyYears} з останніх 3 років`));
+    notes.push(tx(lang, `Related crops grew here in ${familyYears} of the last 3 years, which is a lot for one field.`, `Споріднені культури росли тут у ${familyYears} з 3 останніх років, а це забагато для одного поля.`));
   }
   const known = all.some((year) => year.length > 0);
   if (known && crop.family === LEGUME_FAMILY && !all.some((year) => year.some((c) => c.family === LEGUME_FAMILY))) {
     factor *= W.legumeBonus;
-    notes.push(tx(lang, "no legume in the last 3 years, and legumes fix nitrogen", "за 3 роки не було бобових, а вони фіксують азот"));
+    notes.push(tx(lang, "No beans or peas grew here for 3 years. Such crops feed the soil with nitrogen, so the next crop needs less fertiliser.", "Бобових тут не було 3 роки. Такі культури самі збагачують ґрунт азотом, тож наступній культурі треба менше добрив."));
   } else if (known && familyYears === 0) {
-    notes.push(tx(lang, "a new family for this field, which breaks disease cycles", "нова для поля родина: це розриває цикли хвороб"));
+    notes.push(tx(lang, "Nothing related grew here for 3 years, so its diseases and pests have not built up in the soil.", "Нічого спорідненого тут не росло 3 роки, тому її хвороби та шкідники в ґрунті не накопичились."));
   }
   return { factor, notes, avoid };
 }
@@ -170,41 +170,69 @@ function scoreAll(climate: Climate | null, soil: Soil | null, past: string[][], 
 
 const range = (r: Range, unit: string): string => `${r.optMin}–${r.optMax}${unit ? ` ${unit}` : ""}`;
 
-function explain(s: Scored, climate: Climate | null, soil: Soil | null, lang: Lang): string {
-  const parts: string[] = [];
-  if (climate && s.fit.windowTempC !== null) {
-    parts.push(tx(lang,
-      `mean temperature of the best ${s.fit.windowMonths} months is ${r1(s.fit.windowTempC)} °C (optimum ${range(s.crop.tempRange, "°C")})`,
-      `середня температура найкращих ${s.fit.windowMonths} міс. ${r1(s.fit.windowTempC)} °C (оптимум ${range(s.crop.tempRange, "°C")})`));
-    parts.push(tx(lang,
-      `rainfall ${climate.annualPrecipMm} mm per year (optimum ${range(s.crop.precipRange, "mm")})`,
-      `опади ${climate.annualPrecipMm} мм на рік (оптимум ${range(s.crop.precipRange, "мм")})`));
-  }
-  const ph = soil?.properties.phH2O.median;
-  if (typeof ph === "number") parts.push(tx(lang, `soil pH ${r1(ph)} (optimum ${range(s.crop.phRange, "")})`, `pH ґрунту ${r1(ph)} (оптимум ${range(s.crop.phRange, "")})`));
-  const fitText = s.fit.score === null
-    ? tx(lang, "Climate and soil data are missing, so only the rotation was judged", "Немає даних про клімат і ґрунт, тому оцінено лише сівозміну")
-    : tx(lang, `Site fit ${s.fit.score}/100`, `Відповідність місцю ${s.fit.score}/100`) + (parts.length ? `: ${parts.join("; ")}` : "");
-  const rot = s.rotation.notes.length ? tx(lang, ` Rotation: ${s.rotation.notes.join("; ")}.`, ` Сівозміна: ${s.rotation.notes.join("; ")}.`) : "";
-  return `${fitText}.${rot}`;
+/** "low" when the value is below the crop's optimum, "high" when above, "ok" inside it. */
+function side(x: number | null | undefined, r: Range): "low" | "ok" | "high" {
+  if (typeof x !== "number" || r.optMin === null || r.optMax === null) return "ok";
+  return x < r.optMin ? "low" : x > r.optMax ? "high" : "ok";
 }
 
+/** Plain-language reason for a recommended crop: a verdict, then heat, rain, soil and rotation. */
+function explain(s: Scored, climate: Climate | null, soil: Soil | null, lang: Lang): string {
+  if (s.fit.score === null) {
+    return [tx(lang, "There is no climate or soil data for this place, so only the crop order was checked.", "Для цього місця немає даних про клімат і ґрунт, тому перевірено лише черговість культур."), ...s.rotation.notes].join(" ");
+  }
+  const out: string[] = [
+    s.score >= 80 ? tx(lang, "A good choice for this field.", "Добрий вибір для цього поля.")
+      : s.score >= 60 ? tx(lang, "Suitable, though not perfect.", "Підходить, хоч і не ідеально.")
+        : tx(lang, "Possible, but conditions are far from the best.", "Можливо, але умови далекі від найкращих."),
+  ];
+  if (climate && s.fit.windowTempC !== null) {
+    const t = r1(s.fit.windowTempC);
+    const best = range(s.crop.tempRange, "°C");
+    const heat = side(s.fit.windowTempC, s.crop.tempRange);
+    out.push(tx(lang,
+      `${heat === "ok" ? "Enough warmth" : heat === "low" ? "A little short of warmth" : "A little too hot"}: the warmest ${s.fit.windowMonths} months average ${t} °C, and it grows best at ${best}.`,
+      `${heat === "ok" ? "Тепла вистачає" : heat === "low" ? "Тепла трохи бракує" : "Трохи спекотно"}: найтепліші ${s.fit.windowMonths} міс. мають у середньому ${t} °C, а найкраще вона росте при ${best}.`));
+    const rain = side(climate.annualPrecipMm, s.crop.precipRange);
+    out.push(tx(lang,
+      `${rain === "ok" ? "Enough rain" : rain === "low" ? "Rain is a little short" : "A little too much rain"}: ${climate.annualPrecipMm} mm a year, best is ${range(s.crop.precipRange, "mm")}.`,
+      `${rain === "ok" ? "Дощів достатньо" : rain === "low" ? "Дощів трохи замало" : "Дощів трохи забагато"}: ${climate.annualPrecipMm} мм на рік, найкраще ${range(s.crop.precipRange, "мм")}.`));
+  }
+  const ph = soil?.properties.phH2O.median;
+  if (typeof ph === "number") {
+    const acid = side(ph, s.crop.phRange);
+    out.push(tx(lang,
+      `${acid === "ok" ? "Soil acidity suits it" : acid === "low" ? "The soil is a little too acid" : "The soil is a little too alkaline"}: pH ${r1(ph)}, best is ${range(s.crop.phRange, "")}.`,
+      `${acid === "ok" ? "Кислотність ґрунту підходить" : acid === "low" ? "Ґрунт трохи закислий" : "Ґрунт трохи залужний"}: pH ${r1(ph)}, найкраще ${range(s.crop.phRange, "")}.`));
+  }
+  return [...out, ...s.rotation.notes].join(" ");
+}
+
+/** Plain-language reason why the site does not suit a crop: the one factor that fails most. */
 function limitingText(s: Scored, climate: Climate | null, soil: Soil | null, lang: Lang): string {
   const name = s.crop.name[lang];
   if (s.fit.limiting === "rain" && climate) {
-    const low = (climate.annualPrecipMm ?? 0) < (s.crop.precipRange.optMin ?? 0);
-    return tx(lang,
-      `${name}: rainfall of ${climate.annualPrecipMm} mm per year is too ${low ? "low" : "high"} (it needs ${s.crop.precipRange.min}–${s.crop.precipRange.max} mm, best ${range(s.crop.precipRange, "mm")}).`,
-      `${name}: опадів ${climate.annualPrecipMm} мм на рік ${low ? "замало" : "забагато"} (потрібно ${s.crop.precipRange.min}–${s.crop.precipRange.max} мм, найкраще ${range(s.crop.precipRange, "мм")}).`);
+    const low = side(climate.annualPrecipMm, s.crop.precipRange) === "low";
+    return low
+      ? tx(lang, `${name}: too little rain here. The field gets ${climate.annualPrecipMm} mm a year, and it needs at least ${s.crop.precipRange.min} mm (best ${range(s.crop.precipRange, "mm")}). Without irrigation it will not do well.`,
+        `${name}: тут замало дощів. Поле отримує ${climate.annualPrecipMm} мм на рік, а їй треба щонайменше ${s.crop.precipRange.min} мм (найкраще ${range(s.crop.precipRange, "мм")}). Без поливу врожаю не буде.`)
+      : tx(lang, `${name}: too much rain here. The field gets ${climate.annualPrecipMm} mm a year, and it tolerates at most ${s.crop.precipRange.max} mm (best ${range(s.crop.precipRange, "mm")}).`,
+        `${name}: тут забагато дощів. Поле отримує ${climate.annualPrecipMm} мм на рік, а вона витримує щонайбільше ${s.crop.precipRange.max} мм (найкраще ${range(s.crop.precipRange, "мм")}).`);
   }
   if (s.fit.limiting === "ph" && soil) {
+    const ph = r1(soil.properties.phH2O.median as number);
+    const acid = side(ph, s.crop.phRange) === "low";
     return tx(lang,
-      `${name}: soil pH ${r1(soil.properties.phH2O.median as number)} is outside what it tolerates well (best ${range(s.crop.phRange, "")}).`,
-      `${name}: pH ґрунту ${r1(soil.properties.phH2O.median as number)} виходить за межі, які вона добре переносить (найкраще ${range(s.crop.phRange, "")}).`);
+      `${name}: the soil is too ${acid ? "acid" : "alkaline"} for it. Soil pH here is ${ph}, and it grows best at ${range(s.crop.phRange, "")}.`,
+      `${name}: ґрунт для неї ${acid ? "закислий" : "залужний"}. pH ґрунту тут ${ph}, а найкраще вона росте при ${range(s.crop.phRange, "")}.`);
   }
-  return tx(lang,
-    `${name}: the warm season does not match (best ${s.fit.windowMonths} months average ${s.fit.windowTempC === null ? "?" : r1(s.fit.windowTempC)} °C; it needs ${s.crop.tempRange.min}–${s.crop.tempRange.max} °C, best ${range(s.crop.tempRange, "°C")}).`,
-    `${name}: теплий сезон не підходить (найкращі ${s.fit.windowMonths} міс. у середньому ${s.fit.windowTempC === null ? "?" : r1(s.fit.windowTempC)} °C; потрібно ${s.crop.tempRange.min}–${s.crop.tempRange.max} °C, найкраще ${range(s.crop.tempRange, "°C")}).`);
+  const t = s.fit.windowTempC === null ? null : r1(s.fit.windowTempC);
+  const cold = side(s.fit.windowTempC, s.crop.tempRange) !== "high";
+  return cold
+    ? tx(lang, `${name}: not enough warmth here. It needs ${s.fit.windowMonths} warm months in a row at about ${range(s.crop.tempRange, "°C")}, and the warmest ${s.fit.windowMonths} months here average only ${t ?? "?"} °C.`,
+      `${name}: тут замало тепла. Їй потрібно ${s.fit.windowMonths} теплих місяців поспіль із температурою близько ${range(s.crop.tempRange, "°C")}, а найтепліші ${s.fit.windowMonths} міс. тут мають у середньому лише ${t ?? "?"} °C.`)
+    : tx(lang, `${name}: too hot here. It grows best at ${range(s.crop.tempRange, "°C")}, and even the best ${s.fit.windowMonths} months here average ${t ?? "?"} °C.`,
+      `${name}: тут надто спекотно. Найкраще вона росте при ${range(s.crop.tempRange, "°C")}, а навіть найкращі ${s.fit.windowMonths} міс. тут мають у середньому ${t ?? "?"} °C.`);
 }
 
 /** Up to `count` best crops of different families. */
@@ -297,7 +325,7 @@ function currentStrategy(input: LogicInput, climate: Climate | null, soil: Soil 
     const shares = equalShares(h.crops.length);
     plan.push({ year: lastYear + i + 1, blocks: h.crops.map((id, k) => ({ cropId: id, sharePct: shares[k] })) });
     const grown = h.crops.flatMap((id) => scored.find((s) => s.crop.id === id) ?? []);
-    grown.forEach((s) => s.rotation.notes.forEach((n) => repeats.add(`${s.crop.name[lang]}: ${n}`)));
+    grown.filter((s) => s.rotation.factor < 1).forEach((s) => s.rotation.notes.forEach((n) => repeats.add(`${s.crop.name[lang]}: ${n}`)));
     // A fallow block scores 0: nothing is grown on that share of the field.
     yearScores.push(h.crops.reduce((sum, id, k) => sum + (scored.find((s) => s.crop.id === id)?.score ?? 0) * shares[k], 0) / 100);
     past.push([...h.crops]);
