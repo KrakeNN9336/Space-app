@@ -80,55 +80,38 @@ export function FieldSelection({ lang }: Props) {
           <p>{t("field.description")}</p>
         </div>
 
-        <div className="field-layout">
-          <div className="field-map-host">
-            <FieldMap field={picked?.field ?? null} analysis={result} onMapClick={handleMapClick} />
-          </div>
-
-          <aside className="field-instructions">
-            <span className="field-eyebrow">{t("field.guide")}</span>
-            <h3>{t("field.guideTitle")}</h3>
-
-            <div className="field-instruction">
-              <span className="field-instruction-number">1</span>
-              <p>{t("field.instructionOne")}</p>
-            </div>
-
-            <div className="field-instruction">
-              <span className="field-instruction-number">2</span>
-              <p>{t("field.instructionTwo")}</p>
-            </div>
-
-            <div className="field-instruction">
-              <span className="field-instruction-number">3</span>
-              <p>{t("field.instructionThree")}</p>
-            </div>
-
-            <div className="field-map-status" role="status">
-              <strong>{status.title}</strong>
-              <p>{status.text}</p>
-              {picked && (
-                <p>
-                  {picked.lat.toFixed(4)}, {picked.lon.toFixed(4)}
-                </p>
-              )}
-            </div>
-
-            <button
-              type="button"
-              className="field-analyze"
-              disabled={!picked || run.kind === "loading"}
-              onClick={runAnalysis}
-            >
-              {run.kind === "loading" ? t("analyze.loading") : t("analyze.button")}
-            </button>
-            {run.kind === "error" && (
-              <p className="field-error" role="alert">
-                {t("analyze.error")} {run.message}
-              </p>
-            )}
-          </aside>
+        <div className="field-map-host">
+          <FieldMap
+            field={picked?.field ?? null}
+            analysis={result}
+            onMapClick={handleMapClick}
+            panelSlot={
+              <div className="field-map-slot" role="status">
+                <strong>{status.title}</strong>
+                <p>{status.text}</p>
+                {picked && (
+                  <p>
+                    {picked.lat.toFixed(4)}, {picked.lon.toFixed(4)}
+                  </p>
+                )}
+                <button type="button" disabled={!picked || run.kind === "loading"} onClick={runAnalysis}>
+                  {run.kind === "loading" ? t("analyze.loading") : t("analyze.button")}
+                </button>
+                {run.kind === "error" && (
+                  <p className="field-error" role="alert">
+                    {t("analyze.error")} {run.message}
+                  </p>
+                )}
+              </div>
+            }
+          />
         </div>
+
+        <ol className="field-steps">
+          <li>{t("field.instructionOne")}</li>
+          <li>{t("field.instructionTwo")}</li>
+          <li>{t("field.instructionThree")}</li>
+        </ol>
       </section>
 
       {result && <AnalysisResult lang={lang} result={result} />}
