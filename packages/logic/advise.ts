@@ -146,7 +146,7 @@ function rotationEffect(crop: CropRecord, past: string[][], lang: Lang): Rotatio
     factor *= W.legumeBonus;
     notes.push(tx(lang, "No beans or peas grew here for 3 years. Such crops feed the soil with nitrogen, so the next crop needs less fertiliser.", "Бобових тут не було 3 роки. Такі культури самі збагачують ґрунт азотом, тож наступній культурі треба менше добрив."));
   } else if (known && familyYears === 0) {
-    notes.push(tx(lang, "Nothing related grew here for 3 years, so its diseases and pests have not built up in the soil.", "Нічого спорідненого тут не росло 3 роки, тому її хвороби та шкідники в ґрунті не накопичились."));
+    notes.push(tx(lang, "Nothing related grew here for 3 years, so its diseases and pests have not built up in the soil.", "Нічого спорідненого тут не росло 3 роки, тому хвороби та шкідники цієї культури в ґрунті не накопичились."));
   }
   return { factor, notes, avoid };
 }
@@ -192,7 +192,7 @@ function explain(s: Scored, climate: Climate | null, soil: Soil | null, lang: La
     const heat = side(s.fit.windowTempC, s.crop.tempRange);
     out.push(tx(lang,
       `${heat === "ok" ? "Enough warmth" : heat === "low" ? "A little short of warmth" : "A little too hot"}: the warmest ${s.fit.windowMonths} months average ${t} °C, and it grows best at ${best}.`,
-      `${heat === "ok" ? "Тепла вистачає" : heat === "low" ? "Тепла трохи бракує" : "Трохи спекотно"}: найтепліші ${s.fit.windowMonths} міс. мають у середньому ${t} °C, а найкраще вона росте при ${best}.`));
+      `${heat === "ok" ? "Тепла вистачає" : heat === "low" ? "Тепла трохи бракує" : "Трохи спекотно"}: найтепліші ${s.fit.windowMonths} міс. мають у середньому ${t} °C, а найкраще ця культура росте при ${best}.`));
     const rain = side(climate.annualPrecipMm, s.crop.precipRange);
     out.push(tx(lang,
       `${rain === "ok" ? "Enough rain" : rain === "low" ? "Rain is a little short" : "A little too much rain"}: ${climate.annualPrecipMm} mm a year, best is ${range(s.crop.precipRange, "mm")}.`,
@@ -215,24 +215,24 @@ function limitingText(s: Scored, climate: Climate | null, soil: Soil | null, lan
     const low = side(climate.annualPrecipMm, s.crop.precipRange) === "low";
     return low
       ? tx(lang, `${name}: too little rain here. The field gets ${climate.annualPrecipMm} mm a year, and it needs at least ${s.crop.precipRange.min} mm (best ${range(s.crop.precipRange, "mm")}). Without irrigation it will not do well.`,
-        `${name}: тут замало дощів. Поле отримує ${climate.annualPrecipMm} мм на рік, а їй треба щонайменше ${s.crop.precipRange.min} мм (найкраще ${range(s.crop.precipRange, "мм")}). Без поливу врожаю не буде.`)
+        `${name}: тут замало дощів. Поле отримує ${climate.annualPrecipMm} мм на рік, а цій культурі треба щонайменше ${s.crop.precipRange.min} мм (найкраще ${range(s.crop.precipRange, "мм")}). Без поливу врожаю не буде.`)
       : tx(lang, `${name}: too much rain here. The field gets ${climate.annualPrecipMm} mm a year, and it tolerates at most ${s.crop.precipRange.max} mm (best ${range(s.crop.precipRange, "mm")}).`,
-        `${name}: тут забагато дощів. Поле отримує ${climate.annualPrecipMm} мм на рік, а вона витримує щонайбільше ${s.crop.precipRange.max} мм (найкраще ${range(s.crop.precipRange, "мм")}).`);
+        `${name}: тут забагато дощів. Поле отримує ${climate.annualPrecipMm} мм на рік, а ця культура витримує щонайбільше ${s.crop.precipRange.max} мм (найкраще ${range(s.crop.precipRange, "мм")}).`);
   }
   if (s.fit.limiting === "ph" && soil) {
     const ph = r1(soil.properties.phH2O.median as number);
     const acid = side(ph, s.crop.phRange) === "low";
     return tx(lang,
       `${name}: the soil is too ${acid ? "acid" : "alkaline"} for it. Soil pH here is ${ph}, and it grows best at ${range(s.crop.phRange, "")}.`,
-      `${name}: ґрунт для неї ${acid ? "закислий" : "залужний"}. pH ґрунту тут ${ph}, а найкраще вона росте при ${range(s.crop.phRange, "")}.`);
+      `${name}: ґрунт для цієї культури ${acid ? "закислий" : "залужний"}. pH ґрунту тут ${ph}, а найкраще ця культура росте при ${range(s.crop.phRange, "")}.`);
   }
   const t = s.fit.windowTempC === null ? null : r1(s.fit.windowTempC);
   const cold = side(s.fit.windowTempC, s.crop.tempRange) !== "high";
   return cold
     ? tx(lang, `${name}: not enough warmth here. It needs ${s.fit.windowMonths} warm months in a row at about ${range(s.crop.tempRange, "°C")}, and the warmest ${s.fit.windowMonths} months here average only ${t ?? "?"} °C.`,
-      `${name}: тут замало тепла. Їй потрібно ${s.fit.windowMonths} теплих місяців поспіль із температурою близько ${range(s.crop.tempRange, "°C")}, а найтепліші ${s.fit.windowMonths} міс. тут мають у середньому лише ${t ?? "?"} °C.`)
+      `${name}: тут замало тепла. Цій культурі потрібно ${s.fit.windowMonths} теплих місяців поспіль із температурою близько ${range(s.crop.tempRange, "°C")}, а найтепліші ${s.fit.windowMonths} міс. тут мають у середньому лише ${t ?? "?"} °C.`)
     : tx(lang, `${name}: too hot here. It grows best at ${range(s.crop.tempRange, "°C")}, and even the best ${s.fit.windowMonths} months here average ${t ?? "?"} °C.`,
-      `${name}: тут надто спекотно. Найкраще вона росте при ${range(s.crop.tempRange, "°C")}, а навіть найкращі ${s.fit.windowMonths} міс. тут мають у середньому ${t ?? "?"} °C.`);
+      `${name}: тут надто спекотно. Найкраще ця культура росте при ${range(s.crop.tempRange, "°C")}, а навіть найкращі ${s.fit.windowMonths} міс. тут мають у середньому ${t ?? "?"} °C.`);
 }
 
 /** Up to `count` best crops of different families. */
