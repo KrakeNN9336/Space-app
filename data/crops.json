@@ -12,22 +12,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 15,
+        "optMax": 23,
+        "max": 27
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 300,
+        "optMin": 750,
+        "optMax": 900,
+        "max": 1600
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 7,
+        "max": 8.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -36,8 +36,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Triticum aestivum; EcoPort=2114",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 250
+      }
     },
     {
       "id": "spring_wheat",
@@ -50,22 +54,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 15,
+        "optMax": 23,
+        "max": 27
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 300,
+        "optMin": 750,
+        "optMax": 900,
+        "max": 1600
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 7,
+        "max": 8.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -74,8 +78,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Triticum aestivum; EcoPort=2114",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 250
+      }
     },
     {
       "id": "barley",
@@ -88,22 +96,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 2,
+        "optMin": 15,
+        "optMax": 20,
+        "max": 40
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 200,
+        "optMin": 500,
+        "optMax": 1000,
+        "max": 2000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 6,
+        "optMin": 6.5,
+        "optMax": 7.5,
+        "max": 8
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -112,8 +120,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Hordeum vulgare; EcoPort=1232",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 240
+      }
     },
     {
       "id": "corn",
@@ -126,22 +138,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 10,
+        "optMin": 18,
+        "optMax": 33,
+        "max": 47
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1200,
+        "max": 1800
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5,
+        "optMax": 7,
+        "max": 8.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -150,8 +162,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Zea mays; EcoPort=2175",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 65,
+        "max": 365
+      }
     },
     {
       "id": "soybean",
@@ -164,22 +180,22 @@
       "family": "Fabaceae",
       "type": "legume",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 10,
+        "optMin": 20,
+        "optMax": 33,
+        "max": 38
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 450,
+        "optMin": 600,
+        "optMax": 1500,
+        "max": 1800
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6.5,
+        "max": 8.4
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -188,8 +204,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Glycine max; EcoPort=1150",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 75,
+        "max": 180
+      }
     },
     {
       "id": "pea",
@@ -202,22 +222,22 @@
       "family": "Fabaceae",
       "type": "legume",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4,
+        "optMin": 10,
+        "optMax": 24,
+        "max": 30
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 350,
+        "optMin": 800,
+        "optMax": 1200,
+        "max": 2500
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 7,
+        "max": 8.3
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -226,8 +246,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Pisum sativum; EcoPort=1721",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 60,
+        "max": 140
+      }
     },
     {
       "id": "sunflower",
@@ -240,22 +264,22 @@
       "family": "Asteraceae",
       "type": "oilseed",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 17,
+        "optMax": 34,
+        "max": 45
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 300,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 1600
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 7.5,
+        "max": 8
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -264,8 +288,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Helianthus annuus; EcoPort=1191",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 70,
+        "max": 200
+      }
     },
     {
       "id": "rapeseed",
@@ -278,22 +306,22 @@
       "family": "Brassicaceae",
       "type": "oilseed",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 15,
+        "optMax": 25,
+        "max": 41
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 400,
+        "optMin": 500,
+        "optMax": 1000,
+        "max": 2800
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5.5,
+        "optMin": 6.5,
+        "optMax": 7.6,
+        "max": 8
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -302,8 +330,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Brassica napus; EcoPort=549",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 85,
+        "max": 340
+      }
     },
     {
       "id": "potato",
@@ -316,22 +348,22 @@
       "family": "Solanaceae",
       "type": "root",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 7,
+        "optMin": 15,
+        "optMax": 25,
+        "max": 30
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 250,
+        "optMin": 500,
+        "optMax": 800,
+        "max": 2000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.2,
+        "optMin": 5,
+        "optMax": 6.2,
+        "max": 8.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -340,8 +372,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Solanum tuberosum; EcoPort=1971",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 160
+      }
     },
     {
       "id": "clover",
@@ -354,22 +390,22 @@
       "family": "Fabaceae",
       "type": "cover",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4,
+        "optMin": 18,
+        "optMax": 25,
+        "max": 40
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 300,
+        "optMin": 700,
+        "optMax": 1200,
+        "max": 2100
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 6,
+        "optMax": 7.5,
+        "max": 8.2
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -378,8 +414,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Trifolium pratense; EcoPort=2104",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 120,
+        "max": 300
+      }
     },
     {
       "id": "rice",
@@ -392,22 +432,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 10,
+        "optMin": 20,
+        "optMax": 30,
+        "max": 36
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 1000,
+        "optMin": 1500,
+        "optMax": 2000,
+        "max": 4000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 7,
+        "max": 9
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -416,8 +456,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Oryza sativa; EcoPort=1574",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 80,
+        "max": 180
+      }
     },
     {
       "id": "sorghum",
@@ -430,22 +474,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 8,
+        "optMin": 22,
+        "optMax": 35,
+        "max": 40
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 300,
+        "optMin": 400,
+        "optMax": 600,
+        "max": 700
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 5.5,
+        "optMax": 7.5,
+        "max": 8
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -454,8 +498,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Sorghum bicolor; EcoPort=48747",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 300
+      }
     },
     {
       "id": "millet",
@@ -468,22 +516,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 15,
+        "optMin": 20,
+        "optMax": 32,
+        "max": 45
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 200,
+        "optMin": 500,
+        "optMax": 750,
+        "max": 1000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5.2,
+        "optMin": 6,
+        "optMax": 6.5,
+        "max": 8.2
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -492,8 +540,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Panicum miliaceum; EcoPort=8280",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 55,
+        "max": 280
+      }
     },
     {
       "id": "chickpea",
@@ -506,22 +558,22 @@
       "family": "Fabaceae",
       "type": "legume",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 7,
+        "optMin": 15,
+        "optMax": 29,
+        "max": 35
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 300,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 1800
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.7,
+        "optMin": 6,
+        "optMax": 8.5,
+        "max": 9.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -530,8 +582,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Cicer arietinum; EcoPort=2479",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 180
+      }
     },
     {
       "id": "lentil",
@@ -544,22 +600,22 @@
       "family": "Fabaceae",
       "type": "legume",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 15,
+        "optMax": 29,
+        "max": 32
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 250,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 2500
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 7.5,
+        "max": 8.2
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -568,8 +624,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Lens culinaris; EcoPort=7209",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 70,
+        "max": 240
+      }
     },
     {
       "id": "oats",
@@ -582,22 +642,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 16,
+        "optMax": 20,
+        "max": 30
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 250,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 1500
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5,
+        "optMax": 6,
+        "max": 7.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -606,8 +666,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Avena sativa; EcoPort=481",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 110,
+        "max": 270
+      }
     },
     {
       "id": "rye",
@@ -620,22 +684,22 @@
       "family": "Poaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 3,
+        "optMin": 15,
+        "optMax": 20,
+        "max": 31
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 2000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6,
+        "max": 8.2
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -644,8 +708,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Secale cereale; EcoPort=1929",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 110,
+        "max": 270
+      }
     },
     {
       "id": "buckwheat",
@@ -658,22 +726,22 @@
       "family": "Polygonaceae",
       "type": "cereal",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 7,
+        "optMin": 17,
+        "optMax": 27,
+        "max": 40
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 400,
+        "optMin": 700,
+        "optMax": 1000,
+        "max": 1300
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.4,
+        "optMin": 5,
+        "optMax": 6.5,
+        "max": 7.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -682,8 +750,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Fagopyrum esculentum; EcoPort=2285",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 55,
+        "max": 85
+      }
     },
     {
       "id": "sugar_beet",
@@ -696,22 +768,22 @@
       "family": "Amaranthaceae",
       "type": "root",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 7,
+        "optMin": 15,
+        "optMax": 25,
+        "max": 30
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 250,
+        "optMin": 400,
+        "optMax": 700,
+        "max": 1000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5.5,
+        "optMin": 6,
+        "optMax": 6.8,
+        "max": 8.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -720,8 +792,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Beta vulgaris var. saccharifera; EcoPort=48742",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 60,
+        "max": 140
+      }
     },
     {
       "id": "cotton",
@@ -734,22 +810,22 @@
       "family": "Malvaceae",
       "type": "industrial",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 15,
+        "optMin": 22,
+        "optMax": 36,
+        "max": 42
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 450,
+        "optMin": 750,
+        "optMax": 1200,
+        "max": 1500
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 5,
+        "optMin": 6,
+        "optMax": 7.5,
+        "max": 9.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -758,8 +834,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Gossypium hirsutum; EcoPort=1160",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 150,
+        "max": 200
+      }
     },
     {
       "id": "groundnut",
@@ -772,22 +852,22 @@
       "family": "Fabaceae",
       "type": "legume",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 10,
+        "optMin": 22,
+        "optMax": 32,
+        "max": 45
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1500,
+        "max": 4000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6.5,
+        "max": 8.5
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -796,8 +876,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Arachis hypogaea; EcoPort=2199",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 90,
+        "max": 150
+      }
     },
     {
       "id": "cassava",
@@ -810,22 +894,22 @@
       "family": "Euphorbiaceae",
       "type": "root",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 10,
+        "optMin": 20,
+        "optMax": 29,
+        "max": 35
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 500,
+        "optMin": 1000,
+        "optMax": 1500,
+        "max": 5000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4,
+        "optMin": 5.5,
+        "optMax": 8,
+        "max": 9
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -834,8 +918,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Manihot esculenta; EcoPort=1420",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 180,
+        "max": 365
+      }
     },
     {
       "id": "sweet_potato",
@@ -848,22 +936,22 @@
       "family": "Convolvulaceae",
       "type": "root",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 10,
+        "optMin": 18,
+        "optMax": 28,
+        "max": 38
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 350,
+        "optMin": 750,
+        "optMax": 2000,
+        "max": 5000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4,
+        "optMin": 5,
+        "optMax": 7,
+        "max": 8.7
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -872,8 +960,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Ipomoea batatas; EcoPort=1265",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 80,
+        "max": 170
+      }
     },
     {
       "id": "common_bean",
@@ -886,22 +978,22 @@
       "family": "Fabaceae",
       "type": "legume",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 7,
+        "optMin": 16,
+        "optMax": 25,
+        "max": 32
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 300,
+        "optMin": 500,
+        "optMax": 2000,
+        "max": 4300
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4,
+        "optMin": 5.5,
+        "optMax": 7.5,
+        "max": 9
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -910,8 +1002,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Phaseolus vulgaris; EcoPort=1668",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 50,
+        "max": 270
+      }
     },
     {
       "id": "cover_rye",
@@ -924,22 +1020,22 @@
       "family": "Poaceae",
       "type": "cover",
       "tempRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 3,
+        "optMin": 15,
+        "optMax": 20,
+        "max": 31
       },
       "precipRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 400,
+        "optMin": 600,
+        "optMax": 1000,
+        "max": 2000
       },
       "phRange": {
-        "min": null,
-        "optMin": null,
-        "optMax": null,
-        "max": null
+        "min": 4.5,
+        "optMin": 5.5,
+        "optMax": 6,
+        "max": 8.2
       },
       "seasonDays": null,
       "droughtSensitivity": null,
@@ -948,8 +1044,12 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": null,
-      "verificationStatus": "verify"
+      "source": "FAO EcoCrop via OpenCLIM; species=Secale cereale; EcoPort=1929",
+      "verificationStatus": "verify",
+      "seasonDaysRange": {
+        "min": 110,
+        "max": 270
+      }
     }
   ]
 }
