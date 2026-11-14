@@ -1,16 +1,54 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import maplibregl, { type Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { Protocol } from "pmtiles";
 import type { AnalyzeResponse, Field, FieldGeometry } from "@field-shift/shared";
 import "./field-map.css";
 
 type Layer = "satellite" | "streets";
+
+// Fields of the World: predicted field boundaries for 2025 (PRUE model on Sentinel-2), CC-BY-4.0.
+// Archive and layer name are from the collection metadata at
+// https://data.source.coop/ftw/global-data/predictions/vectors/collection.json
+const FTW_URL = "pmtiles://https://data.source.coop/ftw/global-field-boundaries/pmtiles/ftw-global-fields-2025.pmtiles";
+const FTW_LAYER = "fields";
+const FTW_ATTRIBUTION = "Field boundaries © Fields of the World (CC BY 4.0)";
+let pmtilesReady = false;
+function ensurePmtiles() {
+  if (pmtilesReady) return;
+  maplibregl.addProtocol("pmtiles", new Protocol().tile);
+  pmtilesReady = true;
+}
+/** Adds the field boundary layers under the labels; safe to call again after a style change. */
+function addFieldLayers(map: MapLibreMap) {
+  if (map.getSource("ftw")) return;
+  map.addSource("ftw", { type: "vector", url: FTW_URL, attribution: FTW_ATTRIBUTION });
+  const before = map.getStyle().layers?.find((l) => l.type === "symbol")?.id;
+  map.addLayer({ id: "ftw-fill", type: "fill", source: "ftw", "source-layer": FTW_LAYER, paint: { "fill-color": "#7dffb0", "fill-opacity": 0.08 } }, before);
+  map.addLayer({ id: "ftw-outline", type: "line", source: "ftw", "source-layer": FTW_LAYER, paint: { "line-color": "#7dffb0", "line-opacity": 0.9, "line-width": ["interpolate", ["linear"], ["zoom"], 9, 0.4, 14, 1.6] } }, before);
+}
+/** Approximate area of a lon/lat polygon in hectares (spherical excess formula). */
+function ringAreaM2(ring: number[][]): number {
+  const rad = Math.PI / 180;
+  let sum = 0;
+  for (let i = 0; i < ring.length - 1; i++) {
+    sum += (ring[i + 1][0] - ring[i][0]) * rad * (2 + Math.sin(ring[i][1] * rad) + Math.sin(ring[i + 1][1] * rad));
+  }
+  return Math.abs((sum * 6371008.8 ** 2) / 2);
+}
+function geometryAreaHa(geometry: FieldGeometry): number | null {
+  const polygons = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.type === "MultiPolygon" ? geometry.coordinates : [];
+  if (!polygons.length) return null;
+  const m2 = polygons.reduce((total, rings) => total + rings.slice(1).reduce((a, hole) => a - ringAreaM2(hole), ringAreaM2(rings[0])), 0);
+  return Math.round((m2 / 10000) * 10) / 10;
+}
 export interface FieldMapProps {
   field?: Field | null;
   analysis?: AnalyzeResponse | null;
   onFieldSelected?: (field: Field) => void;
   /** Fired for every click on the map, so the host can look a field up at that point. */
-  onMapClick?: (lat: number, lon: number) => void;
+  /** `field` is set when the click hit a Fields of the World boundary. */
+  onMapClick?: (lat: number, lon: number, field?: Field) => void;
   radiusKm?: number;
   layer?: string;
   /** Extra content (status, actions) shown at the top of the side panel. */
@@ -93,15 +131,26 @@ export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, 
   const soil = analysis?.soil;
   useEffect(() => {
     if (!container.current) return;
+    ensurePmtiles();
     const map = new maplibregl.Map({ container: container.current, style: base === "satellite" ? (satelliteStyle(lang) as any) : streetStyle, center: [24.03, 40], zoom: 1.4, attributionControl: false });
     // Globe view; MapLibre switches to flat Mercator by itself when zoomed in.
-    map.on("style.load", () => map.setProjection({ type: "globe" }));
+    map.on("style.load", () => { map.setProjection({ type: "globe" }); addFieldLayers(map); });
     mapRef.current = map;
     map.addControl(new maplibregl.NavigationControl(), "top-right");
     map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
     map.on("click", (e) => {
-      // From far away a click only zooms in; a field can be picked once the land is visible.
-      if (map.getZoom() < 9) { map.flyTo({ center: e.lngLat, zoom: Math.min(map.getZoom() + 4, 11) }); return; }
+      // From far away a click only zooms in; field outlines are drawn from about zoom 12.
+      if (map.getZoom() < 12) { map.flyTo({ center: e.lngLat, zoom: Math.min(map.getZoom() + 4, 13) }); return; }
+      const hit = map.getLayer("ftw-fill") ? map.queryRenderedFeatures(e.point, { layers: ["ftw-fill"] })[0] : undefined;
+      const g = hit?.geometry;
+      if (g && (g.type === "Polygon" || g.type === "MultiPolygon")) {
+        // The polygon comes from a map tile, so a field on a tile edge can be cut; the note says so.
+        const geometry = { type: g.type, coordinates: g.coordinates } as FieldGeometry;
+        const m2 = Number(hit.properties?.["metrics:area"]);
+        const areaHa = Number.isFinite(m2) && m2 > 0 ? Math.round(m2 / 1000) / 10 : geometryAreaHa(geometry);
+        clickRef.current?.(e.lngLat.lat, e.lngLat.lng, { source: "ftw", geometry, areaHa, note: "Fields of the World 2025 (model prediction from Sentinel-2)" });
+        return;
+      }
       clickRef.current?.(e.lngLat.lat, e.lngLat.lng);
     });
     map.on("error", () => setError("Не вдалося завантажити частину карти. Перевірте інтернет."));

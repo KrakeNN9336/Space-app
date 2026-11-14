@@ -1,10 +1,11 @@
-import { useCallback, useRef, useState } from "react";
-import type { AnalyzeResponse, Field, Lang } from "@field-shift/shared";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { AnalyzeResponse, CropOption, Field, Lang } from "@field-shift/shared";
 import { RADIUS_KM_DEFAULT } from "@field-shift/shared";
-import { analyze, getField } from "../api";
+import { analyze, getCrops, getField } from "../api";
 import { translate, type MessageKey } from "../i18n";
 import { FieldMap } from "../map/FieldMap";
 import { AnalysisResult } from "./AnalysisResult";
+import { CropHistory } from "./CropHistory";
 
 type Props = {
   lang: Lang;
@@ -24,11 +25,24 @@ export function FieldSelection({ lang }: Props) {
   const [run, setRun] = useState<Run>({ kind: "idle" });
   const [result, setResult] = useState<AnalyzeResponse | null>(null);
   const lookup = useRef(0);
+  const lastYear = new Date().getFullYear();
+  const years = [lastYear - 2, lastYear - 1, lastYear];
+  const [crops, setCrops] = useState<CropOption[]>([]);
+  const [history, setHistory] = useState<string[][]>([["unknown"], ["unknown"], ["unknown"]]);
+  useEffect(() => {
+    getCrops()
+      .then((res) => setCrops(res.crops))
+      .catch(() => setCrops([]));
+  }, []);
 
-  const handleMapClick = useCallback((lat: number, lon: number) => {
+  const handleMapClick = useCallback((lat: number, lon: number, hit?: Field) => {
     const id = ++lookup.current;
     setResult(null);
     setRun({ kind: "idle" });
+    if (hit) {
+      setPicked({ lat, lon, field: hit, searching: false });
+      return;
+    }
     setPicked({ lat, lon, field: pointField(lat, lon), searching: true });
     getField(lat, lon)
       .then((res) => {
@@ -43,14 +57,12 @@ export function FieldSelection({ lang }: Props) {
 
   const runAnalysis = () => {
     if (!picked) return;
-    const lastYear = new Date().getFullYear();
     setRun({ kind: "loading" });
     analyze({
       location: { lat: picked.lat, lon: picked.lon },
       field: picked.field,
       radiusKm: RADIUS_KM_DEFAULT,
-      // The history step of the wizard is not built yet, so the history is sent as unknown.
-      history: [lastYear - 2, lastYear - 1, lastYear].map((year) => ({ year, crops: ["unknown"] })),
+      history: years.map((year, i) => ({ year, crops: history[i] })),
       lang,
     })
       .then((res) => {
@@ -68,7 +80,7 @@ export function FieldSelection({ lang }: Props) {
         ? { title: t("field.pointTitle"), text: t("field.pointDescription") }
         : {
             title: t("field.foundTitle"),
-            text: t("field.foundDescription", { area: (picked.field.areaHa ?? 0).toFixed(1) }),
+            text: t(picked.field.source === "ftw" ? "field.ftwDescription" : "field.foundDescription", { area: (picked.field.areaHa ?? 0).toFixed(1) }),
           };
 
   return (
@@ -95,18 +107,27 @@ export function FieldSelection({ lang }: Props) {
                     {picked.lat.toFixed(4)}, {picked.lon.toFixed(4)}
                   </p>
                 )}
-                <button type="button" disabled={!picked || run.kind === "loading"} onClick={runAnalysis}>
-                  {run.kind === "loading" ? t("analyze.loading") : t("analyze.button")}
-                </button>
-                {run.kind === "error" && (
-                  <p className="field-error" role="alert">
-                    {t("analyze.error")} {run.message}
-                  </p>
-                )}
               </div>
             }
           />
         </div>
+
+        {picked && (
+          <div className="history-step">
+            <span className="field-eyebrow">{t("history.step")}</span>
+            <h3>{t("history.title")}</h3>
+            <p>{t("history.description")}</p>
+            <CropHistory lang={lang} crops={crops} years={years} value={history} onChange={setHistory} />
+            <button type="button" className="field-analyze" disabled={run.kind === "loading"} onClick={runAnalysis}>
+              {run.kind === "loading" ? t("analyze.loading") : t("analyze.button")}
+            </button>
+            {run.kind === "error" && (
+              <p className="field-error" role="alert">
+                {t("analyze.error")} {run.message}
+              </p>
+            )}
+          </div>
+        )}
 
         <ol className="field-steps">
           <li>{t("field.instructionOne")}</li>

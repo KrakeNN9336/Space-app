@@ -4,6 +4,7 @@ import koppenCatalog from "../../data/koppen.json";
 import { classifyKoppen } from "./koppen";
 import { estimateMonthlyPetMm } from "./pet";
 import { getWrbGroup } from "./wrb";
+import { advise } from "./advise";
 
 /** Mean monthly temperature at which most field crops grow (common agronomic base, °C). */
 const GROWING_BASE_C = 5;
@@ -12,8 +13,8 @@ const round1 = (value: number): number => Math.round(value * 10) / 10;
 const sum = (values: readonly number[]): number => values.reduce((a, b) => a + b, 0);
 
 const NOT_READY: Record<Lang, string> = {
-  en: "Stress indicators and the rotation plan below are illustrative sample values: the scoring rules are not connected yet. Climate and soil are real data for this location.",
-  uk: "Показники стресу та план сівозміни нижче є ілюстративним прикладом: правила оцінювання ще не підключені. Клімат і ґрунт — реальні дані для цієї точки.",
+  en: "The six stress indicators are illustrative sample values: their scoring rules are not connected yet. Crop advice, climate and soil are computed for this location.",
+  uk: "Шість показників стресу є ілюстративним прикладом: правила їх оцінювання ще не підключені. Поради щодо культур, клімат і ґрунт розраховано для цієї точки.",
 };
 
 type KoppenEntry = { code: string; name: Record<Lang, string>; explain: Record<Lang, string> };
@@ -52,20 +53,20 @@ export function buildSoil(raw: RawSoil, lang: Lang): Soil {
 
 /**
  * Climate and soil are computed from the collected data (Koppen, Hargreaves PET, WRB catalog).
- * TODO(Serhii): stress scoring, crop shares, rotation strategies and tillage are still the
- * illustrative mock; the response says so in `recommendation.warnings` and has low confidence.
+ * Crop shares, strategies, crops to avoid and tillage come from advise.ts.
+ * TODO(Serhii): the six stress indicators are still the illustrative mock; the response says so
+ * in `recommendation.warnings`.
  * The signature is the internal contract from shared/types.ts — do not change it.
  */
 export function recommend(input: LogicInput): LogicOutput {
   const sample = mock as unknown as LogicOutput;
+  const climate = input.climate ? buildClimate(input.climate, input.location.lat, input.lang) : null;
+  const soil = input.soil ? buildSoil(input.soil, input.lang) : null;
+  const recommendation = advise(input, climate, soil);
   return {
-    climate: input.climate ? buildClimate(input.climate, input.location.lat, input.lang) : null,
-    soil: input.soil ? buildSoil(input.soil, input.lang) : null,
+    climate,
+    soil,
     stress: sample.stress,
-    recommendation: {
-      ...sample.recommendation,
-      warnings: [NOT_READY[input.lang], ...sample.recommendation.warnings],
-      confidence: "low",
-    },
+    recommendation: { ...recommendation, warnings: [...recommendation.warnings, NOT_READY[input.lang]] },
   };
 }

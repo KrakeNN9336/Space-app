@@ -119,6 +119,40 @@ export function AnalysisResult({ lang, result }: Props) {
       ))}
 
       <div className="result-grid">
+        <article className="result-card result-sow">
+          <h3>{t("result.sow")}</h3>
+          <ul className="result-list">
+            {recommendation.crops.map((crop) => (
+              <li key={crop.id}>
+                <strong>
+                  {crop.sharePct}% {crop.name}
+                </strong>{" "}
+                · {crop.score}/100
+                <p>{crop.why}</p>
+              </li>
+            ))}
+          </ul>
+          <small>{t("result.confidence", { level: t(`confidence.${recommendation.confidence}` as MessageKey) })}</small>
+        </article>
+
+        <article className="result-card result-avoid">
+          <h3>{t("result.avoid")}</h3>
+          {recommendation.avoid && recommendation.avoid.length > 0 ? (
+            <ul className="result-list">
+              {recommendation.avoid.map((crop) => (
+                <li key={crop.id}>
+                  <p>{crop.why}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>{t("result.avoidNone")}</p>
+          )}
+        </article>
+      </div>
+
+      <h3>{t("result.strategies")}</h3>
+      <div className="result-grid">
         <article className="result-card">
           <h3>{t("result.stress")}</h3>
           <ul className="result-list">
@@ -137,6 +171,7 @@ export function AnalysisResult({ lang, result }: Props) {
               {strategy.title} · {strategy.score}/100
             </h3>
             <p>{strategy.summary}</p>
+            {strategy.rotationPlan.length === 0 && strategy.dataGaps.map((gap) => <p key={gap}>{gap}</p>)}
             <ul className="result-list">
               {strategy.rotationPlan.map((year) => (
                 <li key={year.year}>
