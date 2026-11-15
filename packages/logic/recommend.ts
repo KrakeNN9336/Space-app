@@ -1,10 +1,11 @@
 import type { Climate, Lang, LogicInput, LogicOutput, RawClimate, RawSoil, Soil } from "@field-shift/shared";
-import mock from "@field-shift/shared/mock-analyze.json";
 import koppenCatalog from "../../data/koppen.json";
 import { classifyKoppen } from "./koppen";
 import { estimateMonthlyPetMm } from "./pet";
 import { getWrbGroup } from "./wrb";
 import { advise } from "./advise";
+import { computeStress } from "./stress";
+import stressCopy from "../../data/stress-copy.json";
 
 /** Mean monthly temperature at which most field crops grow (common agronomic base, °C). */
 const GROWING_BASE_C = 5;
@@ -12,12 +13,21 @@ const GROWING_BASE_C = 5;
 const round1 = (value: number): number => Math.round(value * 10) / 10;
 const sum = (values: readonly number[]): number => values.reduce((a, b) => a + b, 0);
 
-const NOT_READY: Record<Lang, string> = {
-  en: "The six stress indicators are illustrative sample values: their scoring rules are not connected yet. Crop advice, climate and soil are computed for this location.",
-  uk: "Шість показників стресу є ілюстративним прикладом: правила їх оцінювання ще не підключені. Поради щодо культур, клімат і ґрунт розраховано для цієї точки.",
+const UNASSESSED: Record<Lang, string> = {
+  en: "{names} could not be assessed from the available data. Their score 0 means \"no estimate\", not \"no risk\".",
+  uk: "{names} неможливо оцінити за наявними даними. Їхня оцінка 0 означає «немає оцінки», а не «немає ризику».",
+};
+const STRESS_NAMES: Record<Lang, Record<string, string>> = {
+  en: { drought: "Drought", waterlogging: "Waterlogging", frost: "Frost", heat: "Heat", erosion: "Erosion", fertility: "Fertility" },
+  uk: { drought: "Посуху", waterlogging: "Перезволоження", frost: "Заморозки", heat: "Спеку", erosion: "Ерозію", fertility: "Родючість" },
 };
 
 type KoppenEntry = { code: string; name: Record<Lang, string>; explain: Record<Lang, string> };
+
+/** True for the "could not be assessed" items of computeStress (they share one short text). */
+function isUnassessed(whyShort: string, lang: Lang): boolean {
+  return whyShort === stressCopy[lang].unknownShort;
+}
 
 /** Derives the contract `Climate` block from raw monthly data. No network. */
 export function buildClimate(raw: RawClimate, lat: number, lang: Lang): Climate {
@@ -54,19 +64,21 @@ export function buildSoil(raw: RawSoil, lang: Lang): Soil {
 /**
  * Climate and soil are computed from the collected data (Koppen, Hargreaves PET, WRB catalog).
  * Crop shares, strategies, crops to avoid and tillage come from advise.ts.
- * TODO(Serhii): the six stress indicators are still the illustrative mock; the response says so
- * in `recommendation.warnings`.
+ * The six stress indicators come from stress.ts (computeStress). Indicators without a validated
+ * threshold in data/thresholds.json (heat, erosion) are returned as "not assessed": score 0 with
+ * low confidence, and the response names them in `recommendation.warnings`.
  * The signature is the internal contract from shared/types.ts — do not change it.
  */
 export function recommend(input: LogicInput): LogicOutput {
-  const sample = mock as unknown as LogicOutput;
   const climate = input.climate ? buildClimate(input.climate, input.location.lat, input.lang) : null;
   const soil = input.soil ? buildSoil(input.soil, input.lang) : null;
   const recommendation = advise(input, climate, soil);
-  return {
-    climate,
-    soil,
-    stress: sample.stress,
-    recommendation: { ...recommendation, warnings: [...recommendation.warnings, NOT_READY[input.lang]] },
-  };
+  const stress = computeStress(climate, soil, input.terrain, input.lang);
+  // computeStress marks an indicator it could not assess with score 0 and low confidence.
+  const unassessed = stress.filter((item) => item.score === 0 && item.confidence === "low" && item.level === "low" && isUnassessed(item.whyShort, input.lang));
+  const warnings = [...recommendation.warnings];
+  if (unassessed.length > 0) {
+    warnings.push(UNASSESSED[input.lang].replace("{names}", unassessed.map((item) => STRESS_NAMES[input.lang][item.id]).join(", ")));
+  }
+  return { climate, soil, stress, recommendation: { ...recommendation, warnings } };
 }
