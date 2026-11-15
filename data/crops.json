@@ -1,5 +1,5 @@
 {
-  "_note": "25 crop records. Climate, rainfall, pH and season ranges are from the FAO EcoCrop database (species level, not variety level). precipRange is annual rainfall, mm; tempRange is temperature during growth, C; seasonDays and seasonDaysRange are the crop cycle length in days. verificationStatus verify means imported from EcoCrop but not yet validated by hand. Sensitivities, predecessors and econScore are not filled yet. Null means unknown. sugar_beet currently uses the generic EcoCrop species record (Beta vulgaris); the choice of record is pending review.",
+  "_note": "25 crop records. Climate, rainfall, pH and season ranges are from the FAO EcoCrop database (species level, not variety level). precipRange is annual rainfall, mm; tempRange is temperature during growth, C; seasonDays and seasonDaysRange are the crop cycle length in days. verificationStatus \"source_matched\" means every value was compared with the EcoCrop table by data/verify-ecocrop.mjs and matches; it does not mean agronomic validation for a cultivar or a region (that would be \"verified\", which no crop has yet). Sensitivities, predecessors and econScore are not filled yet. Null means unknown. sugar_beet uses the generic EcoCrop species record (Beta vulgaris) by team decision; see its verification note.",
   "crops": [
     {
       "id": "winter_wheat",
@@ -40,10 +40,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Triticum aestivum; EcoPort=2114",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 90,
         "max": 250
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -85,10 +90,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Triticum aestivum; EcoPort=2114",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 90,
         "max": 250
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -130,10 +140,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Hordeum vulgare; EcoPort=1232",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 90,
         "max": 240
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -175,10 +190,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Zea mays; EcoPort=2175",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 65,
         "max": 365
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -220,10 +240,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Glycine max; EcoPort=1150",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 75,
         "max": 180
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -265,10 +290,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Pisum sativum; EcoPort=1721",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 60,
         "max": 140
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -310,10 +340,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Helianthus annuus; EcoPort=1191",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 70,
         "max": 200
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -355,10 +390,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Brassica napus; EcoPort=549",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 85,
         "max": 340
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -400,10 +440,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Solanum tuberosum; EcoPort=1971",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 90,
         "max": 160
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -445,10 +490,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Trifolium pratense; EcoPort=2104",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 120,
         "max": 300
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -490,10 +540,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Oryza sativa; EcoPort=1574",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 80,
         "max": 180
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -535,10 +590,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Sorghum bicolor; EcoPort=48747",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 90,
         "max": 300
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -580,10 +640,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Panicum miliaceum; EcoPort=8280",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 55,
         "max": 280
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -625,10 +690,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Cicer arietinum; EcoPort=2479",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 90,
         "max": 180
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -670,10 +740,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Lens culinaris; EcoPort=7209",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 70,
         "max": 240
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -715,10 +790,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Avena sativa; EcoPort=481",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 110,
         "max": 270
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -760,10 +840,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Secale cereale; EcoPort=1929",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 110,
         "max": 270
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -805,10 +890,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Fagopyrum esculentum; EcoPort=2285",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 55,
         "max": 85
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -849,11 +939,17 @@
       "goodPredecessors": [],
       "badPredecessors": [],
       "econScore": null,
-      "source": "FAO EcoCrop: Beta vulgaris (EcoPort code 514)",
-      "verificationStatus": "verify",
+      "source": "FAO EcoCrop via OpenCLIM; species=Beta vulgaris; EcoPort=514",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 160,
         "max": 240
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region.",
+        "note": "Team decision of 2026-11-15: the generic species record (EcoPort 514, common names include Sugarbeet) is used. The dedicated record Beta vulgaris var. saccharifera (EcoPort 48742) gives a cycle of 60-140 days, which the team judged implausibly short for sugar beet; that judgement is ours, not a cited source."
       }
     },
     {
@@ -895,10 +991,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Gossypium hirsutum; EcoPort=1160",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 150,
         "max": 200
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -940,10 +1041,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Arachis hypogaea; EcoPort=2199",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 90,
         "max": 150
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -985,10 +1091,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Manihot esculenta; EcoPort=1420",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 180,
         "max": 365
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -1030,10 +1141,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Ipomoea batatas; EcoPort=1265",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 80,
         "max": 170
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -1075,10 +1191,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Phaseolus vulgaris; EcoPort=1668",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 50,
         "max": 270
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     },
     {
@@ -1120,10 +1241,15 @@
       "badPredecessors": [],
       "econScore": null,
       "source": "FAO EcoCrop via OpenCLIM; species=Secale cereale; EcoPort=1929",
-      "verificationStatus": "verify",
+      "verificationStatus": "source_matched",
       "seasonDaysRange": {
         "min": 110,
         "max": 270
+      },
+      "verification": {
+        "method": "all range and cycle values compared with the EcoCrop table by data/verify-ecocrop.mjs",
+        "date": "2026-11-15",
+        "scope": "Values equal the FAO EcoCrop record for the species. Species level only: not validated for a cultivar, a winter or spring form, or a region."
       }
     }
   ]

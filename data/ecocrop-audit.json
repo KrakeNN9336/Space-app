@@ -2,201 +2,251 @@
   {
     "id": "winter_wheat",
     "species": "Triticum aestivum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 2114,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "spring_wheat",
     "species": "Triticum aestivum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 2114,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "barley",
     "species": "Hordeum vulgare",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1232,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "corn",
     "species": "Zea mays",
-    "status": "imported_needs_review",
+    "ecoPortCode": 2175,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "soybean",
     "species": "Glycine max",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1150,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "pea",
     "species": "Pisum sativum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1721,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "sunflower",
     "species": "Helianthus annuus",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1191,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "rapeseed",
     "species": "Brassica napus",
-    "status": "imported_needs_review",
+    "ecoPortCode": 549,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "potato",
     "species": "Solanum tuberosum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1971,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "clover",
     "species": "Trifolium pratense",
-    "status": "imported_needs_review",
+    "ecoPortCode": 2104,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "rice",
     "species": "Oryza sativa",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1574,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "sorghum",
     "species": "Sorghum bicolor",
-    "status": "imported_needs_review",
+    "ecoPortCode": 48747,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "millet",
     "species": "Panicum miliaceum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 8280,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "chickpea",
     "species": "Cicer arietinum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 2479,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "lentil",
     "species": "Lens culinaris",
-    "status": "imported_needs_review",
+    "ecoPortCode": 7209,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "oats",
     "species": "Avena sativa",
-    "status": "imported_needs_review",
+    "ecoPortCode": 481,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "rye",
     "species": "Secale cereale",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1929,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "buckwheat",
     "species": "Fagopyrum esculentum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 2285,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "sugar_beet",
-    "species": "Beta vulgaris var. saccharifera",
-    "status": "imported_needs_review",
+    "species": "Beta vulgaris",
+    "ecoPortCode": 514,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "cotton",
     "species": "Gossypium hirsutum",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1160,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "groundnut",
     "species": "Arachis hypogaea",
-    "status": "imported_needs_review",
+    "ecoPortCode": 2199,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "cassava",
     "species": "Manihot esculenta",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1420,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "sweet_potato",
     "species": "Ipomoea batatas",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1265,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "common_bean",
     "species": "Phaseolus vulgaris",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1668,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   },
   {
     "id": "cover_rye",
     "species": "Secale cereale",
-    "status": "imported_needs_review",
+    "ecoPortCode": 1929,
+    "status": "matched_to_source",
     "temperature": true,
     "rainfall": true,
-    "ph": true
+    "ph": true,
+    "problems": []
   }
 ]
