@@ -75,24 +75,11 @@ function satelliteStyle(lang: "uk" | "en") {
     glyphs: "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
     sources: {
       satellite: { type: "raster" as const, tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"], tileSize: 256, attribution: "Imagery © Esri and contributors" },
-      openmaptiles: { type: "vector" as const, url: "https://tiles.openfreemap.org/planet" },
+     // openmaptiles тимчасово вимкнено через CORS
     },
-    layers: [
-      { id: "satellite", type: "raster", source: "satellite" },
-      // District (raion) borders, then region (oblast) borders, then country borders on top.
-      { id: "border-district", type: "line", source: "openmaptiles", "source-layer": "boundary", minzoom: 7, filter: landBorder(5, 6),
-        paint: { "line-color": "#ffffff", "line-opacity": 0.55, "line-width": 1, "line-dasharray": [2, 2] } },
-      { id: "border-region", type: "line", source: "openmaptiles", "source-layer": "boundary", minzoom: 3, filter: landBorder(3, 4),
-        paint: { "line-color": "#ffe9a8", "line-opacity": 0.8, "line-width": ["interpolate", ["linear"], ["zoom"], 4, 0.8, 10, 2], "line-dasharray": [3, 2] } },
-      { id: "border-country", type: "line", source: "openmaptiles", "source-layer": "boundary", filter: landBorder(2, 2),
-        layout: { "line-cap": "round", "line-join": "round" },
-        paint: { "line-color": "#ffffff", "line-width": ["interpolate", ["linear"], ["zoom"], 1, 0.8, 5, 1.6, 12, 3] } },
-      placeLabel("label-village", cls("village"), "Noto Sans Regular", 11, name, { minzoom: 10 }),
-      placeLabel("label-town", cls("town"), "Noto Sans Regular", ["interpolate", ["linear"], ["zoom"], 7, 11, 12, 14], name, { minzoom: 7 }),
-      placeLabel("label-city", cls("city"), "Noto Sans Bold", ["interpolate", ["linear"], ["zoom"], 4, 11, 8, 14, 12, 18], name, { minzoom: 4 }),
-      placeLabel("label-region", cls("state"), "Noto Sans Italic", ["interpolate", ["linear"], ["zoom"], 5, 10, 8, 13], name, { minzoom: 5, maxzoom: 9 }, true),
-      placeLabel("label-country", cls("country"), "Noto Sans Bold", ["interpolate", ["linear"], ["zoom"], 1, 10, 5, 16], name, { maxzoom: 7 }),
-    ],
+ layers: [
+  { id: "satellite", type: "raster", source: "satellite" },
+],
   };
 }
 const streetStyle = "https://tiles.openfreemap.org/styles/liberty";
@@ -167,8 +154,28 @@ export function FieldMap({ field, analysis, onFieldSelected, onMapClick, layer, 
       const geometry = currentField.geometry;
       map.addSource("selected-field", { type: "geojson", data: fieldFeature(geometry) as any });
       if (geometry.type !== "Point") {
-        map.addLayer({ id: "field-fill", type: "fill", source: "selected-field", paint: { "fill-color": mainStress ? severity[mainStress.level] : "#49c58b", "fill-opacity": showSoil ? 0.33 : 0.06 } });
-        map.addLayer({ id: "field-outline", type: "line", source: "selected-field", paint: { "line-color": "#f5fff8", "line-width": 3 } });
+     
+map.addLayer({
+  id: "field-fill",
+  type: "fill",
+  source: "selected-field",
+  paint: {
+    "fill-color": "#f5c451",
+    "fill-opacity": 0.25,
+  },
+});
+
+map.addLayer({
+  id: "field-outline",
+  type: "line",
+  source: "selected-field",
+  paint: {
+    "line-color": "#ffd54f",
+    "line-width": 4,
+    "line-opacity": 1,
+  },
+});
+
       } else {
         map.addLayer({ id: "field-outline", type: "circle", source: "selected-field", paint: { "circle-color": "#49c58b", "circle-radius": 9, "circle-stroke-color": "#fff", "circle-stroke-width": 2 } });
       }
