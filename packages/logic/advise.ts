@@ -170,6 +170,48 @@ function scoreAll(climate: Climate | null, soil: Soil | null, past: string[][], 
 
 const range = (r: Range, unit: string): string => `${r.optMin}–${r.optMax}${unit ? ` ${unit}` : ""}`;
 
+const MONTHS: Record<Lang, string[]> = {
+  en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  uk: ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"],
+};
+
+/**
+ * Longest run of consecutive months whose mean temperature is above the crop's absolute minimum
+ * for growth (EcoCrop TMIN). It describes when growth is possible, NOT when to sow: sowing dates
+ * depend on the variety, frost risk and soil warming, which this tool does not know.
+ */
+export function growthWindow(monthlyTempC: readonly number[], minC: number | null): { start: number; months: number } | null {
+  if (minC === null || monthlyTempC.length !== 12) return null;
+  const warm = monthlyTempC.map((t) => t > minC);
+  if (warm.every(Boolean)) return { start: 0, months: 12 };
+  let best: { start: number; months: number } | null = null;
+  for (let start = 0; start < 12; start++) {
+    if (!warm[start] || warm[(start + 11) % 12]) continue; // a run starts after a cold month
+    let months = 0;
+    while (months < 12 && warm[(start + months) % 12]) months++;
+    if (!best || months > best.months) best = { start, months };
+  }
+  return best;
+}
+
+/** One plain sentence about the months warm enough for the crop, with the cycle length it needs. */
+function seasonText(crop: CropRecord, climate: Climate, lang: Lang): string | null {
+  const window = growthWindow(climate.monthly.tempC, crop.tempRange.min);
+  const days = crop.seasonDays;
+  if (!window || !days || days.min === null || days.max === null) return null;
+  const need = tx(lang, `it needs ${days.min}–${days.max} days to mature`, `для дозрівання їй потрібно ${days.min}–${days.max} днів`)
+    .replace("їй потрібно", "цій культурі потрібно");
+  const caveat = tx(lang, "This is an indicative season, not a sowing date: check local dates with an agronomist.", "Це орієнтовний сезон, а не дата сівби: строки уточніть у місцевого агронома.");
+  if (window.months === 12) {
+    return tx(lang, `It is warm enough for it all year (every month is above ${crop.tempRange.min} °C); ${need}. ${caveat}`,
+      `Тепла для неї вистачає цілий рік (кожен місяць тепліший за ${crop.tempRange.min} °C); ${need}. ${caveat}`).replace("для неї", "для цієї культури");
+  }
+  const end = (window.start + window.months - 1) % 12;
+  return tx(lang,
+    `It is warm enough for growth from ${MONTHS.en[window.start]} to ${MONTHS.en[end]} (${window.months} months above ${crop.tempRange.min} °C); ${need}. ${caveat}`,
+    `Тепла для росту вистачає з ${MONTHS.uk[window.start]} до кінця ${MONTHS.uk[end]} (${window.months} міс. тепліше за ${crop.tempRange.min} °C); ${need}. ${caveat}`);
+}
+
 /** "low" when the value is below the crop's optimum, "high" when above, "ok" inside it. */
 function side(x: number | null | undefined, r: Range): "low" | "ok" | "high" {
   if (typeof x !== "number" || r.optMin === null || r.optMax === null) return "ok";
@@ -205,7 +247,8 @@ function explain(s: Scored, climate: Climate | null, soil: Soil | null, lang: La
       `${acid === "ok" ? "Soil acidity suits it" : acid === "low" ? "The soil is a little too acid" : "The soil is a little too alkaline"}: pH ${r1(ph)}, best is ${range(s.crop.phRange, "")}.`,
       `${acid === "ok" ? "Кислотність ґрунту підходить" : acid === "low" ? "Ґрунт трохи закислий" : "Ґрунт трохи залужний"}: pH ${r1(ph)}, найкраще ${range(s.crop.phRange, "")}.`));
   }
-  return [...out, ...s.rotation.notes].join(" ");
+  const season = climate ? seasonText(s.crop, climate, lang) : null;
+  return [...out, ...s.rotation.notes, ...(season ? [season] : [])].join(" ");
 }
 
 /** Plain-language reason why the site does not suit a crop: the one factor that fails most. */

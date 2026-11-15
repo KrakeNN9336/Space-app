@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { LogicInput, RawClimate, RawSoil } from "@field-shift/shared";
 import { validateAnalyzeResponse } from "@field-shift/shared";
-import { equalShares, trapezoid } from "./advise";
+import { equalShares, growthWindow, trapezoid } from "./advise";
 import { recommend } from "./recommend";
 
 // Rounded NASA POWER climatology near Lviv, used only as a realistic temperate test case.
@@ -95,5 +95,21 @@ describe("crop advice", () => {
     const current = rec.strategies.find((s) => s.kind === "current");
     expect(current?.rotationPlan).toEqual([]);
     expect(rec.confidence).toBe("low");
+  });
+});
+
+describe("growthWindow", () => {
+  it("finds the longest warm run, also across the new year", () => {
+    expect(growthWindow(tempC, 5)).toEqual({ start: 3, months: 7 }); // April..October
+    const south = [22, 21, 19, 15, 11, 8, 7, 9, 12, 15, 18, 21];
+    expect(growthWindow(south, 10)).toEqual({ start: 8, months: 9 }); // September..May
+    expect(growthWindow(new Array(12).fill(25), 10)).toEqual({ start: 0, months: 12 });
+    expect(growthWindow(new Array(12).fill(-5), 10)).toBeNull();
+    expect(growthWindow(tempC, null)).toBeNull();
+  });
+
+  it("adds an indicative season to the advice without naming a sowing date", () => {
+    const why = recommend(input([["winter_wheat"], ["corn"], ["sunflower"]])).recommendation.crops[0].why;
+    expect(why).toContain("indicative season, not a sowing date");
   });
 });
