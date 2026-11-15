@@ -6,6 +6,7 @@
   "dependencies": {
     "@field-shift/logic": "*",
     "@field-shift/shared": "*",
+    "geotiff": "^3.0.5",
     "hono": "^4.13.18"
   }
 }
