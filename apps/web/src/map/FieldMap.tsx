@@ -73,11 +73,17 @@ function satelliteStyle(lang: "uk" | "en") {
   return {
     version: 8 as const,
     glyphs: "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
-    sources: {
-      satellite: { type: "raster" as const, tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"], tileSize: 256, attribution: "Imagery © Esri and contributors" },
-     // openmaptiles тимчасово вимкнено через CORS
-    },
- layers: [
+ sources: {
+  satellite: {
+    type: "raster" as const,
+    tiles: [
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    ],
+    tileSize: 256,
+    attribution: "Imagery © Esri and contributors",
+  },
+},
+layers: [
   { id: "satellite", type: "raster", source: "satellite" },
 ],
   };
